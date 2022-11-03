@@ -32,4 +32,4 @@
 *.app
 /Design
 /.vs
-/x64/Debug
+**/x64/Debug
