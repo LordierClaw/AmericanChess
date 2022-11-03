@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\GameManager">
+      <UniqueIdentifier>{1dedbef5-f9e5-48c1-94c0-6e9674caff35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameStateManager">
+      <UniqueIdentifier>{c4cc9efb-7b57-4359-b4d7-03527e3561f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameStateManager\State">
+      <UniqueIdentifier>{e51fcd60-b094-4ab5-9057-e40909ba74b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObject">
+      <UniqueIdentifier>{6653dd20-4c71-405e-88bb-8074119b2cad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObject\ChessObject">
+      <UniqueIdentifier>{40145bb4-4020-4cd1-ab3d-0cb588c52876}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Misc">
+      <UniqueIdentifier>{8d78b963-6af9-4341-b488-0228e5e384ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameTurnManager">
+      <UniqueIdentifier>{ce82b6f8-32c2-48dd-a8be-2643fb11a45f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameTurnManager\Turn">
+      <UniqueIdentifier>{6cca1f5d-5cb7-472f-ad5b-3dca96de87cd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AmericanChess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameManager\ResourceManager.cpp">
+      <Filter>Source Files\GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameStateManager\GameStateMachine.cpp">
+      <Filter>Source Files\GameStateManager</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameStateManager\GameStateBase.cpp">
+      <Filter>Source Files\GameStateManager</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameStateManager\State\GSIntro.cpp">
+      <Filter>Source Files\GameStateManager\State</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameStateManager\State\GSMenu.cpp">
+      <Filter>Source Files\GameStateManager\State</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameStateManager\State\GSPlay.cpp">
+      <Filter>Source Files\GameStateManager\State</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameManager\WindowConnector.cpp">
+      <Filter>Source Files\GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameObject\GameButton.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameObject\ChessObject\Board.cpp">
+      <Filter>Source Files\GameObject\ChessObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameObject\ChessObject\Player.cpp">
+      <Filter>Source Files\GameObject\ChessObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameObject\ChessObject\Shotgun.cpp">
+      <Filter>Source Files\GameObject\ChessObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameObject\ChessObject\ChessPiece.cpp">
+      <Filter>Source Files\GameObject\ChessObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Misc\GameMath.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameObject\ChessObject\ChessPosition.cpp">
+      <Filter>Source Files\GameObject\ChessObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameObject\ChessObject\ChessBox.cpp">
+      <Filter>Source Files\GameObject\ChessObject</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameTurnManager\GameTurnMachine.cpp">
+      <Filter>Source Files\GameTurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameTurnManager\GameTurnBase.cpp">
+      <Filter>Source Files\GameTurnManager</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameTurnManager\Turn\PlayerTurn.cpp">
+      <Filter>Source Files\GameTurnManager\Turn</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameTurnManager\Turn\BotTurn.cpp">
+      <Filter>Source Files\GameTurnManager\Turn</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\GameManager\Singleton.h">
+      <Filter>Source Files\GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameManager\ResourceManager.h">
+      <Filter>Source Files\GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Application.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameStateManager\GameStateBase.h">
+      <Filter>Source Files\GameStateManager</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameConfig.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameStateManager\GameStateMachine.h">
+      <Filter>Source Files\GameStateManager</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameStateManager\State\GSIntro.h">
+      <Filter>Source Files\GameStateManager\State</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameStateManager\State\GSMenu.h">
+      <Filter>Source Files\GameStateManager\State</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameStateManager\State\GSPlay.h">
+      <Filter>Source Files\GameStateManager\State</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameManager\WindowConnector.h">
+      <Filter>Source Files\GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameObject\GameButton.h">
+      <Filter>Source Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameObject\ChessObject\Board.h">
+      <Filter>Source Files\GameObject\ChessObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameObject\ChessObject\Player.h">
+      <Filter>Source Files\GameObject\ChessObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameObject\ChessObject\Shotgun.h">
+      <Filter>Source Files\GameObject\ChessObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameObject\ChessObject\ChessPiece.h">
+      <Filter>Source Files\GameObject\ChessObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Misc\GameMath.h">
+      <Filter>Source Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameObject\ChessObject\ChessPosition.h">
+      <Filter>Source Files\GameObject\ChessObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameObject\ChessObject\ChessBox.h">
+      <Filter>Source Files\GameObject\ChessObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameTurnManager\GameTurnBase.h">
+      <Filter>Source Files\GameTurnManager</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameTurnManager\GameTurnMachine.h">
+      <Filter>Source Files\GameTurnManager</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameTurnManager\Turn\BotTurn.h">
+      <Filter>Source Files\GameTurnManager\Turn</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameTurnManager\Turn\PlayerTurn.h">
+      <Filter>Source Files\GameTurnManager\Turn</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
