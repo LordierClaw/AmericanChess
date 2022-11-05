@@ -7,6 +7,8 @@ Shotgun::Shotgun() {
 	m_RangeLineL = nullptr;
 	m_RangeLineR = nullptr;
 	m_isShootable = false;
+	m_isFinishShoot = false;
+	m_player = nullptr;
 }
 
 Shotgun::Shotgun(Player* player) : Shotgun() {
@@ -90,13 +92,9 @@ void Shotgun::handleRotateGun(sf::Vector2f mousePosition, float deltaTime) {
 
 void Shotgun::handleShoot(sf::Vector2f mousePostion, float deltaTime) {
 	m_currentTime += deltaTime;
-	float x = this->getOrigin().x;
-	if (m_currentTime <= SHOOTING_DURATION / 2) {
-		x = std::min(8.f + SHOOTING_RECOIL, x + m_currentTime * SHOOTING_RECOIL);
-		this->setOrigin(sf::Vector2f(x, 8.f));
-	} else if (m_currentTime <= SHOOTING_DURATION) {
-		x = std::max(8.f, x - (m_currentTime - SHOOTING_DURATION / 2) * SHOOTING_RECOIL);
-		this->setOrigin(sf::Vector2f(x, 8.f));
+	if (m_currentTime <= SHOOTING_DURATION) {
+		float x = GameMath::getHarmonicMotion(SHOOTING_OFFSET, SHOOTING_DURATION, m_currentTime);
+		this->setOrigin(sf::Vector2f(8.f - x, 8.f));
 	} else {
 		this->setOrigin(sf::Vector2f(8.f, 8.f));
 		m_currentTime = 0;

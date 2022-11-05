@@ -7,7 +7,7 @@
 #define VERTICAL_SYNC false
 // CHARACTER
 #define SHOOTING_DURATION 0.2f
-#define SHOOTING_RECOIL 25.0f
+#define SHOOTING_OFFSET 10.0f
 #define SHOOTING_RANGE_ANGLE 42.f
 #define SHOOTING_RANGE_THICKNESS 3
 #define SHOOTING_RANGE_COLOR sf::Color::Red
@@ -19,7 +19,7 @@
 #define CHESS_QUEUE_SIZE 4
 #define CHESS_MAX_HEALTH 3
 #define BUZZING_OFFSET 0.8f
-#define BUZZING_SPEED 30.f
+#define BUZZING_DURATION PI/30.f
 #define MOVING_DURATION 0.5f
 #define HURT_COLOR sf::Color::Red
 #define HURT_OFFSET 5.f

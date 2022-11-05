@@ -156,7 +156,7 @@ void ChessPiece::handleShowUp(float deltaTime) {
 
 void ChessPiece::handleReady(float deltaTime) {
     m_currentTime += deltaTime;
-    float x = 8.f + BUZZING_OFFSET * cos(BUZZING_SPEED * m_currentTime + PI/2);
+    float x = 8.f + GameMath::getHarmonicMotion(BUZZING_OFFSET, BUZZING_DURATION, m_currentTime);
     this->setOrigin(sf::Vector2f(x, 23.f / 2));
 }
 
