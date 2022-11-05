@@ -2,15 +2,7 @@
 
 Board::Board() {
     m_player = nullptr;
-}
-
-Board::~Board() {
-    for (auto piece : m_ChessList) {
-        if (piece != nullptr) delete piece;
-    }
-}
-
-void Board::init() {
+    m_king = nullptr;
     DATA->addTexture("chess/Board");
     this->setTexture(DATA->getTexture("chess/Board"));
     this->setSize(sf::Vector2f(550.f, 550.f + 6.f)); //DO NOT change y value, because I want to stretch the texture
@@ -22,26 +14,32 @@ void Board::init() {
             m_ChessTable[y][x] = ChessBox(sf::Vector2f(64.5, 64.5), { x, y });
         }
     }
+}
+
+Board::~Board() {;
+    for (auto piece : m_ChessList) {
+        if (piece != nullptr) delete piece;
+    }
+}
+
+void Board::init() {
     //
     m_player = new Player();
-    m_player->init({0, 0});
+    m_player->init({3, 7});
 
     m_king = new ChessPiece("W_King");
-    m_king->init();
-    m_king->setCurrentPosition({ 6, 6 });
-    //W_King->changeState(STATE::READY_TO_MOVE);
-    m_king->setTurnLeft(3);
+    m_king->init({ 3, 0 });
+    m_king->setTurnLeft(4);
 
     ChessPiece* m_pawn = new ChessPiece("W_Pawn");
-    m_pawn->init();
-    m_pawn->setCurrentPosition({ 6, 2 });
-    m_pawn->setTurnLeft(1);
+    m_pawn->init({ 3, 1 });
+    m_pawn->setTurnLeft(2);
     
     m_ChessList.push_back(m_king);
     m_ChessList.push_back(m_player);
     m_ChessList.push_back(m_pawn);
 
-    GTM->changeTurn(TURN::PLAYER_TURN);
+    GTM->changeTurn(TURN::SHOWUP_TURN);
 }
 
 void Board::update(float deltaTime) {

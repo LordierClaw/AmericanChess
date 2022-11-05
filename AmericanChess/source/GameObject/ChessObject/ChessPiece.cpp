@@ -31,20 +31,24 @@ ChessPiece::ChessPiece(std::string name) {
 ChessPiece::~ChessPiece() {
 }
 
-void ChessPiece::init() {
+void ChessPiece::init(ChessPosition pos) {
     this->setTexture(*DATA->getTexture(this->m_name));
     this->setScale(sf::Vector2f(3.f, 3.f));
     this->setOrigin(sf::Vector2f(16.f/2, 23.f/2));
-    m_state = IDLE;
+    this->setCurrentPosition(pos);
     m_turnLeft = CHESS_QUEUE_SIZE;
     m_health = CHESS_MAX_HEALTH;
-    m_currentPos = ChessPosition(0, 0);
+    m_state = SHOWUP;
     m_color = this->getColor();
+    m_color.a = 0;
+    this->setColor(m_color);
     m_isEndTurn = true;
 }
 
 void ChessPiece::update(float deltaTime) {
     switch (m_state) {
+    case SHOWUP:
+        handleShowUp(deltaTime);
     case IDLE:
         break;
     case READY_TO_MOVE:
@@ -125,6 +129,7 @@ void ChessPiece::setDestPosition(ChessPosition pos) {
 }
 
 void ChessPiece::performTurn() {
+    m_currentTime = 0;
     m_isEndTurn = false;
 }
 
@@ -145,6 +150,7 @@ void ChessPiece::handleShowUp(float deltaTime) {
         m_color.a = 255;
         this->setColor(m_color);
         this->changeState(IDLE);
+        this->endTurn();
     }
 }
 
@@ -163,7 +169,7 @@ void ChessPiece::handleMove(float deltaTime) {
         this->setPosition(pos);
     } else {
         this->setCurrentPosition(m_destPos);
-        changeState(STATE::IDLE);
+        this->changeState(STATE::IDLE);
         this->endTurn();
     }
 }

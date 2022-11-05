@@ -111,7 +111,8 @@ void Shotgun::handleDrawRange(sf::Vector2f mousePosition, float deltaTime) {
 	//the curve
 	sf::VertexArray* lineCurve = new sf::VertexArray(sf::TriangleStrip);
 	float angleL = angle - SHOOTING_RANGE_ANGLE / 2, angleR = angle + SHOOTING_RANGE_ANGLE / 2;
-	float r = GameMath::getDistance(this->getPosition(), mousePosition) - 25.f;
+	float r = std::min((float)SHOOTING_MAX_RANGE, GameMath::getDistance(this->getPosition(), mousePosition) - 25.f);
+
 	int t = SHOOTING_RANGE_THICKNESS;
 	for (float i = angleL; i <= angleR; i += 0.05f) {
 		if (t == SHOOTING_RANGE_THICKNESS) t = 0;

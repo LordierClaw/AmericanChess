@@ -6,7 +6,8 @@
 #include "ChessPosition.h"
 
 enum STATE {
-	IDLE = 0,
+	SHOWUP = 0,
+	IDLE,
 	READY_TO_MOVE,
 	MOVING,
 	HURT,
@@ -29,7 +30,7 @@ public:
 	ChessPiece();
 	ChessPiece(std::string name);
 	~ChessPiece();
-	virtual void init();
+	virtual void init(ChessPosition pos);
 	virtual void update(float deltaTime);
 	virtual void render();
 
@@ -62,14 +63,13 @@ private:
 	int m_turnLeft;
 	int m_health;
 	PIECETYPE m_type;
-	//sf::Vector2f m_currentPos, m_destPos, m_shootPos;
+
 	ChessPosition m_currentPos, m_destPos, m_shootPos;
 	sf::Color m_color;
 	ChessPosition m_chessPos;
 
-
 	float m_currentTime;
-	// TODO: create showup animation
+
 	void handleShowUp(float deltaTime);
 	void handleReady(float deltaTime);
 	void handleMove(float deltaTime);

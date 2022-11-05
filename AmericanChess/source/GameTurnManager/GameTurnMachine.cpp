@@ -1,9 +1,8 @@
 #include "GameTurnMachine.h"
 #include "GameTurnBase.h"
 
-int GameTurnMachine::TURNCOUNT = 0;
-
 GameTurnMachine::GameTurnMachine() {
+	m_TurnCount = -1; //showing up turn will start at 0
 	m_CurrentTurn = nullptr;
 	m_NextTurn = nullptr;
 }
@@ -23,9 +22,9 @@ void GameTurnMachine::changeTurn(TURN turn) {
 }
 
 void GameTurnMachine::performTurnChange() {
-	TURNCOUNT++;
+	m_TurnCount++;
 	if (m_NextTurn != nullptr) {
-		std::cout << "Turn: " << TURNCOUNT << "  ";
+		std::cout << "Turn: " << m_TurnCount << "  ";
 		GameTurnBase* oldTurn = m_CurrentTurn;
 		std::cout << "OldTurn = " << oldTurn << "  ";
 		m_CurrentTurn = m_NextTurn;
@@ -39,9 +38,15 @@ void GameTurnMachine::performTurnChange() {
 GameTurnBase* GameTurnMachine::currentTurn() const {
 	return m_CurrentTurn;
 }
+
 GameTurnBase* GameTurnMachine::nextTurn() const {
 	return m_NextTurn;
 }
+
 bool GameTurnMachine::needToChangeTurn() {
 	return m_NextTurn != nullptr;
+}
+
+int GameTurnMachine::getTurnCount() {
+	return m_TurnCount;
 }

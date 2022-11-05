@@ -21,13 +21,16 @@ void PlayerTurn::update(float deltaTime) {
         handlePlayerEvent();
     } else {
         if (ChessBoard->getPlayer()->isEndTurn() && ChessBoard->getPlayer()->getState() == IDLE) {
+            bool isBotTurn = false;
             for (auto piece : ChessBoard->getChessList()) {
                 if (piece->getType() != PIECETYPE::PLAYER) {
                     piece->countTurnLeft();
+                    if (piece->getTurnLeft() == 0) isBotTurn = true;
                 }
             }
             std::cout << "End of Player Turn" << '\n';
-            GTM->changeTurn(TURN::BOT_TURN);
+            if (isBotTurn) GTM->changeTurn(TURN::BOT_TURN);
+            else GTM->changeTurn(TURN::PLAYER_TURN);
         }
     }
     for (auto piece : ChessBoard->getChessList()) {

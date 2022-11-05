@@ -7,7 +7,7 @@
 class GameTurnBase;
 
 enum TURN {
-	SHOWUP = 0,
+	SHOWUP_TURN = 0,
 	PLAYER_TURN,
 	BOT_TURN,
 	END_BOARD
@@ -27,8 +27,9 @@ public:
 	GameTurnBase* nextTurn() const;
 	bool needToChangeTurn();
 
-	static int TURNCOUNT;
+	int getTurnCount();
 private:
+	int m_TurnCount;
 	GameTurnBase* m_CurrentTurn;
 	GameTurnBase* m_NextTurn;
 };
