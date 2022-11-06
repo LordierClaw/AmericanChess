@@ -56,7 +56,6 @@ public:
 	void endTurn();
 	bool isEndTurn();
 
-	bool m_isEndTurn;
 private:
 	std::string m_name;
 	STATE m_state;
@@ -66,8 +65,8 @@ private:
 
 	ChessPosition m_currentPos, m_destPos, m_shootPos;
 	sf::Color m_color;
-	ChessPosition m_chessPos;
 
+	bool m_isEndTurn;
 	float m_currentTime;
 
 	void handleShowUp(float deltaTime);

@@ -1,6 +1,5 @@
 #include "GameMath.h"
 
-
 float GameMath::getAngle(sf::Vector2f firstPos, sf::Vector2f secondPos) {
     float d, r, h;
     h = secondPos.y - firstPos.y;
@@ -12,7 +11,7 @@ float GameMath::getAngle(sf::Vector2f firstPos, sf::Vector2f secondPos) {
 }
 
 float GameMath::getDistance(sf::Vector2f firstPos, sf::Vector2f secondPos) {
-    float d, r, h;
+    float d, h;
     h = secondPos.y - firstPos.y;
     d = secondPos.x - firstPos.x;
     return sqrt(d * d + h * h);

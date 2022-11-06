@@ -44,7 +44,6 @@ sf::Texture* ResourceManager::getTexture(std::string name) {
 		std::cout << "Failed to load texture: " << name << " doesn't exist\n";
 		return nullptr;
 	}
-	// std::cout << "Get texture: " << name << "\n";
 	return it->second;
 }
 
@@ -57,6 +56,7 @@ void ResourceManager::setCursor(std::string name) {
 	m_customCursor = new sf::Image();
 	m_customCursor->loadFromFile(m_TexturePath + name + ".png");
 }
+
 sf::Image* ResourceManager::getCursor() {
 	return m_customCursor;
 }

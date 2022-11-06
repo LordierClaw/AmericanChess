@@ -11,8 +11,6 @@ public:
 	void render();
 
 private:
-	ChessPosition m_PlayerPosition;
-
 	void handlePlayerShowUp(float deltaTime);
 	void handleBotShowUp(float deltaTime);
 };
