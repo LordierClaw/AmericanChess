@@ -13,4 +13,6 @@ public:
 	static sf::Vector2f getMovingEquation(sf::Vector2f firstPos, sf::Vector2f secondPos, float duration, float currentTime);
 	//convert radian to degree
 	static float radToDegree(float angle);
+	//convert degree to radian
+	static float degreeToRad(float angle);
 };

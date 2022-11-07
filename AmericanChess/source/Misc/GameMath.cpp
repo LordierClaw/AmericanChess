@@ -4,6 +4,7 @@ float GameMath::getAngle(sf::Vector2f firstPos, sf::Vector2f secondPos) {
     float d, r, h;
     h = secondPos.y - firstPos.y;
     d = secondPos.x - firstPos.x;
+    if (d == 0) d = 0.00001; //we dont want divide by zero
     r = (float)sqrt(d * d + h * h);
     float angle = (float)acos((d * d + r * r - h * h) / (2 * d * r));
     if (h < 0) angle = 2 * PI - angle;
@@ -29,4 +30,8 @@ sf::Vector2f GameMath::getMovingEquation(sf::Vector2f firstPos, sf::Vector2f sec
 
 float GameMath::radToDegree(float angle) {
     return angle * 180 / PI;
+}
+
+float GameMath::degreeToRad(float angle) {
+    return angle * PI / 180;
 }
