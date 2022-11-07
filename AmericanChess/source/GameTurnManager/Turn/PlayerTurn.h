@@ -20,6 +20,9 @@ public:
 private:
 	ChessPosition m_PlayerPosition;
 
+	bool isEndPlayerTurn();
+
+	MousePos m_playerIntent;
 	MousePos getPlayerIntention();
 
 	void hideNearbyBox();
@@ -27,4 +30,7 @@ private:
 	void handlePlayerEvent();
 	void handleMoveEvent();
 	void handleShootEvent();
+
+	void handleBulletHitbox();
+
 };

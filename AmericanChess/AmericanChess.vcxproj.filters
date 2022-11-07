@@ -105,6 +105,9 @@
     <ClCompile Include="source\GameTurnManager\Turn\ShowupTurn.cpp">
       <Filter>Source Files\GameTurnManager\Turn</Filter>
     </ClCompile>
+    <ClCompile Include="source\GameObject\ChessObject\Bullet.cpp">
+      <Filter>Source Files\GameObject\ChessObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\GameManager\Singleton.h">
@@ -175,6 +178,9 @@
     </ClInclude>
     <ClInclude Include="source\GameTurnManager\Turn\ShowupTurn.h">
       <Filter>Source Files\GameTurnManager\Turn</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameObject\ChessObject\Bullet.h">
+      <Filter>Source Files\GameObject\ChessObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

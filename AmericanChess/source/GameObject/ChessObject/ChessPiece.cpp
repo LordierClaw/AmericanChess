@@ -182,9 +182,9 @@ void ChessPiece::handleHurt(float deltaTime) {
 
         if (k < -HURT_OFFSET/2) this->setColor(HURT_COLOR);
         else this->setColor(m_color);
-
         float x = 8.f - k * cos(angle);
         float y = 23.f / 2 - k * sin(angle);
+
         this->setOrigin(sf::Vector2f(x, y));
     } else {
         this->setOrigin(sf::Vector2f(8.f, 23.f / 2));

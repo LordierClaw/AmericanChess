@@ -20,7 +20,8 @@ void PlayerTurn::update(float deltaTime) {
     if (isPerforming == false) {
         handlePlayerEvent();
     } else {
-        if (ChessBoard->getPlayer()->isEndTurn() && ChessBoard->getPlayer()->getState() == IDLE) {
+        // check if the player's turn is finished
+        if (isEndPlayerTurn()) {
             bool isBotTurn = false;
             for (auto piece : ChessBoard->getChessList()) {
                 if (piece->getType() != PIECETYPE::PLAYER) {
@@ -31,6 +32,11 @@ void PlayerTurn::update(float deltaTime) {
             std::cout << "End of Player Turn" << '\n';
             if (isBotTurn) GTM->changeTurn(TURN::BOT_TURN);
             else GTM->changeTurn(TURN::PLAYER_TURN);
+        } else {
+            // if the player shoots
+            if (m_playerIntent == MousePos::WANT_TO_SHOOT && ChessBoard->getPlayer()->getGun()->finishShoot() == false) {
+                handleBulletHitbox();
+            }
         }
     }
     for (auto piece : ChessBoard->getChessList()) {
@@ -47,6 +53,16 @@ void PlayerTurn::render() {
 //this is used to check ChessBox around Player
 int dx[] = { -1, -1, -1, 0, 0, 1, 1, 1 };
 int dy[] = { -1, 0, 1, -1, 1, -1, 0, 1 };
+
+bool PlayerTurn::isEndPlayerTurn() {
+    for (auto piece : ChessBoard->getChessList()) {
+        if (piece->getType() != PIECETYPE::PLAYER) {
+            if (piece->isEndTurn() == false) return false;
+        }
+    }
+    if (ChessBoard->getPlayer()->isEndTurn() && ChessBoard->getPlayer()->getState() == IDLE) return true;
+    return false;
+}
 
 MousePos PlayerTurn::getPlayerIntention() {
     for (int y = 0; y < 8; y++) {
@@ -82,8 +98,8 @@ void PlayerTurn::hideNearbyBox() {
 void PlayerTurn::handlePlayerEvent() {
     if (ChessBoard->getPlayer()->getState() != STATE::IDLE) return;
     ChessBoard->getPlayer()->getGun()->setShootable(false);
-    MousePos playerIntent = getPlayerIntention();
-    switch (playerIntent) {
+    m_playerIntent = getPlayerIntention();
+    switch (m_playerIntent) {
     case WANT_TO_MOVE:
         handleMoveEvent();
         break;
@@ -128,5 +144,23 @@ void PlayerTurn::handleShootEvent() {
         ChessBoard->getPlayer()->getGun()->shoot();
         ChessBoard->getPlayer()->performTurn();
         isPerforming = true;
+    }
+}
+
+void PlayerTurn::handleBulletHitbox() {
+    for (auto bullet : ChessBoard->getPlayer()->getGun()->getBullets()) {
+        for (auto piece : ChessBoard->getChessList()) {
+            if (piece->getType() != PIECETYPE::PLAYER
+                && piece->getGlobalBounds().contains(bullet->getHitbox())
+                && piece->getState() != STATE::HURT
+                && bullet->isFlying()) {
+                bullet->stop();
+                std::cout << "Piece located at " << piece->getCurrentPosition().x << " - " << piece->getCurrentPosition().y;
+                std::cout << " is shot. Health: " << piece->getHealth() << "  Damage: " << bullet->getDamage() << '\n';
+                piece->setShootPosition(ChessBoard->getPlayer()->getCurrentPosition());
+                piece->changeState(STATE::HURT);
+                piece->performTurn();
+            }
+        }
     }
 }

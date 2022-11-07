@@ -1,10 +1,8 @@
 #pragma once
 #include "../../GameManager/ResourceManager.h"
-#include "../../GameManager/WindowConnector.h"
-#include "../../GameManager/Singleton.h"
-#include "../../GameConfig.h"
-#include "../../Misc/GameMath.h"
+#include "Bullet.h"
 #include "Player.h"
+#include <vector>
 
 class Shotgun : public sf::Sprite {
 public:
@@ -23,10 +21,14 @@ public:
 	void reset();
 
 	bool finishShoot();
+
+	std::vector<Bullet*>& getBullets();
 private:
 	Player* m_player;
 
 	float m_currentTime;
+
+	std::vector<Bullet*> m_bullets;
 
 	bool m_isShootable;
 	bool m_isShooting;
@@ -35,8 +37,8 @@ private:
 	void handleRotateGun(sf::Vector2f mousePosition, float deltaTime);
 	void handleShoot(sf::Vector2f mousePosition, float deltaTime);
 	
-	sf::VertexArray* m_RangeGun;
-	sf::RectangleShape* m_RangeLineL;
-	sf::RectangleShape* m_RangeLineR;
+	sf::VertexArray m_RangeGun;
+	sf::RectangleShape m_RangeLineL;
+	sf::RectangleShape m_RangeLineR;
 	void handleDrawRange(sf::Vector2f mousePosition, float deltaTime);
 };

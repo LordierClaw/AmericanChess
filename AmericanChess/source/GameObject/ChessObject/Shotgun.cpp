@@ -1,11 +1,9 @@
 #include "Shotgun.h"
+#include <cstdlib>
 
 Shotgun::Shotgun() {
 	m_isShooting = false;
 	m_currentTime = 0;
-	m_RangeGun = nullptr;
-	m_RangeLineL = nullptr;
-	m_RangeLineR = nullptr;
 	m_isShootable = false;
 	m_isFinishShoot = false;
 	m_player = nullptr;
@@ -16,9 +14,6 @@ Shotgun::Shotgun(Player* player) : Shotgun() {
 }
 
 Shotgun::~Shotgun() {
-	if (m_RangeGun != nullptr) delete m_RangeGun;
-	if (m_RangeLineL != nullptr) delete m_RangeLineL;
-	if (m_RangeLineR != nullptr) delete m_RangeLineR;
 }
 
 void Shotgun::init() {
@@ -29,6 +24,8 @@ void Shotgun::init() {
 	m_isShootable = true;
 	m_isShooting = false;
 	m_isFinishShoot = false;
+	//
+	m_bullets.resize(10);
 }
 
 void Shotgun::sync() {
@@ -54,17 +51,36 @@ void Shotgun::update(float deltaTime) {
 }
 
 void Shotgun::render() {
-	WConnect->getWindow()->draw(*this);
 	if (m_isShootable && !m_isShooting) {
-		WConnect->getWindow()->draw(*m_RangeGun);
-		WConnect->getWindow()->draw(*m_RangeLineL);
-		WConnect->getWindow()->draw(*m_RangeLineR);
+		WConnect->getWindow()->draw(m_RangeGun);
+		WConnect->getWindow()->draw(m_RangeLineL);
+		WConnect->getWindow()->draw(m_RangeLineR);
 	}
+	if (m_isShooting) {
+		for (auto bullet : m_bullets) {
+			bullet->render();
+		}
+	}
+	WConnect->getWindow()->draw(*this);
 }
 
 void Shotgun::shoot() {
-	// do something
-	// TODO: write Shotgun.shoot() function
+	srand(time(NULL));
+	sf::Vector2f pos = this->getPosition();
+
+	for (int i = 0; i < 10; i++) {
+		Bullet* bullet = new Bullet();
+		float angle = this->getRotation();
+		int range = SHOOTING_RANGE_ANGLE*7/9;
+		angle = (angle + rand() % range) - range / 2;
+		angle = GameMath::degreeToRad(angle);
+		pos.x += 8.f * cos(angle);
+		pos.y += 8.f * sin(angle);
+		bullet->init(pos, angle);
+		if (m_bullets[i] != nullptr) delete m_bullets[i];
+		m_bullets[i] = bullet;
+	}
+
 	m_isShooting = true;
 }
 
@@ -76,10 +92,19 @@ void Shotgun::reset() {
 	m_isShootable = true;
 	m_isShooting = false;
 	m_isFinishShoot = false;
+	for (auto bullet : m_bullets) {
+		if (bullet != nullptr) delete bullet;
+	}
+	m_bullets.clear();
+	m_bullets.resize(10);
 }
 
 bool Shotgun::finishShoot() {
 	return m_isFinishShoot;
+}
+
+std::vector<Bullet*>& Shotgun::getBullets() {
+	return this->m_bullets;
 }
 
 void Shotgun::handleRotateGun(sf::Vector2f mousePosition, float deltaTime) {
@@ -95,6 +120,7 @@ void Shotgun::handleShoot(sf::Vector2f mousePostion, float deltaTime) {
 	if (m_currentTime <= SHOOTING_DURATION) {
 		float x = GameMath::getHarmonicMotion(SHOOTING_OFFSET, SHOOTING_DURATION, m_currentTime);
 		this->setOrigin(sf::Vector2f(8.f - x, 8.f));
+		for (auto bullet : m_bullets) bullet->update(deltaTime);
 	} else {
 		this->setOrigin(sf::Vector2f(8.f, 8.f));
 		m_currentTime = 0;
@@ -107,7 +133,7 @@ void Shotgun::handleShoot(sf::Vector2f mousePostion, float deltaTime) {
 void Shotgun::handleDrawRange(sf::Vector2f mousePosition, float deltaTime) {
 	float angle = GameMath::radToDegree(GameMath::getAngle(this->getPosition(), mousePosition));
 	//the curve
-	sf::VertexArray* lineCurve = new sf::VertexArray(sf::TriangleStrip);
+	sf::VertexArray lineCurve(sf::TriangleStrip);
 	float angleL = angle - SHOOTING_RANGE_ANGLE / 2, angleR = angle + SHOOTING_RANGE_ANGLE / 2;
 	float r = std::min((float)SHOOTING_MAX_RANGE, GameMath::getDistance(this->getPosition(), mousePosition) - 25.f);
 
@@ -118,27 +144,27 @@ void Shotgun::handleDrawRange(sf::Vector2f mousePosition, float deltaTime) {
 		// use t to calculate connected point of triangles
 		float x = this->getPosition().x + (r-t) * cos(PI * 2 * i / 360);
 		float y = this->getPosition().y + (r-t) * sin(PI * 2 * i / 360);
-		lineCurve->append(sf::Vertex(sf::Vector2f(x, y), SHOOTING_RANGE_COLOR));
+		lineCurve.append(sf::Vertex(sf::Vector2f(x, y), SHOOTING_RANGE_COLOR));
 	}
 	m_RangeGun = lineCurve;
-	sf::RectangleShape* lineL = new sf::RectangleShape(sf::Vector2f(r / 5, (float)SHOOTING_RANGE_THICKNESS));
-	sf::RectangleShape* lineR = new sf::RectangleShape(sf::Vector2f(r / 5, (float)SHOOTING_RANGE_THICKNESS));
+	sf::RectangleShape lineL(sf::Vector2f(r / 5, (float)SHOOTING_RANGE_THICKNESS));
+	sf::RectangleShape lineR(sf::Vector2f(r / 5, (float)SHOOTING_RANGE_THICKNESS));
 	
 	//draw 2 lines
-	lineL->setOrigin(sf::Vector2f((float)SHOOTING_RANGE_THICKNESS / 2, 0));
-	lineR->setOrigin(lineL->getOrigin());
+	lineL.setOrigin(sf::Vector2f((float)SHOOTING_RANGE_THICKNESS / 2, 0));
+	lineR.setOrigin(lineL.getOrigin());
 	
 	float xl = this->getPosition().x + (r*0.85) * cos(PI * 2 * angleL / 360);
 	float yl = this->getPosition().y + (r*0.85) * sin(PI * 2 * angleL / 360);
 	float xr = this->getPosition().x + (r*0.85) * cos(PI * 2 * angleR / 360);
 	float yr = this->getPosition().y + (r*0.85) * sin(PI * 2 * angleR / 360);
 	
-	lineL->setPosition(sf::Vector2f(xl, yl));
-	lineR->setPosition(sf::Vector2f(xr, yr));
-	lineL->setFillColor(SHOOTING_RANGE_COLOR);
-	lineR->setFillColor(SHOOTING_RANGE_COLOR);
-	lineL->rotate(angleL);
-	lineR->rotate(angleR);
+	lineL.setPosition(sf::Vector2f(xl, yl));
+	lineR.setPosition(sf::Vector2f(xr, yr));
+	lineL.setFillColor(SHOOTING_RANGE_COLOR);
+	lineR.setFillColor(SHOOTING_RANGE_COLOR);
+	lineL.rotate(angleL);
+	lineR.rotate(angleR);
 
 	m_RangeLineL = lineL;
 	m_RangeLineR = lineR;
