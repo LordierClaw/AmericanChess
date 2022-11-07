@@ -22,6 +22,12 @@ void PlayerTurn::update(float deltaTime) {
     } else {
         // check if the player's turn is finished
         if (isEndPlayerTurn()) {
+            //if WhiteKing is dead, change to END_TURN
+            if (handleKillPiece()) {
+                GTM->changeTurn(END_TURN);
+                return;
+            }
+
             bool isBotTurn = false;
             for (auto piece : ChessBoard->getChessList()) {
                 if (piece->getType() != PIECETYPE::PLAYER) {
@@ -45,8 +51,13 @@ void PlayerTurn::update(float deltaTime) {
 }
 
 void PlayerTurn::render() {
+    if (ChessBoard->getChessList().size() == 1) {
+        ChessBoard->getPlayer()->render();
+        return;
+    }
+    int k = ChessBoard->getChessList().size();
     for (auto piece : ChessBoard->getChessList()) {
-        piece->render();
+        if (piece != nullptr) piece->render();
     }
 }
 
@@ -158,9 +169,31 @@ void PlayerTurn::handleBulletHitbox() {
                 std::cout << "Piece located at " << piece->getCurrentPosition().x << " - " << piece->getCurrentPosition().y;
                 std::cout << " is shot. Health: " << piece->getHealth() << "  Damage: " << bullet->getDamage() << '\n';
                 piece->setShootPosition(ChessBoard->getPlayer()->getCurrentPosition());
-                piece->changeState(STATE::HURT);
+
+                if (bullet->getDamage() >= piece->getHealth()) piece->changeState(STATE::KILL);
+                else piece->changeState(STATE::HURT);
+
                 piece->performTurn();
             }
         }
     }
+}
+
+bool PlayerTurn::handleKillPiece() {
+    int deadCount = 0;
+    bool isWKingDead = false;
+    for (int i = 0; i < ChessBoard->getChessList().size(); i++) {
+        if (ChessBoard->getChessList()[i]->getState() == STATE::DEAD) {
+            if (ChessBoard->getChessList()[i]->getType() == PIECETYPE::KING) {
+                std::cout << "WHITE KING IS DEAD!\n";
+                isWKingDead = true;
+            }
+            delete ChessBoard->getChessList()[i];
+            ChessBoard->getChessList().erase(ChessBoard->getChessList().begin() + i);
+            i--;
+            deadCount++;
+        }
+    }
+    if (deadCount != 0) std::cout << "Dead Pieces: " << deadCount << '\n';
+    return isWKingDead;
 }

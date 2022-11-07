@@ -2,6 +2,7 @@
 #include "Turn/ShowupTurn.h"
 #include "Turn/PlayerTurn.h"
 #include "Turn/BotTurn.h"
+#include "Turn/EndTurn.h"
 
 GameTurnBase::GameTurnBase() {
 	isPerforming = false;
@@ -22,7 +23,8 @@ GameTurnBase* GameTurnBase::createTurn(TURN turn) {
 	case BOT_TURN:
 		gameTurn = new BotTurn();
 		break;
-	case END_BOARD:
+	case END_TURN:
+		gameTurn = new EndTurn();
 		break;
 	default:
 		break;
