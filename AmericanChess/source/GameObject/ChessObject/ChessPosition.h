@@ -15,4 +15,5 @@ public:
 	friend bool operator < (ChessPosition pos1, ChessPosition pos2);
 	friend bool operator > (ChessPosition pos1, ChessPosition pos2);
 	friend bool operator == (ChessPosition pos1, ChessPosition pos2);
+	friend bool operator != (ChessPosition pos1, ChessPosition pos2);
 };

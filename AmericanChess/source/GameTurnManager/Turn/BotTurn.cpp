@@ -1,5 +1,4 @@
 #include "BotTurn.h"
-#include <cstdlib>
 
 BotTurn::BotTurn() {
 }
@@ -14,6 +13,7 @@ void BotTurn::init() {
     }
     ChessBoard->getPlayer()->getGun()->setShootable(false);
     isPerforming = false;
+    m_PlayerPosition = ChessBoard->getPlayer()->getCurrentPosition();
 }
 
 void BotTurn::update(float deltaTime) {
@@ -50,16 +50,21 @@ bool BotTurn::isEndBotTurn() {
 }
 
 void BotTurn::handleBotEvent() {
-    srand(time(NULL));
-
     for (auto piece : ChessBoard->getChessList()) {
         if (piece->getType() != PIECETYPE::PLAYER) {
             if (piece->getTurnLeft() == 0) {
                 ChessPosition pos = piece->getCurrentPosition();
+                //gen move
                 std::cout << "A piece want to move from " << pos.x << "-" << pos.y << " to ";
-                pos.x = rand() % 8;
-                pos.y = rand() % 8;
+                pos = MoveGen->getNextMove(piece);
                 std::cout << pos.x << "-" << pos.y << '\n';
+                //if piece kill player
+                if (pos == m_PlayerPosition) std::cout << "Black King is going to DIE\n";
+                //promote
+                if (piece->getType() == PIECETYPE::PAWN && pos != m_PlayerPosition && pos.y == 7) {
+                    piece->setPromotion(true);
+                }
+                //set move
                 piece->setDestPosition(pos);
                 piece->changeState(STATE::MOVING);
                 piece->performTurn();

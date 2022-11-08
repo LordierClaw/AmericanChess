@@ -31,3 +31,7 @@ bool operator > (ChessPosition pos1, ChessPosition pos2) {
 bool operator == (ChessPosition pos1, ChessPosition pos2) {
     return (pos1.x == pos2.x && pos1.y == pos2.y);
 }
+
+bool operator != (ChessPosition pos1, ChessPosition pos2) {
+    return (pos1.x != pos2.x || pos1.y != pos2.y);
+}

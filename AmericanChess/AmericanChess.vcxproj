@@ -155,6 +155,7 @@
     <ClCompile Include="source\GameTurnManager\Turn\EndTurn.cpp" />
     <ClCompile Include="source\GameTurnManager\Turn\PlayerTurn.cpp" />
     <ClCompile Include="source\GameTurnManager\Turn\ShowupTurn.cpp" />
+    <ClCompile Include="source\Misc\ChessMoveGenerator.cpp" />
     <ClCompile Include="source\Misc\GameMath.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +183,7 @@
     <ClInclude Include="source\GameTurnManager\Turn\EndTurn.h" />
     <ClInclude Include="source\GameTurnManager\Turn\PlayerTurn.h" />
     <ClInclude Include="source\GameTurnManager\Turn\ShowupTurn.h" />
+    <ClInclude Include="source\Misc\ChessMoveGenerator.h" />
     <ClInclude Include="source\Misc\GameMath.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

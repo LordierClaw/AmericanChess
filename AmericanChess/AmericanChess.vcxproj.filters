@@ -111,6 +111,9 @@
     <ClCompile Include="source\GameTurnManager\Turn\EndTurn.cpp">
       <Filter>Source Files\GameTurnManager\Turn</Filter>
     </ClCompile>
+    <ClCompile Include="source\Misc\ChessMoveGenerator.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\GameManager\Singleton.h">
@@ -187,6 +190,9 @@
     </ClInclude>
     <ClInclude Include="source\GameTurnManager\Turn\EndTurn.h">
       <Filter>Source Files\GameTurnManager\Turn</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Misc\ChessMoveGenerator.h">
+      <Filter>Source Files\Misc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

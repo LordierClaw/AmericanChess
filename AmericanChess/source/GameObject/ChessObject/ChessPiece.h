@@ -74,6 +74,13 @@ private:
 	void handleMove(float deltaTime);
 	void handleHurt(float deltaTime);
 	void handleKill(float deltaTime);
+	
+// Pawn Promotion
+public:
+	void setPromotion(bool value);
+private:
+	bool m_isPromotion;
+	void promote(std::string name);
 };
 
 

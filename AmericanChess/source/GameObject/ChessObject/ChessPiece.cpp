@@ -43,6 +43,8 @@ void ChessPiece::init(ChessPosition pos) {
     m_color.a = 0;
     this->setColor(m_color);
     m_isEndTurn = true;
+    //only for pawn
+    m_isPromotion = false;
 }
 
 void ChessPiece::update(float deltaTime) {
@@ -50,6 +52,7 @@ void ChessPiece::update(float deltaTime) {
     case SHOWUP:
         handleShowUp(deltaTime);
     case IDLE:
+        if (m_isPromotion) promote("W_Queen");
         break;
     case READY_TO_MOVE:
         handleReady(deltaTime);
@@ -212,4 +215,32 @@ void ChessPiece::handleKill(float deltaTime) {
         changeState(STATE::DEAD);
         this->endTurn();
     }
+}
+
+void ChessPiece::setPromotion(bool value) {
+    m_isPromotion = value;
+}
+
+void ChessPiece::promote(std::string name) {
+    if (m_type != PIECETYPE::PAWN || m_isPromotion == false) return;
+    //re-construct
+    this->m_name = "chess/piece/" + name;
+    if (!DATA->hasTexture(this->m_name)) DATA->addTexture(this->m_name);
+    // set chess piece type
+    if (name == "B_King") {
+        m_type = PLAYER;
+        return;
+    }
+    name = name.substr(2);
+    if (name == "King") m_type = KING;
+    else if (name == "Queen") m_type = QUEEN;
+    else if (name == "Bishop") m_type = BISHOP;
+    else if (name == "Knight") m_type = KNIGHT;
+    else if (name == "Rook") m_type = ROOK;
+    else m_type = PAWN;
+    //re-init
+    this->setTexture(*DATA->getTexture(this->m_name));
+    m_color = this->getColor();
+    //
+    m_isPromotion = false;
 }

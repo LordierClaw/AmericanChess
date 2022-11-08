@@ -1,5 +1,6 @@
 #pragma once
 #include "../GameTurnBase.h"
+#include "../../Misc/ChessMoveGenerator.h"
 
 class BotTurn : public GameTurnBase {
 public:
@@ -11,6 +12,8 @@ public:
 	void render();
 
 private:
+	ChessPosition m_PlayerPosition;
+
 	bool isEndBotTurn();
 	void handleBotEvent();
 };
