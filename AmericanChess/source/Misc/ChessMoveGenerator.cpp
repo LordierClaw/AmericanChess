@@ -81,12 +81,11 @@ ChessPosition ChessMoveGenerator::getQueenMove(ChessPosition pos) {
 ChessPosition ChessMoveGenerator::getBishopMove(ChessPosition pos) {
     ChessPosition nextPos = pos;
 
-    for (int i = -7; i <= 7; i++) {
+    for (int i = 1; pos.x + i <= 7 && pos.y + i <= 7; i++) {
         ChessPosition tmpPos = pos;
         tmpPos.x += i;
         tmpPos.y += i;
-        if (tmpPos == pos) continue;
-        if (validMove(tmpPos) == false) continue;
+        if (validMove(tmpPos) == false) break; //the path is blocked
         if (tmpPos == m_PlayerPosition) return tmpPos; //kill player immediately
 
         if (nextPos == pos) {
@@ -97,12 +96,42 @@ ChessPosition ChessMoveGenerator::getBishopMove(ChessPosition pos) {
         if (positionCompare(tmpPos, nextPos)) nextPos = tmpPos;
     }
 
-    for (int i = -7; i < 7; i++) {
+    for (int i = 1; pos.x - i >= 0 && pos.y - i >= 0; i++) {
+        ChessPosition tmpPos = pos;
+        tmpPos.x -= i;
+        tmpPos.y -= i;
+        if (validMove(tmpPos) == false) break; //the path is blocked
+        if (tmpPos == m_PlayerPosition) return tmpPos; //kill player immediately
+
+        if (nextPos == pos) {
+            nextPos = tmpPos;
+            continue;
+        }
+
+        if (positionCompare(tmpPos, nextPos)) nextPos = tmpPos;
+    }
+
+    for (int i = 1; pos.x + i <= 7 && pos.y - i >= 0; i++) {
+        ChessPosition tmpPos = pos;
+        tmpPos.x += i;
+        tmpPos.y -= i;
+        if (tmpPos == pos) continue;
+        if (validMove(tmpPos) == false) break; //the path is blocked
+        if (tmpPos == m_PlayerPosition) return tmpPos; //kill player immediately
+
+        if (nextPos == pos) {
+            nextPos = tmpPos;
+            continue;
+        }
+
+        if (positionCompare(tmpPos, nextPos)) nextPos = tmpPos;
+    }
+
+    for (int i = 1; pos.x - i >= 0 && pos.y + i <= 7; i++) {
         ChessPosition tmpPos = pos;
         tmpPos.x -= i;
         tmpPos.y += i;
-        if (tmpPos == pos) continue;
-        if (validMove(tmpPos) == false) continue;
+        if (validMove(tmpPos) == false) break; //the path is blocked
         if (tmpPos == m_PlayerPosition) return tmpPos; //kill player immediately
 
         if (nextPos == pos) {
@@ -118,12 +147,11 @@ ChessPosition ChessMoveGenerator::getBishopMove(ChessPosition pos) {
 
 ChessPosition ChessMoveGenerator::getRookMove(ChessPosition pos) {
     ChessPosition nextPos = pos;
-    //horizontal move
-    for (int i = 0; i < 8; i++) {
+    //move up
+    for (int i = 1; pos.x + i <= 7; i++) {
         ChessPosition tmpPos = pos;
-        tmpPos.x = i;
-        if (tmpPos == pos) continue;
-        if (validMove(tmpPos) == false) continue;
+        tmpPos.x += i;
+        if (validMove(tmpPos) == false) break; // the path is blocked
         if (tmpPos == m_PlayerPosition) return tmpPos; //kill player immediately
 
         if (nextPos == pos) {
@@ -133,12 +161,39 @@ ChessPosition ChessMoveGenerator::getRookMove(ChessPosition pos) {
 
         if (positionCompare(tmpPos, nextPos)) nextPos = tmpPos;
     }
-    //vertical move
-    for (int i = 0; i < 8; i++) {
+    //move down
+    for (int i = 1; pos.x - i >= 0; i++) {
         ChessPosition tmpPos = pos;
-        tmpPos.y = i;
-        if (tmpPos == pos) continue;
-        if (validMove(tmpPos) == false) continue;
+        tmpPos.x += i;
+        if (validMove(tmpPos) == false) break; // the path is blocked
+        if (tmpPos == m_PlayerPosition) return tmpPos; //kill player immediately
+
+        if (nextPos == pos) {
+            nextPos = tmpPos;
+            continue;
+        }
+
+        if (positionCompare(tmpPos, nextPos)) nextPos = tmpPos;
+    }
+    //move right
+    for (int i = 1; pos.y + i <= 7; i++) {
+        ChessPosition tmpPos = pos;
+        tmpPos.y += i;
+        if (validMove(tmpPos) == false) break; // the path is blocked
+        if (tmpPos == m_PlayerPosition) return tmpPos; //kill player immediately
+
+        if (nextPos == pos) {
+            nextPos = tmpPos;
+            continue;
+        }
+
+        if (positionCompare(tmpPos, nextPos)) nextPos = tmpPos;
+    }
+    //move left
+    for (int i = 1; pos.y - i >= 0; i++) {
+        ChessPosition tmpPos = pos;
+        tmpPos.y += i;
+        if (validMove(tmpPos) == false) break; // the path is blocked
         if (tmpPos == m_PlayerPosition) return tmpPos; //kill player immediately
 
         if (nextPos == pos) {
