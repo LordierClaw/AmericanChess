@@ -26,6 +26,4 @@ private:
 
 	std::vector<ChessPiece*> m_ChessList;
 	ChessBox m_ChessTable[8][8];
-
-	void clearDeadPiece();
 };

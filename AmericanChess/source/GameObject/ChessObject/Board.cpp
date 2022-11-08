@@ -35,9 +35,15 @@ void Board::init() {
     m_pawn->init({ 3, 1 });
     m_pawn->setTurnLeft(2);
     
+    ChessPiece* m_rook = new ChessPiece("W_Rook");
+    m_rook->init({ 7,7 });
+    m_rook->setTurnLeft(2);
+
+
     m_ChessList.push_back(m_king);
     m_ChessList.push_back(m_player);
     m_ChessList.push_back(m_pawn);
+    m_ChessList.push_back(m_rook);
 
     GTM->changeTurn(TURN::SHOWUP_TURN);
 }
