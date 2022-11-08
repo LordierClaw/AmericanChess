@@ -1,4 +1,5 @@
 #include "ChessPiece.h"
+#include <cstdlib>
 
 ChessPiece::ChessPiece() {
     m_name = "";
@@ -52,7 +53,10 @@ void ChessPiece::update(float deltaTime) {
     case SHOWUP:
         handleShowUp(deltaTime);
     case IDLE:
-        if (m_isPromotion) promote("W_Queen");
+        if (m_isPromotion) {
+            std::vector<std::string> promoteList = { "W_Queen", "W_Knight", "W_Rook", "W_Bishop" };
+            promote(promoteList[rand() % promoteList.size()]);
+        }
         break;
     case READY_TO_MOVE:
         handleReady(deltaTime);
