@@ -1,4 +1,5 @@
 #include "Board.h"
+#include "InfoBox.h"
 
 Board::Board() {
     m_player = nullptr;
@@ -25,32 +26,52 @@ Board::~Board() {;
 void Board::init() {
     //
     m_player = new Player();
-    m_player->init({3, 7});
-
+    m_player->init({4, 7});
+    m_ChessList.push_back(m_player);
     m_king = new ChessPiece("W_King");
-    m_king->init({ 3, 0 });
-    m_king->setTurnLeft(4);
+    m_king->init({ 3, 0 }, 8, 4, 4);
+    m_ChessList.push_back(m_king);
 
     ChessPiece* m_pawn = new ChessPiece("W_Pawn");
-    m_pawn->init({ 3, 1 });
-    m_pawn->setTurnLeft(2);
-    
-    ChessPiece* m_rook = new ChessPiece("W_Rook");
-    m_rook->init({ 7,7 });
-    m_rook->setTurnLeft(2);
-
-
-    m_ChessList.push_back(m_king);
-    m_ChessList.push_back(m_player);
+    m_pawn->init({ 2, 1 }, 3, 5, 5);
     m_ChessList.push_back(m_pawn);
+
+    m_pawn = new ChessPiece("W_Pawn");
+    m_pawn->init({ 3, 1 }, 3, 3, 5);
+    m_ChessList.push_back(m_pawn);
+    
+    m_pawn = new ChessPiece("W_Pawn");
+    m_pawn->init({ 4, 1 }, 3, 4, 5);
+    m_ChessList.push_back(m_pawn);
+
+    m_pawn = new ChessPiece("W_Pawn");
+    m_pawn->init({ 5, 1 }, 3, 4, 5);
+    m_ChessList.push_back(m_pawn);
+    ChessPiece* m_bishop = new ChessPiece("W_Bishop");
+    m_bishop->init({ 2, 0 }, 4, 3, 3);
+    m_ChessList.push_back(m_bishop);
+
+    ChessPiece* m_rook = new ChessPiece("W_Rook");
+    m_rook->init({ 4, 0 }, 5, 4, 4);
     m_ChessList.push_back(m_rook);
 
+    ChessPiece* m_knight = new ChessPiece("W_Knight");
+    m_knight->init({ 5, 0 }, 3, 1, 2);
+    m_ChessList.push_back(m_knight);
+    //
+    m_soulCard = new SoulCard();
+    m_soulCard->init();
+    m_infoBox = new InfoBox();
+    m_infoBox->init();
     GTM->changeTurn(TURN::SHOWUP_TURN);
 }
 
 void Board::update(float deltaTime) {
     if (GTM->needToChangeTurn()) GTM->performTurnChange();
     GTM->currentTurn()->update(deltaTime);
+
+    m_soulCard->update(deltaTime);
+    m_infoBox->update(deltaTime);
 }
 
 void Board::render() {
@@ -61,6 +82,8 @@ void Board::render() {
     //draw the board itself
     WConnect->getWindow()->draw(*this);
     GTM->currentTurn()->render();
+    m_soulCard->render();
+    m_infoBox->render();
 
     //draw chessbox
     for (int y = 0; y < 8; y++) {
@@ -80,4 +103,8 @@ std::vector<ChessPiece*>& Board::getChessList() {
 
 ChessBox* Board::getChessBox(int x, int y) {
     return &m_ChessTable[y][x];
+}
+
+SoulCard* Board::getSoulCard() {
+    return m_soulCard;
 }

@@ -21,9 +21,6 @@ void BotTurn::update(float deltaTime) {
         handleBotEvent();
     } else {
         if (this->isEndBotTurn()) {
-            for (auto piece : ChessBoard->getChessList()) {
-                piece->countTurnLeft();
-            }
             std::cout << "End of Bot Turn" << '\n';
             GTM->changeTurn(TURN::PLAYER_TURN);
         }

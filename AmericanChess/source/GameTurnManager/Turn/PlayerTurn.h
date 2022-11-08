@@ -35,4 +35,6 @@ private:
 
 	//return 1 if White King is dead, 0 is default
 	bool handleKillPiece();
+
+	void setReadyState();
 };

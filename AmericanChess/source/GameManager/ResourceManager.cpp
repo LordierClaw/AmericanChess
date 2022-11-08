@@ -51,6 +51,44 @@ bool ResourceManager::hasTexture(std::string name) {
 	return m_MapTexture.count(name);
 }
 
+void ResourceManager::addFont(std::string name) {
+	sf::Font* font = new sf::Font;
+	font->loadFromFile(m_FontPath + name + ".ttf");
+	if (m_MapFont.count(name)) {
+		std::cout << "Failed to add font: " << name << " already exists \n";
+		return;
+	}
+	m_MapFont.insert({ name, font });
+	std::cout << "Add font successfully: " << name << "\n";
+}
+
+void ResourceManager::removeFont(std::string name) {
+	auto it = m_MapFont.find(name);
+	if (it == m_MapFont.end()) {
+		std::cout << "Failed to remove font: " << name << " doesn't exist\n";
+		return;
+	}
+	if (it->second == nullptr) {
+		std::cout << "Failed to remove font: " << name << " null pointer\n";
+		return;
+	} else delete it->second;
+	m_MapFont.erase(it);
+	std::cout << "Remove font successfully: " << name << "\n";
+}
+
+sf::Font* ResourceManager::getFont(std::string name) {
+	auto it = m_MapFont.find(name);
+	if (it == m_MapFont.end()) {
+		std::cout << "Failed to load font: " << name << " doesn't exist\n";
+		return nullptr;
+	}
+	return it->second;
+}
+
+bool ResourceManager::hasFont(std::string name) {
+	return m_MapFont.count(name);
+}
+
 void ResourceManager::setCursor(std::string name) {
 	if (m_customCursor != nullptr) delete m_customCursor;
 	m_customCursor = new sf::Image();

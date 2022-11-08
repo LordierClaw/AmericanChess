@@ -17,6 +17,11 @@ public:
 	sf::Texture* getTexture(std::string name);
 	bool hasTexture(std::string name);
 
+	void addFont(std::string name);
+	void removeFont(std::string name);
+	sf::Font* getFont(std::string name);
+	bool hasFont(std::string name);
+
 	void setCursor(std::string name);
 	sf::Image* getCursor();
 private:

@@ -35,6 +35,7 @@ void PlayerTurn::update(float deltaTime) {
                     if (piece->getTurnLeft() == 0) isBotTurn = true;
                 }
             }
+
             std::cout << "End of Player Turn" << '\n';
             if (isBotTurn) GTM->changeTurn(TURN::BOT_TURN);
             else GTM->changeTurn(TURN::PLAYER_TURN);
@@ -170,7 +171,12 @@ void PlayerTurn::handleBulletHitbox() {
                 std::cout << " is shot. Health: " << piece->getHealth() << "  Damage: " << bullet->getDamage() << '\n';
                 piece->setShootPosition(ChessBoard->getPlayer()->getCurrentPosition());
 
-                if (bullet->getDamage() >= piece->getHealth()) piece->changeState(STATE::KILL);
+                if (bullet->getDamage() >= piece->getHealth()) {
+                    piece->changeState(STATE::KILL);
+                    if (piece->getType() != PIECETYPE::PAWN && piece->getType() != PIECETYPE::KING) {
+                        ChessBoard->getSoulCard()->setPiece(piece->getType());
+                    }
+                }
                 else piece->changeState(STATE::HURT);
 
                 piece->performTurn();
@@ -196,4 +202,8 @@ bool PlayerTurn::handleKillPiece() {
     }
     if (deadCount != 0) std::cout << "Dead Pieces: " << deadCount << '\n';
     return isWKingDead;
+}
+
+void setReadyState() {
+
 }

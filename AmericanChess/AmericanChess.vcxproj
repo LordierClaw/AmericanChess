@@ -141,8 +141,10 @@
     <ClCompile Include="source\GameObject\ChessObject\ChessBox.cpp" />
     <ClCompile Include="source\GameObject\ChessObject\ChessPiece.cpp" />
     <ClCompile Include="source\GameObject\ChessObject\ChessPosition.cpp" />
+    <ClCompile Include="source\GameObject\ChessObject\InfoBox.cpp" />
     <ClCompile Include="source\GameObject\ChessObject\Player.cpp" />
     <ClCompile Include="source\GameObject\ChessObject\Shotgun.cpp" />
+    <ClCompile Include="source\GameObject\ChessObject\SoulCard.cpp" />
     <ClCompile Include="source\GameObject\GameButton.cpp" />
     <ClCompile Include="source\GameStateManager\GameStateBase.cpp" />
     <ClCompile Include="source\GameStateManager\GameStateMachine.cpp" />
@@ -169,8 +171,10 @@
     <ClInclude Include="source\GameObject\ChessObject\ChessBox.h" />
     <ClInclude Include="source\GameObject\ChessObject\ChessPiece.h" />
     <ClInclude Include="source\GameObject\ChessObject\ChessPosition.h" />
+    <ClInclude Include="source\GameObject\ChessObject\InfoBox.h" />
     <ClInclude Include="source\GameObject\ChessObject\Player.h" />
     <ClInclude Include="source\GameObject\ChessObject\Shotgun.h" />
+    <ClInclude Include="source\GameObject\ChessObject\SoulCard.h" />
     <ClInclude Include="source\GameObject\GameButton.h" />
     <ClInclude Include="source\GameStateManager\GameStateBase.h" />
     <ClInclude Include="source\GameStateManager\GameStateMachine.h" />

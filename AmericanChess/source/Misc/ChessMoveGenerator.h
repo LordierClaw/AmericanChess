@@ -12,13 +12,16 @@ public:
 private:
 	ChessPosition m_PlayerPosition;
 
+	bool m_hasPiece[8][8];
+
 	bool positionCompare(ChessPosition a, ChessPosition b);
 	bool validMove(ChessPosition pos);
 
-	ChessPosition getKingMove(ChessPosition pos);
-	ChessPosition getQueenMove(ChessPosition pos);
-	ChessPosition getBishopMove(ChessPosition pos);
-	ChessPosition getRookMove(ChessPosition pos);
-	ChessPosition getKnightMove(ChessPosition pos);
+public:
+	std::vector<ChessPosition> getKingMove(ChessPosition pos);
+	std::vector<ChessPosition> getQueenMove(ChessPosition pos);
+	std::vector<ChessPosition> getBishopMove(ChessPosition pos);
+	std::vector<ChessPosition> getRookMove(ChessPosition pos);
+	std::vector<ChessPosition> getKnightMove(ChessPosition pos);
 	ChessPosition getPawnMove(ChessPosition pos);
 };

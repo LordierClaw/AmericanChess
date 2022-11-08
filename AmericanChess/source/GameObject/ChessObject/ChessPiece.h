@@ -31,6 +31,7 @@ public:
 	ChessPiece(std::string name);
 	~ChessPiece();
 	virtual void init(ChessPosition pos);
+	void init(ChessPosition pos, int health, int turnLeft, int queueSize);
 	virtual void update(float deltaTime);
 	virtual void render();
 
@@ -40,8 +41,10 @@ public:
 	void setTurnLeft(int turnLeft);
 	void countTurnLeft();
 	int getTurnLeft();
+	int getQueueSize();
 	
 	void setHealth(int health);
+	void takeDamage(int dmg);
 	int getHealth();
 
 	PIECETYPE getType();
@@ -51,6 +54,7 @@ public:
 	ChessPosition getCurrentPosition();
 	void setShootPosition(ChessPosition pos);
 	void setDestPosition(ChessPosition pos);
+	ChessPosition getDestPosition();
 
 	void performTurn();
 	void endTurn();
@@ -60,6 +64,7 @@ private:
 	std::string m_name;
 	STATE m_state;
 	int m_turnLeft;
+	int m_queueSize;
 	int m_health;
 	PIECETYPE m_type;
 

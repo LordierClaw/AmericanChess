@@ -37,8 +37,6 @@ void ChessPiece::init(ChessPosition pos) {
     this->setScale(sf::Vector2f(3.f, 3.f));
     this->setOrigin(sf::Vector2f(16.f/2, 23.f/2));
     this->setCurrentPosition(pos);
-    m_turnLeft = CHESS_QUEUE_SIZE;
-    m_health = CHESS_MAX_HEALTH;
     m_state = SHOWUP;
     m_color = this->getColor();
     m_color.a = 0;
@@ -48,12 +46,20 @@ void ChessPiece::init(ChessPosition pos) {
     m_isPromotion = false;
 }
 
+void ChessPiece::init(ChessPosition pos, int health, int turnLeft, int queueSize) {
+    init(pos);
+    m_health = health;
+    m_turnLeft = turnLeft;
+    m_queueSize = queueSize;
+}
+
 void ChessPiece::update(float deltaTime) {
     switch (m_state) {
     case SHOWUP:
         handleShowUp(deltaTime);
     case IDLE:
         if (m_isPromotion) {
+            srand(time(NULL));
             std::vector<std::string> promoteList = { "W_Queen", "W_Knight", "W_Rook", "W_Bishop" };
             promote(promoteList[rand() % promoteList.size()]);
         }
@@ -97,7 +103,7 @@ void ChessPiece::setTurnLeft(int turnLeft) {
 void ChessPiece::countTurnLeft() {
     if (this->getType() == PIECETYPE::PLAYER) return;
     m_turnLeft--;
-    if (m_turnLeft < 0) m_turnLeft = CHESS_QUEUE_SIZE;
+    if (m_turnLeft < 0) m_turnLeft = m_queueSize;
     if (m_turnLeft == 1) this->changeState(STATE::READY_TO_MOVE);
     else this->changeState(STATE::IDLE);
 }
@@ -106,8 +112,17 @@ int ChessPiece::getTurnLeft() {
     return m_turnLeft;
 }
 
+int ChessPiece::getQueueSize() {
+    return m_queueSize;
+}
+
 void ChessPiece::setHealth(int health) {
     m_health = health;
+}
+
+void ChessPiece::takeDamage(int dmg) {
+    if (m_state == HURT) return;
+    m_health -= dmg;
 }
 
 int ChessPiece::getHealth() {
@@ -121,6 +136,7 @@ PIECETYPE ChessPiece::getType() {
 void ChessPiece::setCurrentPosition(ChessPosition pos) {
     m_currentPos = pos;
     this->setPosition(pos.toPosition());
+    m_destPos = pos;
 }
 
 ChessPosition ChessPiece::getCurrentPosition() {
@@ -133,6 +149,10 @@ void ChessPiece::setShootPosition(ChessPosition pos) {
 
 void ChessPiece::setDestPosition(ChessPosition pos) {
     m_destPos = pos;
+}
+
+ChessPosition ChessPiece::getDestPosition() {
+    return m_destPos;
 }
 
 void ChessPiece::performTurn() {
@@ -177,6 +197,7 @@ void ChessPiece::handleMove(float deltaTime) {
     } else {
         this->setCurrentPosition(m_destPos);
         this->changeState(STATE::IDLE);
+        if (m_type != PIECETYPE::PLAYER) this->countTurnLeft();
         this->endTurn();
     }
 }
