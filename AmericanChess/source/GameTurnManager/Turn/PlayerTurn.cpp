@@ -13,6 +13,7 @@ void PlayerTurn::init() {
     }
     ChessBoard->getPlayer()->getGun()->reset();
     isPerforming = false;
+    useSoulCard = false;
 }
 
 void PlayerTurn::update(float deltaTime) {
@@ -41,7 +42,7 @@ void PlayerTurn::update(float deltaTime) {
             else GTM->changeTurn(TURN::PLAYER_TURN);
         } else {
             // if the player shoots
-            if (m_playerIntent == MousePos::WANT_TO_SHOOT && ChessBoard->getPlayer()->getGun()->finishShoot() == false) {
+            if (useSoulCard == false && m_playerIntent == MousePos::WANT_TO_SHOOT && ChessBoard->getPlayer()->getGun()->finishShoot() == false) {
                 handleBulletHitbox();
             }
         }
@@ -108,6 +109,19 @@ void PlayerTurn::hideNearbyBox() {
 }
 
 void PlayerTurn::handlePlayerEvent() {
+    //using soul card
+    if (useSoulCard) {
+        handleSoulCardEvent(ChessBoard->getSoulCard()->getPiece());
+        return;
+
+    }
+    if (ChessBoard->getSoulCard()->isHover()) {
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && ChessBoard->getSoulCard()->hasSoul()) {
+            useSoulCard = true;
+            return;
+        }
+    }
+    //other event
     if (ChessBoard->getPlayer()->getState() != STATE::IDLE) return;
     ChessBoard->getPlayer()->getGun()->setShootable(false);
     m_playerIntent = getPlayerIntention();
@@ -150,6 +164,44 @@ void PlayerTurn::handleMoveEvent() {
     }
 }
 
+void PlayerTurn::handleSoulCardEvent(PIECETYPE type) {
+    std::vector<ChessPosition> moveList;
+    switch (type) {
+    case QUEEN:
+        moveList = MoveGen->getQueenMove(m_PlayerPosition);
+        break;
+    case BISHOP:
+        moveList = MoveGen->getBishopMove(m_PlayerPosition);
+        break;
+    case KNIGHT:
+        moveList = MoveGen->getKnightMove(m_PlayerPosition);
+        break;
+    case ROOK:
+        moveList = MoveGen->getRookMove(m_PlayerPosition);
+        break;
+    default:
+        break;
+    }
+    bool moveSelected = false;
+    for (auto pos : moveList) {
+        ChessBoard->getChessBox(pos.x, pos.y)->showOutline();
+        if (ChessBoard->getChessBox(pos.x, pos.y)->isMouseClick()) {
+            ChessBoard->getPlayer()->performTurn();
+            ChessBoard->getPlayer()->setDestPosition({ pos.x, pos.y });
+            ChessBoard->getPlayer()->changeState(STATE::MOVING);
+            isPerforming = true;
+            moveSelected = true;
+            break;
+        }
+    }
+    if (moveSelected) {
+        for (auto pos : moveList) {
+            ChessBoard->getSoulCard()->reset();
+            ChessBoard->getChessBox(pos.x, pos.y)->hideOutline();
+        }
+    }
+}
+
 void PlayerTurn::handleShootEvent() {
     ChessBoard->getPlayer()->getGun()->setShootable(true);
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
@@ -164,20 +216,22 @@ void PlayerTurn::handleBulletHitbox() {
         for (auto piece : ChessBoard->getChessList()) {
             if (piece->getType() != PIECETYPE::PLAYER
                 && piece->getGlobalBounds().contains(bullet->getHitbox())
-                && piece->getState() != STATE::HURT
                 && bullet->isFlying()) {
                 bullet->stop();
-                std::cout << "Piece located at " << piece->getCurrentPosition().x << " - " << piece->getCurrentPosition().y;
-                std::cout << " is shot. Health: " << piece->getHealth() << "  Damage: " << bullet->getDamage() << '\n';
-                piece->setShootPosition(ChessBoard->getPlayer()->getCurrentPosition());
+                if (piece->getState() == STATE::HURT || piece->getState() == STATE::KILL || piece->getState() == STATE::DEAD) continue;
 
+                piece->setShootPosition(ChessBoard->getPlayer()->getCurrentPosition());
                 if (bullet->getDamage() >= piece->getHealth()) {
                     piece->changeState(STATE::KILL);
                     if (piece->getType() != PIECETYPE::PAWN && piece->getType() != PIECETYPE::KING) {
                         ChessBoard->getSoulCard()->setPiece(piece->getType());
                     }
+                } else {
+                    std::cout << "Piece located at " << piece->getCurrentPosition().x << " - " << piece->getCurrentPosition().y;
+                    std::cout << " is shot. Health: " << piece->getHealth() << "  Damage: " << bullet->getDamage() << '\n';
+                    piece->takeDamage(bullet->getDamage());
+                    piece->changeState(STATE::HURT);
                 }
-                else piece->changeState(STATE::HURT);
 
                 piece->performTurn();
             }
@@ -202,8 +256,4 @@ bool PlayerTurn::handleKillPiece() {
     }
     if (deadCount != 0) std::cout << "Dead Pieces: " << deadCount << '\n';
     return isWKingDead;
-}
-
-void setReadyState() {
-
 }

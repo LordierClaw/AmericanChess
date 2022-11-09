@@ -1,5 +1,6 @@
 #pragma once
 #include "../GameTurnBase.h"
+#include "../../Misc/ChessMoveGenerator.h"
 
 enum MousePos {
 	WANT_TO_MOVE = 0,
@@ -29,12 +30,13 @@ private:
 
 	void handlePlayerEvent();
 	void handleMoveEvent();
+
 	void handleShootEvent();
-
 	void handleBulletHitbox();
-
 	//return 1 if White King is dead, 0 is default
 	bool handleKillPiece();
 
-	void setReadyState();
+
+	bool useSoulCard;
+	void handleSoulCardEvent(PIECETYPE type);
 };

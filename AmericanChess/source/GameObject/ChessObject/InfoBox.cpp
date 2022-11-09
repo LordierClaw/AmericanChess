@@ -40,6 +40,7 @@ void InfoBox::render() {
 
 void InfoBox::display(ChessPiece* piece) {
 	m_isDisplay = true;
+	//
 	m_heathLbl.setString("Health: " + std::to_string(piece->getHealth()));
 	m_turnLbl.setString("Turn: " + std::to_string(piece->getTurnLeft()) + "/" + std::to_string(piece->getQueueSize()));
 }

@@ -18,5 +18,10 @@ private:
 
 	bool m_isDisplay;
 
+	std::vector<sf::Sprite> m_heatlhStatus;
+	std::vector<sf::RectangleShape> m_turnStatus;
+
 	void display(ChessPiece* piece);
+
+	void setHealthStatus(int health);
 };

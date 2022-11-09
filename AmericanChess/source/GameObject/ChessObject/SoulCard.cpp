@@ -2,7 +2,6 @@
 
 SoulCard::SoulCard() {
 	DATA->addTexture("chess/card/B_Cardbox");
-	m_hasSoul = false;
 }
 
 SoulCard::~SoulCard() {
@@ -17,22 +16,19 @@ void SoulCard::init() {
 	m_piece.setScale(sf::Vector2f(3.f, 3.f));
 	m_piece.setOrigin(sf::Vector2f(16.f / 2, 23.f / 2));
 	m_piece.setPosition(sf::Vector2f(this->getPosition().x, this->getPosition().y - 10.f));
-	m_hasSoul = false;
+	m_type = NOTHING;
 }
 
 void SoulCard::update(float deltaTime) {
-	if (m_hasSoul && isHover()) {
-		handleClick();
-	}
 }
 
 void SoulCard::render() {
 	WConnect->getWindow()->draw(*this);
-	if (m_hasSoul) WConnect->getWindow()->draw(m_piece);
+	if (hasSoul()) WConnect->getWindow()->draw(m_piece);
 }
 
 void SoulCard::setPiece(PIECETYPE type) {
-	if (m_hasSoul) return;
+	if (hasSoul()) return;
 
 	m_type = type;
 	std::string name;
@@ -52,12 +48,16 @@ void SoulCard::setPiece(PIECETYPE type) {
 	default:
 		break;
 	}
-	m_hasSoul = true;
+	
 	m_piece.setTexture(*DATA->getTexture("chess/piece/" + name));
 }
 
 PIECETYPE SoulCard::getPiece() {
 	return m_type;
+}
+
+void SoulCard::reset() {
+	m_type = NOTHING;
 }
 
 bool SoulCard::isHover() {
@@ -67,8 +67,6 @@ bool SoulCard::isHover() {
 	return false;
 }
 
-void SoulCard::handleClick() {
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-		
-	}
+bool SoulCard::hasSoul() {
+	return m_type != NOTHING;
 }

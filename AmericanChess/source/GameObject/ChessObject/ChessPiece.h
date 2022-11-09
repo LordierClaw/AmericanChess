@@ -22,7 +22,8 @@ enum PIECETYPE {
 	BISHOP,
 	KNIGHT,
 	ROOK,
-	PAWN
+	PAWN,
+	NOTHING
 };
 
 class ChessPiece : public sf::Sprite {

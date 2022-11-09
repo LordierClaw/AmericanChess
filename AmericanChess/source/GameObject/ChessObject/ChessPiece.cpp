@@ -4,7 +4,6 @@
 ChessPiece::ChessPiece() {
     m_name = "";
     m_state = IDLE;
-    m_turnLeft = CHESS_QUEUE_SIZE;
     m_currentPos = ChessPosition(0, 0);
     m_type = PAWN;
     m_currentTime = 0;
