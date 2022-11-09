@@ -6,9 +6,7 @@ GameButton::GameButton() {
     m_btnName = "";
 }
 
-GameButton::GameButton(std::string name, sf::Vector2f size) {
-    m_btnClickFunc = nullptr;
-    m_isHandling = false;
+GameButton::GameButton(std::string name, sf::Vector2f size) : GameButton() {
     m_btnName = name;
     this->setSize(size);
     this->setOrigin(sf::Vector2f(size.x / 2, size.y / 2));

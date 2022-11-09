@@ -170,9 +170,18 @@ bool ChessPiece::isEndTurn() {
 void ChessPiece::handleShowUp(float deltaTime) {
     m_currentTime += deltaTime;
     if (m_currentTime < SHOW_UP_DURATION) {
-        m_color.a = std::min(255, (int)round(255 * m_currentTime / SHOW_UP_DURATION));
-        this->setColor(m_color);
+        float offsetY =  GameMath::getHarmonicMotion(SHOW_UP_OFFSET, SHOW_UP_DURATION, m_currentTime);
+        sf::Vector2f pos = m_currentPos.toPosition();
+        pos.y += offsetY;
+        this->setPosition(pos);
     } else {
+        this->setCurrentPosition(m_currentPos);
+    }
+
+    if (m_currentTime < SHOW_UP_DURATION/2) {
+        m_color.a = std::min(255, (int)round(255 * m_currentTime / (SHOW_UP_DURATION/2)));
+        this->setColor(m_color);
+    } else if (m_currentTime > SHOW_UP_DURATION) {
         m_color.a = 255;
         this->setColor(m_color);
         this->changeState(IDLE);

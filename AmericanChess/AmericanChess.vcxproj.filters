@@ -37,6 +37,15 @@
     <Filter Include="Source Files\GameTurnManager\Turn">
       <UniqueIdentifier>{6cca1f5d-5cb7-472f-ad5b-3dca96de87cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameObject\ChessObject\PlayerComponent">
+      <UniqueIdentifier>{59a90364-b195-45d3-bea0-5d259e55c174}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObject\ChessObject\BoardComponent">
+      <UniqueIdentifier>{bf775239-01a0-41be-9fb5-9d68fce8bbf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObject\ChessObject\UIComponent">
+      <UniqueIdentifier>{5731c677-b40b-4862-b64e-df62881aebb7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AmericanChess.cpp">
@@ -69,26 +78,11 @@
     <ClCompile Include="source\GameObject\GameButton.cpp">
       <Filter>Source Files\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="source\GameObject\ChessObject\Board.cpp">
-      <Filter>Source Files\GameObject\ChessObject</Filter>
-    </ClCompile>
-    <ClCompile Include="source\GameObject\ChessObject\Player.cpp">
-      <Filter>Source Files\GameObject\ChessObject</Filter>
-    </ClCompile>
-    <ClCompile Include="source\GameObject\ChessObject\Shotgun.cpp">
-      <Filter>Source Files\GameObject\ChessObject</Filter>
-    </ClCompile>
     <ClCompile Include="source\GameObject\ChessObject\ChessPiece.cpp">
       <Filter>Source Files\GameObject\ChessObject</Filter>
     </ClCompile>
     <ClCompile Include="source\Misc\GameMath.cpp">
       <Filter>Source Files\Misc</Filter>
-    </ClCompile>
-    <ClCompile Include="source\GameObject\ChessObject\ChessPosition.cpp">
-      <Filter>Source Files\GameObject\ChessObject</Filter>
-    </ClCompile>
-    <ClCompile Include="source\GameObject\ChessObject\ChessBox.cpp">
-      <Filter>Source Files\GameObject\ChessObject</Filter>
     </ClCompile>
     <ClCompile Include="source\GameTurnManager\GameTurnMachine.cpp">
       <Filter>Source Files\GameTurnManager</Filter>
@@ -105,20 +99,35 @@
     <ClCompile Include="source\GameTurnManager\Turn\ShowupTurn.cpp">
       <Filter>Source Files\GameTurnManager\Turn</Filter>
     </ClCompile>
-    <ClCompile Include="source\GameObject\ChessObject\Bullet.cpp">
-      <Filter>Source Files\GameObject\ChessObject</Filter>
-    </ClCompile>
     <ClCompile Include="source\GameTurnManager\Turn\EndTurn.cpp">
       <Filter>Source Files\GameTurnManager\Turn</Filter>
     </ClCompile>
     <ClCompile Include="source\Misc\ChessMoveGenerator.cpp">
       <Filter>Source Files\Misc</Filter>
     </ClCompile>
-    <ClCompile Include="source\GameObject\ChessObject\SoulCard.cpp">
-      <Filter>Source Files\GameObject\ChessObject</Filter>
+    <ClCompile Include="source\GameObject\ChessObject\Player.cpp">
+      <Filter>Source Files\GameObject\ChessObject\PlayerComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameObject\ChessObject\Shotgun.cpp">
+      <Filter>Source Files\GameObject\ChessObject\PlayerComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameObject\ChessObject\Bullet.cpp">
+      <Filter>Source Files\GameObject\ChessObject\PlayerComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameObject\ChessObject\Board.cpp">
+      <Filter>Source Files\GameObject\ChessObject\BoardComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameObject\ChessObject\ChessBox.cpp">
+      <Filter>Source Files\GameObject\ChessObject\BoardComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameObject\ChessObject\ChessPosition.cpp">
+      <Filter>Source Files\GameObject\ChessObject\BoardComponent</Filter>
     </ClCompile>
     <ClCompile Include="source\GameObject\ChessObject\InfoBox.cpp">
-      <Filter>Source Files\GameObject\ChessObject</Filter>
+      <Filter>Source Files\GameObject\ChessObject\UIComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameObject\ChessObject\SoulCard.cpp">
+      <Filter>Source Files\GameObject\ChessObject\BoardComponent</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -155,26 +164,11 @@
     <ClInclude Include="source\GameObject\GameButton.h">
       <Filter>Source Files\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="source\GameObject\ChessObject\Board.h">
-      <Filter>Source Files\GameObject\ChessObject</Filter>
-    </ClInclude>
-    <ClInclude Include="source\GameObject\ChessObject\Player.h">
-      <Filter>Source Files\GameObject\ChessObject</Filter>
-    </ClInclude>
-    <ClInclude Include="source\GameObject\ChessObject\Shotgun.h">
-      <Filter>Source Files\GameObject\ChessObject</Filter>
-    </ClInclude>
     <ClInclude Include="source\GameObject\ChessObject\ChessPiece.h">
       <Filter>Source Files\GameObject\ChessObject</Filter>
     </ClInclude>
     <ClInclude Include="source\Misc\GameMath.h">
       <Filter>Source Files\Misc</Filter>
-    </ClInclude>
-    <ClInclude Include="source\GameObject\ChessObject\ChessPosition.h">
-      <Filter>Source Files\GameObject\ChessObject</Filter>
-    </ClInclude>
-    <ClInclude Include="source\GameObject\ChessObject\ChessBox.h">
-      <Filter>Source Files\GameObject\ChessObject</Filter>
     </ClInclude>
     <ClInclude Include="source\GameTurnManager\GameTurnBase.h">
       <Filter>Source Files\GameTurnManager</Filter>
@@ -191,20 +185,35 @@
     <ClInclude Include="source\GameTurnManager\Turn\ShowupTurn.h">
       <Filter>Source Files\GameTurnManager\Turn</Filter>
     </ClInclude>
-    <ClInclude Include="source\GameObject\ChessObject\Bullet.h">
-      <Filter>Source Files\GameObject\ChessObject</Filter>
-    </ClInclude>
     <ClInclude Include="source\GameTurnManager\Turn\EndTurn.h">
       <Filter>Source Files\GameTurnManager\Turn</Filter>
     </ClInclude>
     <ClInclude Include="source\Misc\ChessMoveGenerator.h">
       <Filter>Source Files\Misc</Filter>
     </ClInclude>
-    <ClInclude Include="source\GameObject\ChessObject\SoulCard.h">
-      <Filter>Source Files\GameObject\ChessObject</Filter>
+    <ClInclude Include="source\GameObject\ChessObject\Player.h">
+      <Filter>Source Files\GameObject\ChessObject\PlayerComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameObject\ChessObject\Shotgun.h">
+      <Filter>Source Files\GameObject\ChessObject\PlayerComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameObject\ChessObject\Bullet.h">
+      <Filter>Source Files\GameObject\ChessObject\PlayerComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameObject\ChessObject\Board.h">
+      <Filter>Source Files\GameObject\ChessObject\BoardComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameObject\ChessObject\ChessBox.h">
+      <Filter>Source Files\GameObject\ChessObject\BoardComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameObject\ChessObject\ChessPosition.h">
+      <Filter>Source Files\GameObject\ChessObject\BoardComponent</Filter>
     </ClInclude>
     <ClInclude Include="source\GameObject\ChessObject\InfoBox.h">
-      <Filter>Source Files\GameObject\ChessObject</Filter>
+      <Filter>Source Files\GameObject\ChessObject\UIComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameObject\ChessObject\SoulCard.h">
+      <Filter>Source Files\GameObject\ChessObject\BoardComponent</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

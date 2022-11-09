@@ -13,4 +13,6 @@ public:
 private:
 	void handlePlayerShowUp(float deltaTime);
 	void handleBotShowUp(float deltaTime);
+
+	float m_currentTime;
 };

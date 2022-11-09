@@ -30,12 +30,21 @@ void Shotgun::init() {
 
 void Shotgun::sync() {
 	this->setPosition(m_player->getPosition());
+	//
+	sf::Vector2f scale = m_player->getScale();
+	scale.x = scale.x / 3 * 2;
+	scale.y = scale.y / 3 * 2;
+	if (this->getScale().x < 0) scale.x = -scale.x;
+	if (this->getScale().y < 0) scale.y = -scale.y;
+	this->setScale(scale);
+	//
 	sf::Color gunColor = this->getColor();
 	gunColor.a = m_player->getColor().a;
 	this->setColor(gunColor);
 }
 
 void Shotgun::update(float deltaTime) {
+	this->sync();
 	sf::Vector2f mousePosition = (sf::Vector2f)sf::Mouse::getPosition(*WConnect->getWindow());
 	if (m_isFinishShoot) {
 		handleRotateGun(mousePosition, deltaTime);

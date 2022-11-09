@@ -16,7 +16,10 @@ public:
 	void update(float deltaTime);
 	void render();
 private:
-	sf::Sprite player;
-	sf::Sprite board;
 	std::list<GameButton*> m_btnList;
+
+	float m_currentTime;
+	sf::Sprite m_background;
+	sf::RectangleShape* m_blackScreen;
+	bool isPerformTransition;
 };

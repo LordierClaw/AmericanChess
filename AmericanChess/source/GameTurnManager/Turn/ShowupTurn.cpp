@@ -13,6 +13,7 @@ void ShowupTurn::init() {
 		piece->performTurn();
 	}
 	isPerforming = false;
+	m_currentTime = 0;
 }
 
 void ShowupTurn::update(float deltaTime) {
@@ -39,10 +40,17 @@ void ShowupTurn::handlePlayerShowUp(float deltaTime) {
 }
 
 void ShowupTurn::handleBotShowUp(float deltaTime) {
-	int i = 0;
+	m_currentTime += deltaTime;
+	int nPiece = ChessBoard->getChessList().size() - 1;
+	int i = 0, endCount = 0;
 	for (auto piece : ChessBoard->getChessList()) {
-		piece->update(deltaTime);
-		if (piece->isEndTurn()) i++;
+		if (piece->getType() != PIECETYPE::PLAYER) {
+			if (m_currentTime >= SHOW_UP_DURATION / 2 * i) {
+				piece->update(deltaTime);
+				if (piece->isEndTurn()) endCount++;
+			}
+			i++;
+		}
 	}
-	if (i == ChessBoard->getChessList().size()) isPerforming = true;
+	if (endCount == nPiece) isPerforming = true;
 }

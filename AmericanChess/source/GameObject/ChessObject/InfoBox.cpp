@@ -21,9 +21,10 @@ void InfoBox::init() {
 
 void InfoBox::update(float deltaTime) {
 	for (auto piece : ChessBoard->getChessList()) {
-		if (piece->getType() != PIECETYPE::PLAYER && piece->getGlobalBounds().contains(
-			(sf::Vector2f)sf::Mouse::getPosition(*WConnect->getWindow())
-		)) {
+		if (piece->getType() != PIECETYPE::PLAYER
+			&& (piece->getState() == STATE::IDLE || piece->getState() == STATE::READY_TO_MOVE)
+			&& piece->getGlobalBounds().contains((sf::Vector2f)sf::Mouse::getPosition(*WConnect->getWindow()))
+		) {
 			display(piece);
 			return;
 		}

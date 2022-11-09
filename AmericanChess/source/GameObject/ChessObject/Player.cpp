@@ -16,9 +16,7 @@ void Player::init(ChessPosition pos) {
 
 void Player::update(float deltaTime) {
 	ChessPiece::update(deltaTime);
-	m_gun->setPosition(this->getPosition());
 	m_gun->update(deltaTime);
-	m_gun->sync();
 }
 
 void Player::render() {

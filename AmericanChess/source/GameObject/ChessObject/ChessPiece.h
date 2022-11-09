@@ -88,5 +88,3 @@ private:
 	bool m_isPromotion;
 	void promote(std::string name);
 };
-
-

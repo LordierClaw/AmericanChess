@@ -34,7 +34,7 @@ void GSIntro::update(float deltaTime) {
 	} else if (m_currentTime <= 3.f) {
 		opacity = std::max(0, (int)round(255*(3.f-m_currentTime)));
 	} else {
-		GSM->changeState(StateTypes::PLAY);
+		GSM->changeState(StateTypes::MENU);
 		WConnect->getWindow()->setMouseCursorVisible(true);
 		WConnect->getWindow()->setMouseCursorGrabbed(true);
 		return;
