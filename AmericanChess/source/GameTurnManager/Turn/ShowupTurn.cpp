@@ -18,11 +18,8 @@ void ShowupTurn::init() {
 
 void ShowupTurn::update(float deltaTime) {
 	if (isPerforming == false) {
-		if (ChessBoard->getPlayer()->isEndTurn() == false) {
-			this->handlePlayerShowUp(deltaTime);
-		} else {
-			this->handleBotShowUp(deltaTime);
-		}
+		this->handlePlayerShowUp(deltaTime);
+		if (ChessBoard->getPlayer()->isEndTurn()) this->handleBotShowUp(deltaTime);
 	} else {
 		std::cout << "End of Showing up Turn\n";
 		GTM->changeTurn(PLAYER_TURN);

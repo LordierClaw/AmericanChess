@@ -26,15 +26,17 @@ void GSPlay::init() {
 
 	ChessBoard->init();
 
-	m_blackScreen = new sf::RectangleShape(sf::Vector2f(SCREEN_WITDH, SCREEN_HEIGHT));
-	m_blackScreen->setTexture(DATA->getTexture("bg"));
 	isPerformTransition = true;
 	m_currentTime = 0;
 
 	m_background.setTexture(*DATA->getTexture("bg"));
 	sf::Color bgColor = m_background.getColor();
-	bgColor.a = 85;
+	bgColor.a = 150;
 	m_background.setColor(bgColor);
+
+	m_overlayScreen = new sf::Sprite();
+	m_overlayScreen->setTexture(*DATA->getTexture("bg"));
+	m_overlayScreen->setColor(bgColor);
 }
 
 void GSPlay::update(float deltaTime) {
@@ -42,14 +44,14 @@ void GSPlay::update(float deltaTime) {
 	if (isPerformTransition == true) {
 		m_currentTime += deltaTime;
 		if (m_currentTime < TRANSITION_DURATION) {
-			sf::Color color = m_blackScreen->getFillColor();
+			sf::Color color = m_overlayScreen->getColor();
 			color.a = 255 * (1-(m_currentTime/TRANSITION_DURATION));
-			m_blackScreen->setFillColor(color);
+			m_overlayScreen->setColor(color);
 		} else {
 			isPerformTransition = false;
-			m_blackScreen->setFillColor(sf::Color::Transparent);
+			m_overlayScreen->setColor(sf::Color::Transparent);
 			m_currentTime = 0;
-			delete m_blackScreen;
+			delete m_overlayScreen;
 		}
 	}
 	// normal update
@@ -67,5 +69,5 @@ void GSPlay::render() {
 	ChessBoard->render();
 
 	//transition
-	if (isPerformTransition) WConnect->getWindow()->draw(*m_blackScreen);
+	if (isPerformTransition) WConnect->getWindow()->draw(*m_overlayScreen);
 }

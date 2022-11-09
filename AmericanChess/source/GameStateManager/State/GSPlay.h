@@ -20,6 +20,6 @@ private:
 
 	float m_currentTime;
 	sf::Sprite m_background;
-	sf::RectangleShape* m_blackScreen;
+	sf::Sprite* m_overlayScreen;
 	bool isPerformTransition;
 };

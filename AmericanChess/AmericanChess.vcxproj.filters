@@ -209,11 +209,11 @@
     <ClInclude Include="source\GameObject\ChessObject\ChessPosition.h">
       <Filter>Source Files\GameObject\ChessObject\BoardComponent</Filter>
     </ClInclude>
-    <ClInclude Include="source\GameObject\ChessObject\InfoBox.h">
-      <Filter>Source Files\GameObject\ChessObject\UIComponent</Filter>
-    </ClInclude>
     <ClInclude Include="source\GameObject\ChessObject\SoulCard.h">
       <Filter>Source Files\GameObject\ChessObject\BoardComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameObject\ChessObject\InfoBox.h">
+      <Filter>Source Files\GameObject\ChessObject\UIComponent</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

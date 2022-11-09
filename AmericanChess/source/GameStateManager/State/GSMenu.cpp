@@ -49,7 +49,7 @@ void GSMenu::init() {
 	m_btnList.push_back(playBtn);
 
 	//about button
-	GameButton* aboutBtn = new GameButton("btnAbout", sf::Vector2f(79.f, 32.f));
+	GameButton* aboutBtn = new GameButton("btnAbout", sf::Vector2f(79.f, 36.f));
 	aboutBtn->init();
 	aboutBtn->setPosition(sf::Vector2f(640.f, 540.f));
 	aboutBtn->setOnClick([]() { });
