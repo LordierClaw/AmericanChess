@@ -25,7 +25,7 @@ void Shotgun::init() {
 	m_isShooting = false;
 	m_isFinishShoot = false;
 	//
-	m_bullets.resize(10);
+	m_bullets.resize(SHOOTING_BULLET_SPRAY);
 }
 
 void Shotgun::sync() {
@@ -68,7 +68,7 @@ void Shotgun::shoot() {
 	srand(time(NULL));
 	sf::Vector2f pos = this->getPosition();
 
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < SHOOTING_BULLET_SPRAY; i++) {
 		Bullet* bullet = new Bullet();
 		float angle = this->getRotation();
 		int range = SHOOTING_RANGE_ANGLE*7/9;
@@ -96,7 +96,7 @@ void Shotgun::reset() {
 		if (bullet != nullptr) delete bullet;
 	}
 	m_bullets.clear();
-	m_bullets.resize(10);
+	m_bullets.resize(SHOOTING_BULLET_SPRAY);
 }
 
 bool Shotgun::finishShoot() {
