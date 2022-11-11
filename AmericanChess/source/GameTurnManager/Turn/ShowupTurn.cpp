@@ -1,6 +1,7 @@
 #include "ShowupTurn.h"
 
 ShowupTurn::ShowupTurn() {
+	m_currentTime = 0;
 }
 
 ShowupTurn::~ShowupTurn() {

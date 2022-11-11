@@ -67,9 +67,9 @@ void GSMenu::update(float deltaTime) {
 	//transition
 	if (isPerformTransition == true) {
 		m_currentTime += deltaTime;
-		if (m_currentTime < TRANSITION_DURATION) {
+		if (m_currentTime < TRANSITION_DURATION*2) {
 			sf::Color color = sf::Color::Black;
-			color.a = 255 * (1 - (m_currentTime / TRANSITION_DURATION));
+			color.a = 255 * (1 - (m_currentTime / (TRANSITION_DURATION*2)));
 			m_blackScreen->setFillColor(color);
 		} else {
 			isPerformTransition = false;

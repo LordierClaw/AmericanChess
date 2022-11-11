@@ -26,5 +26,5 @@
 #define MOVING_DURATION 0.5f
 #define HURT_COLOR sf::Color::Red
 #define HURT_OFFSET 10.f
-#define HURT_DURATION 0.25f
+#define HURT_DURATION 0.15f
 #define KILL_DURATION 1.f
