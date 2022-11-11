@@ -3,14 +3,15 @@
 ChessBox::ChessBox() {
 }
 
-//outline is disabled by default
 ChessBox::ChessBox(sf::Vector2f size, ChessPosition pos) : sf::RectangleShape(size) {
 	m_chessPos = pos;
 	this->setOrigin(sf::Vector2f(this->getSize().x / 2, this->getSize().y / 2 - 23.f / 2 - 5.f));
 	this->setPosition(m_chessPos.toPosition());
-	this->setOutlineThickness(CHESSBOX_OUTLINE_THICKNESS);
-	this->setOutlineColor(sf::Color::Transparent);
 	this->setFillColor(sf::Color::Transparent);
+	m_circle.setTexture(*DATA->getTexture("chess/MoveBox"));
+	m_circle.setOrigin(sf::Vector2f(45.f, 45.f));
+	m_circle.setPosition(this->getPosition().x, this->getPosition().y + 23.f / 2 + 4.7);
+	m_isVisible = false;
 }
 
 ChessBox::~ChessBox() {
@@ -33,13 +34,13 @@ ChessPosition ChessBox::getChessPosition() {
 }
 
 void ChessBox::render() {
-	WConnect->getWindow()->draw(*this);
+	if (m_isVisible) WConnect->getWindow()->draw(m_circle);
 }
 
 void ChessBox::showOutline() {
-	this->setOutlineColor(CHESSBOX_OUTLINE_COLOR);
+	m_isVisible = true;
 }
 
 void ChessBox::hideOutline() {
-	this->setOutlineColor(sf::Color::Transparent);
+	m_isVisible = false;
 }

@@ -13,7 +13,6 @@ ChessPiece::ChessPiece() {
 
 ChessPiece::ChessPiece(std::string name) {
     this->m_name = "chess/piece/" + name;
-    if (!DATA->hasTexture(this->m_name)) DATA->addTexture(this->m_name);
     // set chess piece type
     if (name == "B_King") {
         m_type = PLAYER;
@@ -258,7 +257,6 @@ void ChessPiece::promote(std::string name) {
     if (m_type != PIECETYPE::PAWN || m_isPromotion == false) return;
     //re-construct
     this->m_name = "chess/piece/" + name;
-    if (!DATA->hasTexture(this->m_name)) DATA->addTexture(this->m_name);
     // set chess piece type
     if (name == "B_King") {
         m_type = PLAYER;

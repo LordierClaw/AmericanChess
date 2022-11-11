@@ -16,8 +16,6 @@ GameButton::~GameButton() {
 }
 
 void GameButton::init() {
-    DATA->addTexture("gui/" + m_btnName + "_idle");
-    DATA->addTexture("gui/" + m_btnName + "_handle");
     this->setTexture(DATA->getTexture("gui/" + m_btnName + "_idle"));
 }
 

@@ -2,7 +2,6 @@
 
 GSIntro::GSIntro() {
 	m_currentTime = 0;
-	DATA->addTexture("intro");
 }
 
 GSIntro::~GSIntro() {

@@ -1,8 +1,6 @@
 #include "GSMenu.h"
 
 GSMenu::GSMenu() {
-	DATA->addTexture("bg");
-	DATA->addTexture("logo");
 }
 
 GSMenu::~GSMenu() {

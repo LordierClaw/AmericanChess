@@ -4,7 +4,6 @@
 Board::Board() {
     m_player = nullptr;
     m_king = nullptr;
-    DATA->addTexture("chess/Board");
     this->setTexture(DATA->getTexture("chess/Board"));
     this->setSize(sf::Vector2f(550.f, 550.f + 6.f)); //DO NOT change y value, because I want to stretch the texture
     this->setOrigin(sf::Vector2f(550.f / 2, 550.f / 2));

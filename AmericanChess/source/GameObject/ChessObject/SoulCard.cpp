@@ -1,7 +1,6 @@
 #include "SoulCard.h"
 
 SoulCard::SoulCard() {
-	DATA->addTexture("chess/card/B_Cardbox");
 }
 
 SoulCard::~SoulCard() {

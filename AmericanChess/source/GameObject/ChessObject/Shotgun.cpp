@@ -17,7 +17,6 @@ Shotgun::~Shotgun() {
 }
 
 void Shotgun::init() {
-	DATA->addTexture("chess/gun/Shotgun");
 	this->setTexture(*DATA->getTexture("chess/gun/Shotgun"));
 	this->setOrigin(sf::Vector2f(8.f, 8.f));
 	this->setScale(sf::Vector2f(2.f, 2.f));
