@@ -21,6 +21,6 @@ public:
 	void hideOutline();
 private:
 	ChessPosition m_chessPos;
-	sf::Sprite m_circle;
+	sf::Sprite m_outline;
 	bool m_isVisible;
 };
