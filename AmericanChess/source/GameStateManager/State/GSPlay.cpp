@@ -46,7 +46,7 @@ void GSPlay::update(float deltaTime) {
 		m_currentTime += deltaTime;
 		if (m_currentTime < TRANSITION_DURATION) {
 			sf::Color color = m_overlayScreen->getColor();
-			color.a = 255 * (1-(m_currentTime/TRANSITION_DURATION));
+			color.a = (int)(255 * (1 - (m_currentTime / TRANSITION_DURATION)));
 			m_overlayScreen->setColor(color);
 		} else {
 			isPerformTransition = false;

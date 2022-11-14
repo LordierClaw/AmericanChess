@@ -6,6 +6,7 @@ Player::Player() : ChessPiece("B_King") {
 }
 
 Player::~Player() {
+	if (m_gun != nullptr) delete m_gun;
 }
 
 void Player::init(ChessPosition pos) {

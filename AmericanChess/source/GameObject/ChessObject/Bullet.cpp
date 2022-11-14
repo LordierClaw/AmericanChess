@@ -1,5 +1,5 @@
 #include "Bullet.h"
-#include <iostream>
+#include "../GameRuleManager.h"
 
 Bullet::Bullet() {
 	m_currentTime = 0;
@@ -24,7 +24,7 @@ void Bullet::init(sf::Vector2f pos, float angle) {
 
 void Bullet::update(float deltaTime) {
 	m_currentTime += deltaTime;
-	float range = SHOOTING_MAX_RANGE * 2/ 3;
+	float range = GameRule->getShotgunRange() * 2/ 3;
 	float velocity = (float)SHOOTING_DURATION / range;
 	
 	if (m_currentTime < SHOOTING_DURATION/2) {
@@ -65,10 +65,10 @@ void Bullet::stop() {
 
 int Bullet::getDamage() {
 	float r = GameMath::getDistance(m_shootPos, m_bulletLine[1].position);
-	int damage = round(SHOOTING_BASE_DAMAGE * (1 - r / SHOOTING_MAX_RANGE));
+	int damage = round(GameRule->getShotgunDMG() * (1 - r / GameRule->getShotgunRange()));
 
 	if (damage < 0) damage = 0;
-	else if (damage > SHOOTING_BASE_DAMAGE) damage = SHOOTING_BASE_DAMAGE;
+	else if (damage > GameRule->getShotgunDMG()) damage = GameRule->getShotgunDMG();
 
 	return damage;
 }

@@ -1,4 +1,5 @@
 #include "ChessPiece.h"
+#include "../GameRuleManager.h"
 #include <cstdlib>
 
 ChessPiece::ChessPiece() {
@@ -42,6 +43,11 @@ void ChessPiece::init(ChessPosition pos) {
     m_isEndTurn = true;
     //only for pawn
     m_isPromotion = false;
+    if (m_type == PLAYER) return;
+    m_health = GameRule->getHealthChess(m_type);
+    m_queueSize = GameRule->getQueueSizeChess(m_type);
+    srand(time(NULL));
+    m_turnLeft = rand() % m_queueSize + 1;
 }
 
 void ChessPiece::init(ChessPosition pos, int health, int turnLeft, int queueSize) {
@@ -272,6 +278,9 @@ void ChessPiece::promote(std::string name) {
     //re-init
     this->setTexture(*DATA->getTexture(this->m_name));
     m_color = this->getColor();
+    m_health = GameRule->getHealthChess(m_type);
+    m_queueSize = GameRule->getQueueSizeChess(m_type);
+    m_turnLeft = m_queueSize-1;
     //
     m_isPromotion = false;
 }

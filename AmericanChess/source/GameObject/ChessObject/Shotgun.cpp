@@ -1,4 +1,5 @@
 #include "Shotgun.h"
+#include "../GameRuleManager.h"
 #include <cstdlib>
 
 Shotgun::Shotgun() {
@@ -14,6 +15,10 @@ Shotgun::Shotgun(Player* player) : Shotgun() {
 }
 
 Shotgun::~Shotgun() {
+	for (auto bullet : m_bullets) {
+		if (bullet != nullptr) delete bullet;
+	}
+	m_bullets.clear();
 }
 
 void Shotgun::init() {
@@ -24,7 +29,7 @@ void Shotgun::init() {
 	m_isShooting = false;
 	m_isFinishShoot = false;
 	//
-	m_bullets.resize(SHOOTING_BULLET_SPRAY);
+	m_bullets.resize(GameRule->getShotgunSpray());
 }
 
 void Shotgun::sync() {
@@ -76,7 +81,7 @@ void Shotgun::shoot() {
 	srand(time(NULL));
 	sf::Vector2f pos = this->getPosition();
 
-	for (int i = 0; i < SHOOTING_BULLET_SPRAY; i++) {
+	for (int i = 0; i < GameRule->getShotgunSpray(); i++) {
 		Bullet* bullet = new Bullet();
 		float angle = this->getRotation();
 		int range = SHOOTING_RANGE_ANGLE*7/9;
@@ -104,7 +109,7 @@ void Shotgun::reset() {
 		if (bullet != nullptr) delete bullet;
 	}
 	m_bullets.clear();
-	m_bullets.resize(SHOOTING_BULLET_SPRAY);
+	m_bullets.resize(GameRule->getShotgunSpray());
 }
 
 bool Shotgun::finishShoot() {
@@ -143,7 +148,7 @@ void Shotgun::handleDrawRange(sf::Vector2f mousePosition, float deltaTime) {
 	//the curve
 	sf::VertexArray lineCurve(sf::TriangleStrip);
 	float angleL = angle - SHOOTING_RANGE_ANGLE / 2, angleR = angle + SHOOTING_RANGE_ANGLE / 2;
-	float r = std::min((float)SHOOTING_MAX_RANGE, GameMath::getDistance(this->getPosition(), mousePosition) - 25.f);
+	float r = std::min((float)GameRule->getShotgunRange(), GameMath::getDistance(this->getPosition(), mousePosition) - 25.f);
 
 	int t = SHOOTING_RANGE_THICKNESS;
 	for (float i = angleL; i <= angleR; i += 0.05f) {
