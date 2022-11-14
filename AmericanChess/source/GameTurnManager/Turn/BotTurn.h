@@ -16,4 +16,6 @@ private:
 
 	bool isEndBotTurn();
 	void handleBotEvent();
+
+	bool m_isPlayerKillable;
 };

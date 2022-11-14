@@ -11,7 +11,8 @@ enum StateTypes {
 	INTRO,
 	MENU,
 	PLAY,
-	END,
+	UPGRADE,
+	END
 };
 
 class GameStateMachine : public Singleton<GameStateMachine> {

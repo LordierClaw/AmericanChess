@@ -37,6 +37,7 @@ void GameStateMachine::popState() {
     if (!m_StateStack.empty()) {
         m_StateStack.back()->resume();
     }
+    m_ActiveState = m_StateStack.back();
 }
 
 void GameStateMachine::performSateChange() {

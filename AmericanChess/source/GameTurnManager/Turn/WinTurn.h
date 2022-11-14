@@ -2,10 +2,10 @@
 #include "../GameTurnBase.h"
 #include "../../GameStateManager/GameStateMachine.h"
 
-class EndTurn : public GameTurnBase {
+class WinTurn : public GameTurnBase {
 public:
-	EndTurn();
-	~EndTurn();
+	WinTurn();
+	~WinTurn();
 
 	void init();
 	void update(float deltaTime);

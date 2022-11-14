@@ -25,7 +25,12 @@ public:
 
 	SoulCard* getSoulCard();
 
+	void disableBoard();
+	void enableBoard();
+
 private:
+	bool m_isEnable;
+
 	Player* m_player;
 	ChessPiece* m_king;
 

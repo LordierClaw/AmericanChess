@@ -23,9 +23,9 @@ void PlayerTurn::update(float deltaTime) {
     } else {
         // check if the player's turn is finished
         if (isEndPlayerTurn()) {
-            //if WhiteKing is dead, change to END_TURN
+            //if WhiteKing is dead, change to WIN_TURN
             if (handleKillPiece()) {
-                GTM->changeTurn(END_TURN);
+                GTM->changeTurn(WIN_TURN);
                 return;
             }
 

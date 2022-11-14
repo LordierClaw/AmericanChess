@@ -1,12 +1,12 @@
-#include "EndTurn.h"
+#include "WinTurn.h"
 
-EndTurn::EndTurn() {
+WinTurn::WinTurn() {
 }
 
-EndTurn::~EndTurn() {
+WinTurn::~WinTurn() {
 }
 
-void EndTurn::init() {
+void WinTurn::init() {
 	std::cout << "Start of End Turn" << '\n';
 	ChessBoard->getPlayer()->getGun()->setShootable(false);
 	m_PlayerPosition = ChessBoard->getPlayer()->getCurrentPosition();
@@ -19,7 +19,7 @@ void EndTurn::init() {
 	}
 }
 
-void EndTurn::update(float deltaTime) {
+void WinTurn::update(float deltaTime) {
 	if (ChessBoard->getChessList().size() == 1) {
 		std::cout << "End of End Turn" << '\n';
 		GSM->changeState(INTRO);
@@ -31,13 +31,13 @@ void EndTurn::update(float deltaTime) {
 	handleClearBoard();
 }
 
-void EndTurn::render() {
+void WinTurn::render() {
 	for (auto piece : ChessBoard->getChessList()) {
 		piece->render();
 	}
 }
 
-void EndTurn::handleClearBoard() {
+void WinTurn::handleClearBoard() {
 	for (int i = 0; i < ChessBoard->getChessList().size(); i++) {
 		if (ChessBoard->getChessList()[i]->getState() == STATE::DEAD) {
 			delete ChessBoard->getChessList()[i];

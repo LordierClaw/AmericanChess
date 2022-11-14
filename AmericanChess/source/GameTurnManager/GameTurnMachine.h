@@ -10,7 +10,8 @@ enum TURN {
 	SHOWUP_TURN = 0,
 	PLAYER_TURN,
 	BOT_TURN,
-	END_TURN
+	WIN_TURN,
+	LOSE_TURN
 };
 
 class GameTurnMachine : public Singleton<GameTurnMachine> {

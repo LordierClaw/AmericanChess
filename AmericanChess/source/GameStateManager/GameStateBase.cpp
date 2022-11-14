@@ -17,6 +17,8 @@ GameStateBase* GameStateBase::createState(StateTypes state) {
 	case PLAY:
 		gameState = new GSPlay();
 		break;
+	case UPGRADE:
+		break;
 	case END:
 		break;
 	default:

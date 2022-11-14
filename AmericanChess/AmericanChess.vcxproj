@@ -154,7 +154,8 @@
     <ClCompile Include="source\GameTurnManager\GameTurnBase.cpp" />
     <ClCompile Include="source\GameTurnManager\GameTurnMachine.cpp" />
     <ClCompile Include="source\GameTurnManager\Turn\BotTurn.cpp" />
-    <ClCompile Include="source\GameTurnManager\Turn\EndTurn.cpp" />
+    <ClCompile Include="source\GameTurnManager\Turn\LoseTurn.cpp" />
+    <ClCompile Include="source\GameTurnManager\Turn\WinTurn.cpp" />
     <ClCompile Include="source\GameTurnManager\Turn\PlayerTurn.cpp" />
     <ClCompile Include="source\GameTurnManager\Turn\ShowupTurn.cpp" />
     <ClCompile Include="source\Misc\ChessMoveGenerator.cpp" />
@@ -184,7 +185,8 @@
     <ClInclude Include="source\GameTurnManager\GameTurnBase.h" />
     <ClInclude Include="source\GameTurnManager\GameTurnMachine.h" />
     <ClInclude Include="source\GameTurnManager\Turn\BotTurn.h" />
-    <ClInclude Include="source\GameTurnManager\Turn\EndTurn.h" />
+    <ClInclude Include="source\GameTurnManager\Turn\LoseTurn.h" />
+    <ClInclude Include="source\GameTurnManager\Turn\WinTurn.h" />
     <ClInclude Include="source\GameTurnManager\Turn\PlayerTurn.h" />
     <ClInclude Include="source\GameTurnManager\Turn\ShowupTurn.h" />
     <ClInclude Include="source\Misc\ChessMoveGenerator.h" />

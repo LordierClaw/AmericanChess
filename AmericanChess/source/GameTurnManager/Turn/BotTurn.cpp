@@ -13,10 +13,13 @@ void BotTurn::init() {
     }
     ChessBoard->getPlayer()->getGun()->setShootable(false);
     isPerforming = false;
+    m_isPlayerKillable = false;
     m_PlayerPosition = ChessBoard->getPlayer()->getCurrentPosition();
 }
 
 void BotTurn::update(float deltaTime) {
+    if (m_isPlayerKillable) GTM->changeTurn(TURN::LOSE_TURN);
+
     if (isPerforming == false) {
         handleBotEvent();
     } else {
@@ -56,7 +59,10 @@ void BotTurn::handleBotEvent() {
                 pos = MoveGen->getNextMove(piece);
                 std::cout << pos.x << "-" << pos.y << '\n';
                 //if piece kill player
-                if (pos == m_PlayerPosition) std::cout << "Black King is going to DIE\n";
+                if (pos == m_PlayerPosition) {
+                    std::cout << "Black King is going to DIE\n";
+                    m_isPlayerKillable = true;
+                }
                 //promote
                 if (piece->getType() == PIECETYPE::PAWN && pos != m_PlayerPosition && pos.y == 7) {
                     piece->setPromotion(true);

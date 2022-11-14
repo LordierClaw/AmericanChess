@@ -99,7 +99,7 @@
     <ClCompile Include="source\GameTurnManager\Turn\ShowupTurn.cpp">
       <Filter>Source Files\GameTurnManager\Turn</Filter>
     </ClCompile>
-    <ClCompile Include="source\GameTurnManager\Turn\EndTurn.cpp">
+    <ClCompile Include="source\GameTurnManager\Turn\WinTurn.cpp">
       <Filter>Source Files\GameTurnManager\Turn</Filter>
     </ClCompile>
     <ClCompile Include="source\Misc\ChessMoveGenerator.cpp">
@@ -128,6 +128,9 @@
     </ClCompile>
     <ClCompile Include="source\GameObject\ChessObject\SoulCard.cpp">
       <Filter>Source Files\GameObject\ChessObject\BoardComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameTurnManager\Turn\LoseTurn.cpp">
+      <Filter>Source Files\GameTurnManager\Turn</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -185,7 +188,7 @@
     <ClInclude Include="source\GameTurnManager\Turn\ShowupTurn.h">
       <Filter>Source Files\GameTurnManager\Turn</Filter>
     </ClInclude>
-    <ClInclude Include="source\GameTurnManager\Turn\EndTurn.h">
+    <ClInclude Include="source\GameTurnManager\Turn\WinTurn.h">
       <Filter>Source Files\GameTurnManager\Turn</Filter>
     </ClInclude>
     <ClInclude Include="source\Misc\ChessMoveGenerator.h">
@@ -214,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="source\GameObject\ChessObject\InfoBox.h">
       <Filter>Source Files\GameObject\ChessObject\UIComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameTurnManager\Turn\LoseTurn.h">
+      <Filter>Source Files\GameTurnManager\Turn</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

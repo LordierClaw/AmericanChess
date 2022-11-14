@@ -23,6 +23,7 @@ Board::~Board() {;
 }
 
 void Board::init() {
+    m_isEnable = true;
     //
     m_player = new Player();
     m_player->init({4, 7});
@@ -68,7 +69,7 @@ void Board::init() {
 void Board::update(float deltaTime) {
     if (GTM->needToChangeTurn()) GTM->performTurnChange();
     GTM->currentTurn()->update(deltaTime);
-
+    if (m_isEnable == false) return;
     m_soulCard->update(deltaTime);
     m_infoBox->update(deltaTime);
 }
@@ -81,6 +82,8 @@ void Board::render() {
     //draw the board itself
     WConnect->getWindow()->draw(*this);
     GTM->currentTurn()->render();
+    //
+    if (m_isEnable == false) return;
     m_soulCard->render();
     m_infoBox->render();
 
@@ -106,4 +109,12 @@ ChessBox* Board::getChessBox(int x, int y) {
 
 SoulCard* Board::getSoulCard() {
     return m_soulCard;
+}
+
+void Board::disableBoard() {
+    m_isEnable = false;
+}
+
+void Board::enableBoard() {
+    m_isEnable = true;
 }
