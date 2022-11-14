@@ -14,10 +14,11 @@ void PlayerTurn::init() {
     ChessBoard->getPlayer()->getGun()->reset();
     isPerforming = false;
     useSoulCard = false;
+    m_PlayerPosition = ChessBoard->getPlayer()->getCurrentPosition();
+    m_moveList = MoveGen->getKingMove(m_PlayerPosition);
 }
 
 void PlayerTurn::update(float deltaTime) {
-    m_PlayerPosition = ChessBoard->getPlayer()->getCurrentPosition();
     if (isPerforming == false) {
         handlePlayerEvent();
     } else {
@@ -63,10 +64,6 @@ void PlayerTurn::render() {
     }
 }
 
-//this is used to check ChessBox around Player
-int dx[] = { -1, -1, -1, 0, 0, 1, 1, 1 };
-int dy[] = { -1, 0, 1, -1, 1, -1, 0, 1 };
-
 bool PlayerTurn::isEndPlayerTurn() {
     for (auto piece : ChessBoard->getChessList()) {
         if (piece->getType() != PIECETYPE::PLAYER) {
@@ -78,21 +75,16 @@ bool PlayerTurn::isEndPlayerTurn() {
 }
 
 MousePos PlayerTurn::getPlayerIntention() {
+    for (auto pos : m_moveList) {
+        if (ChessBoard->getChessBox(pos.x, pos.y)->isMouseHover()) {
+            return MousePos::WANT_TO_MOVE;
+        }
+    }
     for (int y = 0; y < 8; y++) {
         for (int x = 0; x < 8; x++) {
-            bool isAiming = true;
             if (ChessBoard->getChessBox(x, y)->isMouseHover()) {
-                for (int i = 0; i < 8; i++) {
-                    int nx = m_PlayerPosition.x + dx[i];
-                    int ny = m_PlayerPosition.y + dy[i];
-                    if (nx == x && ny == y) {
-                        isAiming = false;
-                        break;
-                    }
-                }
-                if (m_PlayerPosition.x == x && m_PlayerPosition.y == y) isAiming = false;
-                if (isAiming) return MousePos::WANT_TO_SHOOT;
-                else return MousePos::WANT_TO_MOVE;
+                if (m_PlayerPosition.x == x && m_PlayerPosition.y == y) return MousePos::WANT_TO_MOVE;
+                return MousePos::WANT_TO_SHOOT;
             }
         }
     }
@@ -100,11 +92,8 @@ MousePos PlayerTurn::getPlayerIntention() {
 }
 
 void PlayerTurn::hideNearbyBox() {
-    for (int i = 0; i < 8; i++) {
-        int nx = m_PlayerPosition.x + dx[i];
-        int ny = m_PlayerPosition.y + dy[i];
-        if (nx < 0 || nx > 7 || ny < 0 || ny > 7) continue;
-        ChessBoard->getChessBox(nx, ny)->hideOutline();
+    for (auto pos : m_moveList) {
+        ChessBoard->getChessBox(pos.x, pos.y)->hideOutline();
     }
 }
 
@@ -144,46 +133,42 @@ void PlayerTurn::handlePlayerEvent() {
 }
 
 void PlayerTurn::handleMoveEvent() {
-    for (int i = 0; i < 8; i++) {
-        int nx = m_PlayerPosition.x + dx[i];
-        int ny = m_PlayerPosition.y + dy[i];
-        if (nx < 0 || nx > 7 || ny < 0 || ny > 7) continue;
-        if (ChessBoard->getChessBox(nx, ny)->isMouseHover()) {
-            ChessBoard->getChessBox(nx, ny)->showOutline();
-            if (ChessBoard->getChessBox(nx, ny)->isMouseClick()) {
-                ChessBoard->getChessBox(nx, ny)->hideOutline();
+    for (auto pos : m_moveList) {
+        if (ChessBoard->getChessBox(pos.x, pos.y)->isMouseHover()) {
+            ChessBoard->getChessBox(pos.x, pos.y)->showOutline();
+            if (ChessBoard->getChessBox(pos.x, pos.y)->isMouseClick()) {
+                ChessBoard->getChessBox(pos.x, pos.y)->hideOutline();
                 ChessBoard->getPlayer()->performTurn();
-                ChessBoard->getPlayer()->setDestPosition({ nx, ny });
+                ChessBoard->getPlayer()->setDestPosition(pos);
                 ChessBoard->getPlayer()->changeState(STATE::MOVING);
                 isPerforming = true;
                 return;
             }
         } else {
-            ChessBoard->getChessBox(nx, ny)->hideOutline();
+            ChessBoard->getChessBox(pos.x, pos.y)->hideOutline();
         }
     }
 }
 
 void PlayerTurn::handleSoulCardEvent(PIECETYPE type) {
-    std::vector<ChessPosition> moveList;
     switch (type) {
     case QUEEN:
-        moveList = MoveGen->getQueenMove(m_PlayerPosition);
+        m_moveList = MoveGen->getQueenMove(m_PlayerPosition);
         break;
     case BISHOP:
-        moveList = MoveGen->getBishopMove(m_PlayerPosition);
+        m_moveList = MoveGen->getBishopMove(m_PlayerPosition);
         break;
     case KNIGHT:
-        moveList = MoveGen->getKnightMove(m_PlayerPosition);
+        m_moveList = MoveGen->getKnightMove(m_PlayerPosition);
         break;
     case ROOK:
-        moveList = MoveGen->getRookMove(m_PlayerPosition);
+        m_moveList = MoveGen->getRookMove(m_PlayerPosition);
         break;
     default:
         break;
     }
     bool moveSelected = false;
-    for (auto pos : moveList) {
+    for (auto pos : m_moveList) {
         ChessBoard->getChessBox(pos.x, pos.y)->showOutline();
         if (ChessBoard->getChessBox(pos.x, pos.y)->isMouseClick()) {
             ChessBoard->getPlayer()->performTurn();
@@ -195,7 +180,7 @@ void PlayerTurn::handleSoulCardEvent(PIECETYPE type) {
         }
     }
     if (moveSelected) {
-        for (auto pos : moveList) {
+        for (auto pos : m_moveList) {
             ChessBoard->getSoulCard()->reset();
             ChessBoard->getChessBox(pos.x, pos.y)->hideOutline();
         }

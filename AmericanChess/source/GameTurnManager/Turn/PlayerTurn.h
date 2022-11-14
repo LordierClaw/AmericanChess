@@ -21,6 +21,8 @@ public:
 private:
 	ChessPosition m_PlayerPosition;
 
+	std::vector<ChessPosition> m_moveList;
+
 	bool isEndPlayerTurn();
 
 	MousePos m_playerIntent;
