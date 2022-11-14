@@ -25,6 +25,7 @@ void GSPlay::init() {
 	m_btnList.push_back(btn);
 
 	ChessBoard->init();
+	ChessBoard->setLevel(1);
 
 	isPerformTransition = true;
 	m_currentTime = 0;

@@ -132,6 +132,9 @@
     <ClCompile Include="source\GameTurnManager\Turn\LoseTurn.cpp">
       <Filter>Source Files\GameTurnManager\Turn</Filter>
     </ClCompile>
+    <ClCompile Include="source\GameObject\GameRuleManager.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\GameManager\Singleton.h">
@@ -220,6 +223,9 @@
     </ClInclude>
     <ClInclude Include="source\GameTurnManager\Turn\LoseTurn.h">
       <Filter>Source Files\GameTurnManager\Turn</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameObject\GameRuleManager.h">
+      <Filter>Source Files\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

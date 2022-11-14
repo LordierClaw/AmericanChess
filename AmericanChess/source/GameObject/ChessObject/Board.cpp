@@ -3,7 +3,17 @@
 
 Board::Board() {
     m_player = nullptr;
-    m_king = nullptr;
+    m_infoBox = nullptr;
+    m_soulCard = nullptr;
+    m_isEnable = false;
+}
+
+Board::~Board() {;
+}
+
+void Board::init() {
+    m_isEnable = true;
+    //
     this->setTexture(DATA->getTexture("chess/Board"));
     this->setSize(sf::Vector2f(550.f, 550.f + 6.f)); //DO NOT change y value, because I want to stretch the texture
     this->setOrigin(sf::Vector2f(550.f / 2, 550.f / 2));
@@ -14,56 +24,15 @@ Board::Board() {
             m_ChessTable[y][x] = ChessBox(sf::Vector2f(64.5, 64.5), { x, y });
         }
     }
-}
-
-Board::~Board() {;
-    for (auto piece : m_ChessList) {
-        if (piece != nullptr) delete piece;
+    //
+    if (m_soulCard == nullptr) {
+        m_soulCard = new SoulCard();
+        m_soulCard->init();
     }
-}
-
-void Board::init() {
-    m_isEnable = true;
-    //
-    m_player = new Player();
-    m_player->init({4, 7});
-    m_ChessList.push_back(m_player);
-    m_king = new ChessPiece("W_King");
-    m_king->init({ 3, 0 }, 8, 4, 4);
-    m_ChessList.push_back(m_king);
-
-    ChessPiece* m_pawn = new ChessPiece("W_Pawn");
-    m_pawn->init({ 2, 1 }, 3, 5, 5);
-    m_ChessList.push_back(m_pawn);
-
-    m_pawn = new ChessPiece("W_Pawn");
-    m_pawn->init({ 3, 1 }, 3, 3, 5);
-    m_ChessList.push_back(m_pawn);
-    
-    m_pawn = new ChessPiece("W_Pawn");
-    m_pawn->init({ 4, 1 }, 3, 4, 5);
-    m_ChessList.push_back(m_pawn);
-
-    m_pawn = new ChessPiece("W_Pawn");
-    m_pawn->init({ 5, 1 }, 3, 4, 5);
-    m_ChessList.push_back(m_pawn);
-    ChessPiece* m_bishop = new ChessPiece("W_Bishop");
-    m_bishop->init({ 2, 0 }, 4, 3, 3);
-    m_ChessList.push_back(m_bishop);
-
-    ChessPiece* m_rook = new ChessPiece("W_Rook");
-    m_rook->init({ 4, 0 }, 5, 4, 4);
-    m_ChessList.push_back(m_rook);
-
-    ChessPiece* m_knight = new ChessPiece("W_Knight");
-    m_knight->init({ 5, 0 }, 3, 1, 2);
-    m_ChessList.push_back(m_knight);
-    //
-    m_soulCard = new SoulCard();
-    m_soulCard->init();
-    m_infoBox = new InfoBox();
-    m_infoBox->init();
-    GTM->changeTurn(TURN::SHOWUP_TURN);
+    if (m_infoBox == nullptr) {
+        m_infoBox = new InfoBox();
+        m_infoBox->init();
+    }
 }
 
 void Board::update(float deltaTime) {
@@ -93,6 +62,24 @@ void Board::render() {
             m_ChessTable[y][x].render();
         }
     }
+}
+
+void Board::setLevel(int level) {
+    //clear board first
+    for (auto piece : m_ChessList) {
+        if (piece != nullptr) delete piece;
+    }
+    m_ChessList.clear();
+    //
+    m_ChessList = GameRule->getChessList(level);
+    for (auto piece : m_ChessList) {
+        if (piece->getType() == PLAYER) {
+            m_player = (Player*)piece;
+            break;
+        }
+    }
+    m_soulCard->reset();
+    GTM->changeTurn(TURN::SHOWUP_TURN);
 }
 
 Player* Board::getPlayer() {

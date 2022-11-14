@@ -48,3 +48,7 @@ bool GameTurnMachine::needToChangeTurn() {
 int GameTurnMachine::getTurnCount() {
 	return m_TurnCount;
 }
+
+void GameTurnMachine::resetCount() {
+	m_TurnCount = -1;
+}

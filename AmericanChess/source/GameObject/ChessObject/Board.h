@@ -1,10 +1,9 @@
 #pragma once
 #include "ChessBox.h"
-#include "Shotgun.h"
-#include "Player.h"
 #include "SoulCard.h"
 #include "../../GameTurnManager/GameTurnBase.h"
 #include "../../GameTurnManager/GameTurnMachine.h"
+#include "../GameRuleManager.h"
 #include <vector>
 
 #define ChessBoard Board::GetInstance()
@@ -19,6 +18,8 @@ public:
 	void update(float deltaTime);
 	void render();
 
+	void setLevel(int level);
+	
 	Player* getPlayer();
 	std::vector<ChessPiece*>& getChessList();
 	ChessBox* getChessBox(int x, int y);
@@ -32,7 +33,6 @@ private:
 	bool m_isEnable;
 
 	Player* m_player;
-	ChessPiece* m_king;
 
 	std::vector<ChessPiece*> m_ChessList;
 	ChessBox m_ChessTable[8][8];

@@ -29,6 +29,8 @@ public:
 	bool needToChangeTurn();
 
 	int getTurnCount();
+
+	void resetCount();
 private:
 	int m_TurnCount;
 	GameTurnBase* m_CurrentTurn;

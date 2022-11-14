@@ -7,7 +7,7 @@ WinTurn::~WinTurn() {
 }
 
 void WinTurn::init() {
-	std::cout << "Start of End Turn" << '\n';
+	std::cout << "Start of Win Turn" << '\n';
 	ChessBoard->getPlayer()->getGun()->setShootable(false);
 	m_PlayerPosition = ChessBoard->getPlayer()->getCurrentPosition();
 	for (auto piece : ChessBoard->getChessList()) {
@@ -21,8 +21,9 @@ void WinTurn::init() {
 
 void WinTurn::update(float deltaTime) {
 	if (ChessBoard->getChessList().size() == 1) {
-		std::cout << "End of End Turn" << '\n';
-		GSM->changeState(INTRO);
+		std::cout << "End of Win Turn" << '\n';
+		ChessBoard->setLevel(GameRule->getCurrentLevel() + 1);
+		GTM->resetCount();
 		return;
 	}
 	for (auto piece : ChessBoard->getChessList()) {
