@@ -23,6 +23,7 @@ void LoseTurn::init() {
 	m_btnBack = new GameButton("btnBackToMenu", sf::Vector2f(262.f, 64.f));
 	m_btnBack->setPosition(sf::Vector2f(SCREEN_WITDH / 2, SCREEN_HEIGHT / 2 + 75.f));
 	m_btnBack->setOnClick([]() {GSM->popState(); });
+	m_btnBack->init();
 
 	m_background = new sf::RectangleShape(sf::Vector2f(SCREEN_WITDH, SCREEN_HEIGHT));
 	m_background->setTexture(DATA->getTexture("bg-dead"));
@@ -69,8 +70,8 @@ void LoseTurn::handleAfterDeath(float deltaTime) {
 		m_alphaColor = std::min(255, (int)round(255 * m_currentTime / (TRANSITION_DURATION*2)));
 	} else {
 		m_alphaColor = 255;
+		m_btnBack->update(deltaTime);
 	}
-	m_btnBack->update(deltaTime);
 	updateColor();
 }
 
