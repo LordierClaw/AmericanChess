@@ -35,9 +35,10 @@ private:
 
 	void handleShootEvent();
 	void handleBulletHitbox();
-	//return 1 if White King is dead, 0 is default
-	bool handleKillPiece();
-
+	bool handleKillPiece(); //return 1 if White King is dead, 0 is default
+	
+	//call before endturn;
+	bool handleCheckKing();
 
 	bool useSoulCard;
 	void handleSoulCardEvent(PIECETYPE type);

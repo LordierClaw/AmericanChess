@@ -26,7 +26,12 @@ void PlayerTurn::update(float deltaTime) {
         if (isEndPlayerTurn()) {
             //if WhiteKing is dead, change to WIN_TURN
             if (handleKillPiece()) {
-                GTM->changeTurn(WIN_TURN);
+                GTM->changeTurn(TURN::WIN_TURN);
+                return;
+            }
+            //if player makes a mistake
+            if (handleCheckKing()) {
+                GTM->changeTurn(TURN::LOSE_TURN);
                 return;
             }
 
@@ -241,4 +246,23 @@ bool PlayerTurn::handleKillPiece() {
     }
     if (deadCount != 0) std::cout << "Dead Pieces: " << deadCount << '\n';
     return isWKingDead;
+}
+
+bool PlayerTurn::handleCheckKing() {
+    m_PlayerPosition = ChessBoard->getPlayer()->getCurrentPosition();
+    for (auto piece : ChessBoard->getChessList()) {
+        if (piece->getType() != PIECETYPE::PLAYER) {
+            ChessPosition pos = piece->getCurrentPosition();
+            pos = MoveGen->getNextMove(piece);
+            //if piece kill player
+            if (pos == m_PlayerPosition) {
+                piece->setTurnLeft(0);
+                piece->setDestPosition(m_PlayerPosition);
+                piece->changeState(STATE::MOVING);
+                piece->performTurn();
+                return true;
+            }
+        }
+    }
+    return false;
 }
