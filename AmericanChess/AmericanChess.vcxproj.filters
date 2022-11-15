@@ -135,6 +135,9 @@
     <ClCompile Include="source\GameObject\GameRuleManager.cpp">
       <Filter>Source Files\GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="source\GameStateManager\State\GSAbout.cpp">
+      <Filter>Source Files\GameStateManager\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\GameManager\Singleton.h">
@@ -226,6 +229,9 @@
     </ClInclude>
     <ClInclude Include="source\GameObject\GameRuleManager.h">
       <Filter>Source Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameStateManager\State\GSAbout.h">
+      <Filter>Source Files\GameStateManager\State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

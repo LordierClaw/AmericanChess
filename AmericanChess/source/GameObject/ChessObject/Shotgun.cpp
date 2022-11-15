@@ -138,6 +138,7 @@ void Shotgun::handleShoot(sf::Vector2f mousePostion, float deltaTime) {
 		this->setOrigin(sf::Vector2f(8.f, 8.f));
 		m_currentTime = 0;
 		m_isShooting = false;
+		m_isShootable = false;
 		m_isFinishShoot = true;
 		m_player->endTurn();
 	}

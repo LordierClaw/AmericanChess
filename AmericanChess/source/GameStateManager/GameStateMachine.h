@@ -10,6 +10,7 @@ enum StateTypes {
 	INVALID = 0,
 	INTRO,
 	MENU,
+	ABOUT,
 	PLAY,
 	UPGRADE,
 	END

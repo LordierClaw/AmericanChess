@@ -23,8 +23,6 @@ void GSMenu::init() {
 	m_currentTime = 0;
 	//background
 	m_background.setTexture(*DATA->getTexture("bg"));
-	sf::Color bgColor = m_background.getColor();
-	m_background.setColor(bgColor);
 	//logo
 	m_logo.setTexture(*DATA->getTexture("logo"));
 	m_logo.setOrigin(sf::Vector2f(282.f/2, 144.f/2));
@@ -50,7 +48,7 @@ void GSMenu::init() {
 	GameButton* aboutBtn = new GameButton("btnAbout", sf::Vector2f(79.f, 36.f));
 	aboutBtn->init();
 	aboutBtn->setPosition(sf::Vector2f(640.f, 540.f));
-	aboutBtn->setOnClick([]() { });
+	aboutBtn->setOnClick([]() {GSM->changeState(ABOUT); });
 	m_btnList.push_back(aboutBtn);
 
 	//exit button
