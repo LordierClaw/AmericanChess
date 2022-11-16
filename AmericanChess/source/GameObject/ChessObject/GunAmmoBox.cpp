@@ -8,7 +8,7 @@ GunAmmoBox::~GunAmmoBox() {
 }
 
 void GunAmmoBox::init() {
-	m_lblAmmo.setPosition(sf::Vector2f(640.f-200.f, 25.f));
+	m_lblAmmo.setPosition(sf::Vector2f(640.f-250.f, 15.f));
 	m_lblAmmo.setFont(*DATA->getFont("Silver"));
 	m_lblAmmo.setCharacterSize(36);
 }

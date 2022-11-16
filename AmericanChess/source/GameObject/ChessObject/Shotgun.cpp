@@ -55,12 +55,7 @@ void Shotgun::sync() {
 void Shotgun::update(float deltaTime) {
 	this->sync();
 	sf::Vector2f mousePosition = (sf::Vector2f)sf::Mouse::getPosition(*WConnect->getWindow());
-	/*
-	if (m_isFinishShoot) {
-		handleRotateGun(mousePosition, deltaTime);
-		return;
-	}
-	*/
+
 	if (m_isShooting) {
 		handleShoot(mousePosition, deltaTime);
 		return;
