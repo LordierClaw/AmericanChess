@@ -1,6 +1,7 @@
 #pragma once
 #include "ChessBox.h"
 #include "SoulCard.h"
+#include "GunAmmoBox.h"
 #include "../../GameTurnManager/GameTurnBase.h"
 #include "../../GameTurnManager/GameTurnMachine.h"
 #include "../GameRuleManager.h"
@@ -39,4 +40,5 @@ private:
 
 	SoulCard* m_soulCard;
 	InfoBox* m_infoBox;
+	GunAmmoBox* m_ammoBox;
 };

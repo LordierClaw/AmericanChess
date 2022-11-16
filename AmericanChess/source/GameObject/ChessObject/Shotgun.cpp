@@ -1,12 +1,13 @@
 #include "Shotgun.h"
 #include "../GameRuleManager.h"
 #include <cstdlib>
+#include <ctime>
 
 Shotgun::Shotgun() {
 	m_isShooting = false;
 	m_currentTime = 0;
 	m_isShootable = false;
-	m_isFinishShoot = false;
+	m_isFinishShoot = true;
 	m_player = nullptr;
 }
 
@@ -27,9 +28,13 @@ void Shotgun::init() {
 	this->setScale(sf::Vector2f(2.f, 2.f));
 	m_isShootable = true;
 	m_isShooting = false;
-	m_isFinishShoot = false;
+	m_isFinishShoot = true;
 	//
 	m_bullets.resize(GameRule->getShotgunSpray());
+	m_maxAmmo = GameRule->getShotgunMaxAmmo();
+	m_maxCapacity = GameRule->getShotgunMaxCapacity();
+	m_currentAmmo = m_maxAmmo;
+	m_currentCapacity = m_maxCapacity;
 }
 
 void Shotgun::sync() {
@@ -50,10 +55,12 @@ void Shotgun::sync() {
 void Shotgun::update(float deltaTime) {
 	this->sync();
 	sf::Vector2f mousePosition = (sf::Vector2f)sf::Mouse::getPosition(*WConnect->getWindow());
+	/*
 	if (m_isFinishShoot) {
 		handleRotateGun(mousePosition, deltaTime);
 		return;
 	}
+	*/
 	if (m_isShooting) {
 		handleShoot(mousePosition, deltaTime);
 		return;
@@ -78,7 +85,7 @@ void Shotgun::render() {
 }
 
 void Shotgun::shoot() {
-	srand(time(NULL));
+	srand(time(0));
 	sf::Vector2f pos = this->getPosition();
 
 	for (int i = 0; i < GameRule->getShotgunSpray(); i++) {
@@ -94,6 +101,8 @@ void Shotgun::shoot() {
 		m_bullets[i] = bullet;
 	}
 
+	m_currentAmmo--;
+	m_isFinishShoot = false;
 	m_isShooting = true;
 }
 
@@ -104,7 +113,7 @@ void Shotgun::setShootable(bool value) {
 void Shotgun::reset() {
 	m_isShootable = true;
 	m_isShooting = false;
-	m_isFinishShoot = false;
+	m_isFinishShoot = true;
 	for (auto bullet : m_bullets) {
 		if (bullet != nullptr) delete bullet;
 	}
@@ -114,6 +123,34 @@ void Shotgun::reset() {
 
 bool Shotgun::finishShoot() {
 	return m_isFinishShoot;
+}
+
+int Shotgun::getCurrentAmmo() {
+	return m_currentAmmo;
+}
+
+int Shotgun::getMaxAmmo() {
+	return m_maxAmmo;
+}
+
+void Shotgun::addAmmo() {
+	if (m_currentAmmo < m_maxAmmo) {
+		int x = std::min(m_maxAmmo - m_currentAmmo, m_currentCapacity);
+		m_currentAmmo += x;
+		m_currentCapacity -= x;
+	}
+}
+
+int Shotgun::getCurrentCapacity() {
+	return m_currentCapacity;
+}
+
+int Shotgun::getMaxCapacity() {
+	return m_maxCapacity;
+}
+
+void Shotgun::addCapacity() {
+	if (m_currentCapacity < m_maxCapacity) m_currentCapacity++;
 }
 
 std::vector<Bullet*>& Shotgun::getBullets() {

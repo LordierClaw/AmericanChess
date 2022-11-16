@@ -22,6 +22,14 @@ public:
 
 	bool finishShoot();
 
+	int getCurrentAmmo();
+	int getMaxAmmo();
+	void addAmmo();
+
+	int getCurrentCapacity();
+	int getMaxCapacity();
+	void addCapacity();
+
 	std::vector<Bullet*>& getBullets();
 private:
 	Player* m_player;
@@ -29,6 +37,10 @@ private:
 	float m_currentTime;
 
 	std::vector<Bullet*> m_bullets;
+	int m_currentAmmo;
+	int m_maxAmmo;
+	int m_currentCapacity;
+	int m_maxCapacity;
 
 	bool m_isShootable;
 	bool m_isShooting;

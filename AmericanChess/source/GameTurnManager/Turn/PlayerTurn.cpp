@@ -42,6 +42,15 @@ void PlayerTurn::update(float deltaTime) {
                     if (piece->getTurnLeft() == 0) isBotTurn = true;
                 }
             }
+            //reload gun ammo
+            if (m_playerIntent == WANT_TO_MOVE || useSoulCard) {
+                if (ChessBoard->getPlayer()->getGun()->getCurrentAmmo() < ChessBoard->getPlayer()->getGun()->getMaxAmmo()
+                    && ChessBoard->getPlayer()->getGun()->getCurrentCapacity() > 0) {
+                    ChessBoard->getPlayer()->getGun()->addAmmo();
+                } else {
+                    ChessBoard->getPlayer()->getGun()->addCapacity();
+                }
+            }
 
             std::cout << "End of Player Turn" << '\n';
             if (isBotTurn) GTM->changeTurn(TURN::BOT_TURN);
@@ -104,6 +113,9 @@ void PlayerTurn::hideNearbyBox() {
 
 void PlayerTurn::handlePlayerEvent() {
     //using soul card
+    if (ChessBoard->getPlayer()->getState() != STATE::IDLE) return;
+    if (ChessBoard->getPlayer()->getGun()->finishShoot() == false) return;
+
     if (useSoulCard) {
         handleSoulCardEvent(ChessBoard->getSoulCard()->getPiece());
         return;
@@ -116,7 +128,8 @@ void PlayerTurn::handlePlayerEvent() {
         }
     }
     //other event
-    if (ChessBoard->getPlayer()->getState() != STATE::IDLE) return;
+    
+
     ChessBoard->getPlayer()->getGun()->setShootable(false);
     m_playerIntent = getPlayerIntention();
     switch (m_playerIntent) {
@@ -194,6 +207,7 @@ void PlayerTurn::handleSoulCardEvent(PIECETYPE type) {
 
 void PlayerTurn::handleShootEvent() {
     ChessBoard->getPlayer()->getGun()->setShootable(true);
+    if (ChessBoard->getPlayer()->getGun()->getCurrentAmmo() == 0) return; //no more shooting
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         ChessBoard->getPlayer()->getGun()->shoot();
         ChessBoard->getPlayer()->performTurn();

@@ -29,10 +29,18 @@ public:
 
 	int getShotgunRange();
 	void setShotgunRange(int value);
+
+	int getShotgunMaxAmmo();
+	void setShotgunMaxAmmo(int value);
+
+	int getShotgunMaxCapacity();
+	void setShotgunMaxCapacity(int value);
 private:
 	int m_shotgunDamage;
 	int m_shotgunSpray;
 	int m_shotgunRange;
+	int m_shotgunMaxAmmo;
+	int m_shotgunMaxCapacity;
 
 //CHESS SETTING
 public:

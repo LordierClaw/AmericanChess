@@ -57,6 +57,7 @@ void BotTurn::handleBotEvent() {
                 //gen move
                 std::cout << "A piece want to move from " << pos.x << "-" << pos.y << " to ";
                 pos = MoveGen->getNextMove(piece);
+                if (pos == piece->getCurrentPosition()) continue;
                 std::cout << pos.x << "-" << pos.y << '\n';
                 //if piece kill player
                 if (pos == m_PlayerPosition) {

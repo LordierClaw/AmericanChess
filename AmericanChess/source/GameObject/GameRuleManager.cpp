@@ -13,6 +13,8 @@ void GameRuleManager::reset() {
 	m_shotgunDamage = 4;
 	m_shotgunRange = 350;
 	m_shotgunSpray = 7;
+	m_shotgunMaxAmmo = 2;
+	m_shotgunMaxCapacity = 8;
 	//
 	m_healthList[PIECETYPE::KING] = 8;
 	m_healthList[PIECETYPE::QUEEN] = 6;
@@ -94,16 +96,42 @@ void GameRuleManager::level1() {
 
 void GameRuleManager::level2() {
 	Player* m_player = new Player();
-	m_player->init({ 4, 7 });
+	m_player->init({ 3, 7 });
 	m_ChessList.push_back(m_player);
 
 	ChessPiece* m_king = new ChessPiece("W_King");
-	m_king->init({ 3, 0 }, 8, 4, 4);
+	m_king->init({ 3, 0 });
 	m_ChessList.push_back(m_king);
 
+	for (int i = 2; i <= 5; i++) {
+		ChessPiece* m_pawn = new ChessPiece("W_Pawn");
+		m_pawn->init({ i, 1 });
+		m_ChessList.push_back(m_pawn);
+	}
+
 	ChessPiece* m_knight = new ChessPiece("W_Knight");
-	m_knight->init({ 5, 0 }, 3, 1, 2);
+	m_knight->init({ 0, 0 });
 	m_ChessList.push_back(m_knight);
+
+	m_knight = new ChessPiece("W_Knight");
+	m_knight->init({ 6, 0 });
+	m_ChessList.push_back(m_knight);
+
+	m_knight = new ChessPiece("W_Knight");
+	m_knight->init({ 7, 0 });
+	m_ChessList.push_back(m_knight);
+
+	for (int i = 1; i <= 5; i += 4) {
+		ChessPiece* m_bishop = new ChessPiece("W_Bishop");
+		m_bishop->init({ i, 0 });
+		m_ChessList.push_back(m_bishop);
+	}
+
+	for (int i = 2; i <= 4; i+=2) {
+		ChessPiece* m_rook = new ChessPiece("W_Rook");
+		m_rook->init({ i, 0 });
+		m_ChessList.push_back(m_rook);
+	}
 }
 
 void GameRuleManager::level3() {
@@ -137,6 +165,22 @@ int GameRuleManager::getShotgunRange() {
 
 void GameRuleManager::setShotgunRange(int value) {
 	m_shotgunRange = value;
+}
+
+int GameRuleManager::getShotgunMaxAmmo() {
+	return m_shotgunMaxAmmo;
+}
+
+void GameRuleManager::setShotgunMaxAmmo(int value) {
+	m_shotgunMaxAmmo = value;
+}
+
+int GameRuleManager::getShotgunMaxCapacity() {
+	return m_shotgunMaxCapacity;
+}
+
+void GameRuleManager::setShotgunMaxCapacity(int value) {
+	m_shotgunMaxCapacity = value;
 }
 
 int GameRuleManager::getHealthChess(PIECETYPE type) {

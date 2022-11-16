@@ -23,6 +23,7 @@ void ShowupTurn::update(float deltaTime) {
 		if (ChessBoard->getPlayer()->isEndTurn()) this->handleBotShowUp(deltaTime);
 	} else {
 		std::cout << "End of Showing up Turn\n";
+		ChessBoard->enableBoard();
 		GTM->changeTurn(PLAYER_TURN);
 	}
 }

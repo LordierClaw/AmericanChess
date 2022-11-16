@@ -17,13 +17,14 @@ void WinTurn::init() {
 			piece->performTurn();
 		}
 	}
+
+	GTM->resetCount();
 }
 
 void WinTurn::update(float deltaTime) {
 	if (ChessBoard->getChessList().size() == 1) {
 		std::cout << "End of Win Turn" << '\n';
 		ChessBoard->setLevel(GameRule->getCurrentLevel() + 1);
-		GTM->resetCount();
 		return;
 	}
 	for (auto piece : ChessBoard->getChessList()) {

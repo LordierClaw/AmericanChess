@@ -138,6 +138,9 @@
     <ClCompile Include="source\GameStateManager\State\GSAbout.cpp">
       <Filter>Source Files\GameStateManager\State</Filter>
     </ClCompile>
+    <ClCompile Include="source\GameObject\ChessObject\GunAmmoBox.cpp">
+      <Filter>Source Files\GameObject\ChessObject\UIComponent</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\GameManager\Singleton.h">
@@ -232,6 +235,9 @@
     </ClInclude>
     <ClInclude Include="source\GameStateManager\State\GSAbout.h">
       <Filter>Source Files\GameStateManager\State</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameObject\ChessObject\GunAmmoBox.h">
+      <Filter>Source Files\GameObject\ChessObject\UIComponent</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -141,6 +141,7 @@
     <ClCompile Include="source\GameObject\ChessObject\ChessBox.cpp" />
     <ClCompile Include="source\GameObject\ChessObject\ChessPiece.cpp" />
     <ClCompile Include="source\GameObject\ChessObject\ChessPosition.cpp" />
+    <ClCompile Include="source\GameObject\ChessObject\GunAmmoBox.cpp" />
     <ClCompile Include="source\GameObject\ChessObject\InfoBox.cpp" />
     <ClCompile Include="source\GameObject\ChessObject\Player.cpp" />
     <ClCompile Include="source\GameObject\ChessObject\Shotgun.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="source\GameObject\ChessObject\ChessBox.h" />
     <ClInclude Include="source\GameObject\ChessObject\ChessPiece.h" />
     <ClInclude Include="source\GameObject\ChessObject\ChessPosition.h" />
+    <ClInclude Include="source\GameObject\ChessObject\GunAmmoBox.h" />
     <ClInclude Include="source\GameObject\ChessObject\InfoBox.h" />
     <ClInclude Include="source\GameObject\ChessObject\Player.h" />
     <ClInclude Include="source\GameObject\ChessObject\Shotgun.h" />

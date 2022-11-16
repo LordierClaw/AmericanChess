@@ -24,23 +24,16 @@ void Board::init() {
             m_ChessTable[y][x] = ChessBox(sf::Vector2f(64.5, 64.5), { x, y });
         }
     }
-    //
-    if (m_soulCard == nullptr) {
-        m_soulCard = new SoulCard();
-        m_soulCard->init();
-    }
-    if (m_infoBox == nullptr) {
-        m_infoBox = new InfoBox();
-        m_infoBox->init();
-    }
 }
 
 void Board::update(float deltaTime) {
     if (GTM->needToChangeTurn()) GTM->performTurnChange();
     GTM->currentTurn()->update(deltaTime);
+
     if (m_isEnable == false) return;
     m_soulCard->update(deltaTime);
     m_infoBox->update(deltaTime);
+    m_ammoBox->update(deltaTime);
 }
 
 void Board::render() {
@@ -55,7 +48,7 @@ void Board::render() {
     if (m_isEnable == false) return;
     m_soulCard->render();
     m_infoBox->render();
-
+    m_ammoBox->render();
     //draw chessbox
     for (int y = 0; y < 8; y++) {
         for (int x = 0; x < 8; x++) {
@@ -78,7 +71,22 @@ void Board::setLevel(int level) {
             break;
         }
     }
+    //
+    if (m_soulCard == nullptr) {
+        m_soulCard = new SoulCard();
+        m_soulCard->init();
+    }
+    if (m_infoBox == nullptr) {
+        m_infoBox = new InfoBox();
+        m_infoBox->init();
+    }
+    if (m_ammoBox == nullptr) {
+        m_ammoBox = new GunAmmoBox();
+        m_ammoBox->init();
+    }
+    //
     m_soulCard->reset();
+    m_ammoBox->setGun(m_player->getGun());
     GTM->changeTurn(TURN::SHOWUP_TURN);
 }
 

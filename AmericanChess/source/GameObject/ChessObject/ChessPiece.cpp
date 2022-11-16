@@ -1,6 +1,7 @@
 #include "ChessPiece.h"
 #include "../GameRuleManager.h"
 #include <cstdlib>
+#include <ctime>
 
 ChessPiece::ChessPiece() {
     m_name = "";
@@ -46,7 +47,7 @@ void ChessPiece::init(ChessPosition pos) {
     if (m_type == PLAYER) return;
     m_health = GameRule->getHealthChess(m_type);
     m_queueSize = GameRule->getQueueSizeChess(m_type);
-    srand(time(NULL));
+    srand((this->getPosition().x + this->getPosition().y)*time(0));
     m_turnLeft = rand() % m_queueSize + 1;
 }
 

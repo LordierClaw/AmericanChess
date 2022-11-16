@@ -32,6 +32,8 @@ void LoseTurn::init() {
 
 	isPerforming = true;
 	m_currentTime = 0;
+
+	GTM->resetCount();
 }
 
 void LoseTurn::update(float deltaTime) {
