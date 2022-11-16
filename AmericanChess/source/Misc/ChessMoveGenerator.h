@@ -7,8 +7,9 @@
 
 class ChessMoveGenerator : public Singleton<ChessMoveGenerator> {
 public:
+	ChessMoveGenerator();
+	~ChessMoveGenerator();
 	ChessPosition getNextMove(ChessPiece* piece);
-
 private:
 	ChessPosition m_PlayerPosition;
 

@@ -1,6 +1,8 @@
 #include "PlayerTurn.h"
 
 PlayerTurn::PlayerTurn() {
+    m_playerIntent = OUT_OF_WINDOW;
+    useSoulCard = false;
 }
 
 PlayerTurn::~PlayerTurn() {

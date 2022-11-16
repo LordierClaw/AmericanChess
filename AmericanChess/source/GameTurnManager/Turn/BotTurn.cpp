@@ -1,6 +1,7 @@
 #include "BotTurn.h"
 
 BotTurn::BotTurn() {
+    m_isPlayerKillable = false;
 }
 
 BotTurn::~BotTurn() {

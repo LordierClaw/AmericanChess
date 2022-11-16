@@ -5,6 +5,7 @@ Board::Board() {
     m_player = nullptr;
     m_infoBox = nullptr;
     m_soulCard = nullptr;
+    m_ammoBox = nullptr;
     m_isEnable = false;
 }
 

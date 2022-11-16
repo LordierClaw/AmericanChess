@@ -1,5 +1,16 @@
 #include "ChessMoveGenerator.h"
 
+ChessMoveGenerator::ChessMoveGenerator() {
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            m_hasPiece[i][j] = 0;
+        }
+    }
+}
+
+ChessMoveGenerator::~ChessMoveGenerator() {
+}
+
 ChessPosition ChessMoveGenerator::getNextMove(ChessPiece* piece) {
     m_PlayerPosition = ChessBoard->getPlayer()->getCurrentPosition();
     PIECETYPE type = piece->getType();

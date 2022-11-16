@@ -9,6 +9,8 @@ Shotgun::Shotgun() {
 	m_isShootable = false;
 	m_isFinishShoot = true;
 	m_player = nullptr;
+	m_currentAmmo = m_maxAmmo = 0;
+	m_currentCapacity = m_maxCapacity = 0;
 }
 
 Shotgun::Shotgun(Player* player) : Shotgun() {
