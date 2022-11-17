@@ -1,7 +1,5 @@
 #include "ChessPiece.h"
 #include "../GameRuleManager.h"
-#include <cstdlib>
-#include <ctime>
 
 ChessPiece::ChessPiece() {
     m_name = "";
@@ -47,8 +45,7 @@ void ChessPiece::init(ChessPosition pos) {
     if (m_type == PLAYER) return;
     m_health = GameRule->getHealthChess(m_type);
     m_queueSize = GameRule->getQueueSizeChess(m_type);
-    srand((this->getPosition().x + this->getPosition().y)*time(0));
-    m_turnLeft = rand() % m_queueSize + 1;
+    m_turnLeft = reinterpret_cast<int>(this) % m_queueSize + 1;
 }
 
 void ChessPiece::init(ChessPosition pos, int health, int turnLeft, int queueSize) {
@@ -64,9 +61,8 @@ void ChessPiece::update(float deltaTime) {
         handleShowUp(deltaTime);
     case IDLE:
         if (m_isPromotion) {
-            srand(time(NULL));
             std::vector<std::string> promoteList = { "W_Queen", "W_Knight", "W_Rook", "W_Bishop" };
-            promote(promoteList[rand() % promoteList.size()]);
+            promote(promoteList[reinterpret_cast<int>(this) % promoteList.size()]);
         }
         break;
     case READY_TO_MOVE:

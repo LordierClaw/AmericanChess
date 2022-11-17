@@ -190,8 +190,10 @@ ChessPosition ChessMoveGenerator::getPawnMove(ChessPosition pos) {
     ChessPosition nextPos = pos;
     nextPos.y++;
     if (nextPos.y == m_PlayerPosition.y) {
-        if (nextPos.x - 1 == m_PlayerPosition.x) nextPos.x--;
+        if (nextPos.x == m_PlayerPosition.x) return pos;
+        else if (nextPos.x - 1 == m_PlayerPosition.x) nextPos.x--;
         else if (nextPos.x + 1 == m_PlayerPosition.x) nextPos.x++;
     }
-    return nextPos;
+    if (validMove(nextPos)) return nextPos;
+    else return pos;
 }

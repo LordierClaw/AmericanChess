@@ -2,6 +2,7 @@
 #include "../../GameManager/ResourceManager.h"
 #include "../../GameManager/WindowConnector.h"
 #include "Shotgun.h"
+#include <vector>
 
 class GunAmmoBox {
 public:
@@ -16,5 +17,9 @@ public:
 private:
 	Shotgun* m_shotgun;
 
-	sf::Text m_lblAmmo;
+	int m_lastCheckAmmo;
+	int m_lastCheckCapacity;
+	sf::Sprite m_gun;
+	std::vector<sf::Sprite> m_ammo;
+	std::vector<sf::Sprite> m_capacity;
 };
