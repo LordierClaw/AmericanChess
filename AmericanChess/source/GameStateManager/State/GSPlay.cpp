@@ -1,6 +1,9 @@
 #include "GSPlay.h"
 
 GSPlay::GSPlay() {
+	isPerformTransition = false;
+	m_currentTime = 0;
+	m_overlayScreen = nullptr;
 }
 
 GSPlay::~GSPlay() {
@@ -24,7 +27,7 @@ void GSPlay::init() {
 	btn->setOnClick([]() {WConnect->getWindow()->close(); });
 	m_btnList.push_back(btn);
 
-	ChessBoard->init();
+	if (Board::HasInstance() == false) ChessBoard->init();
 	ChessBoard->setLevel(1);
 
 	isPerformTransition = true;

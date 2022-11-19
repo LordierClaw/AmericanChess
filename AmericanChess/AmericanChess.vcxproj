@@ -138,6 +138,7 @@
     <ClCompile Include="source\GameManager\WindowConnector.cpp" />
     <ClCompile Include="source\GameObject\ChessObject\Board.cpp" />
     <ClCompile Include="source\GameObject\ChessObject\Bullet.cpp" />
+    <ClCompile Include="source\GameObject\ChessObject\CashCounter.cpp" />
     <ClCompile Include="source\GameObject\ChessObject\ChessBox.cpp" />
     <ClCompile Include="source\GameObject\ChessObject\ChessPiece.cpp" />
     <ClCompile Include="source\GameObject\ChessObject\ChessPosition.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="source\GameManager\WindowConnector.h" />
     <ClInclude Include="source\GameObject\ChessObject\Board.h" />
     <ClInclude Include="source\GameObject\ChessObject\Bullet.h" />
+    <ClInclude Include="source\GameObject\ChessObject\CashCounter.h" />
     <ClInclude Include="source\GameObject\ChessObject\ChessBox.h" />
     <ClInclude Include="source\GameObject\ChessObject\ChessPiece.h" />
     <ClInclude Include="source\GameObject\ChessObject\ChessPosition.h" />

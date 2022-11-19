@@ -25,9 +25,11 @@ void Board::init() {
             m_ChessTable[y][x] = ChessBox(sf::Vector2f(64.5, 64.5), { x, y });
         }
     }
+    if (CashCounter::HasInstance() == false) CCounter->init();
 }
 
 void Board::update(float deltaTime) {
+    CCounter->update(deltaTime);
     if (GTM->needToChangeTurn()) GTM->performTurnChange();
     GTM->currentTurn()->update(deltaTime);
 
@@ -38,6 +40,7 @@ void Board::update(float deltaTime) {
 }
 
 void Board::render() {
+    CCounter->render();
     sort(m_ChessList.begin(), m_ChessList.end(), [](ChessPiece* a, ChessPiece* b) {
         return a->getCurrentPosition() < b->getCurrentPosition();
     });
@@ -85,6 +88,7 @@ void Board::setLevel(int level) {
         m_ammoBox = new GunAmmoBox();
         m_ammoBox->init();
     }
+    if (level == 1) CCounter->reset();
     //
     m_soulCard->reset();
     m_ammoBox->setGun(m_player->getGun());

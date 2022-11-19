@@ -44,12 +44,16 @@ private:
 
 //CHESS SETTING
 public:
+	int getPriceChess(PIECETYPE type);
+	void setPriceChess(PIECETYPE type, int price);
+
 	int getHealthChess(PIECETYPE type);
 	void setHealthChess(PIECETYPE type, int health);
 
 	int getQueueSizeChess(PIECETYPE type);
 	void setQueueSizeChess(PIECETYPE type, int size);
 private:
+	std::map<PIECETYPE, int> m_priceList;
 	std::map<PIECETYPE, int> m_healthList;
 	std::map<PIECETYPE, int> m_queueSizeList;
 

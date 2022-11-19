@@ -9,20 +9,27 @@ GameRuleManager::~GameRuleManager() {
 
 void GameRuleManager::reset() {
 	m_currentLevel = 0;
-	//
+	//PLAYER GUN
 	m_shotgunDamage = 4;
 	m_shotgunRange = 350;
 	m_shotgunSpray = 7;
 	m_shotgunMaxAmmo = 2;
 	m_shotgunMaxCapacity = 8;
-	//
+	//CHESS PRICE
+	m_priceList[PIECETYPE::KING] = 1000;
+	m_priceList[PIECETYPE::QUEEN] = 800;
+	m_priceList[PIECETYPE::BISHOP] = 400;
+	m_priceList[PIECETYPE::KNIGHT] = 400;
+	m_priceList[PIECETYPE::ROOK] = 500;
+	m_priceList[PIECETYPE::PAWN] = 300;
+	//CHESS HEALTH
 	m_healthList[PIECETYPE::KING] = 8;
 	m_healthList[PIECETYPE::QUEEN] = 6;
 	m_healthList[PIECETYPE::BISHOP] = 4;
 	m_healthList[PIECETYPE::KNIGHT] = 3;
 	m_healthList[PIECETYPE::ROOK] = 5;
 	m_healthList[PIECETYPE::PAWN] = 3;
-	//
+	//CHESS QUEUE SIZE
 	m_queueSizeList[PIECETYPE::KING] = 4;
 	m_queueSizeList[PIECETYPE::QUEEN] = 3;
 	m_queueSizeList[PIECETYPE::BISHOP] = 3;
@@ -181,6 +188,14 @@ int GameRuleManager::getShotgunMaxCapacity() {
 
 void GameRuleManager::setShotgunMaxCapacity(int value) {
 	m_shotgunMaxCapacity = value;
+}
+
+int GameRuleManager::getPriceChess(PIECETYPE type) {
+	return m_priceList[type];
+}
+
+void GameRuleManager::setPriceChess(PIECETYPE type, int price) {
+	m_priceList[type] = price;
 }
 
 int GameRuleManager::getHealthChess(PIECETYPE type) {

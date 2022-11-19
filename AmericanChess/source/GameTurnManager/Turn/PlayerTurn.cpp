@@ -250,6 +250,7 @@ bool PlayerTurn::handleKillPiece() {
     bool isWKingDead = false;
     for (int i = 0; i < ChessBoard->getChessList().size(); i++) {
         if (ChessBoard->getChessList()[i]->getState() == STATE::DEAD) {
+            CCounter->addAmount(GameRule->getPriceChess(ChessBoard->getChessList()[i]->getType()));
             if (ChessBoard->getChessList()[i]->getType() == PIECETYPE::KING) {
                 std::cout << "WHITE KING IS DEAD!\n";
                 isWKingDead = true;
