@@ -3,6 +3,7 @@
 #include "State/GSMenu.h"
 #include "State/GSPlay.h"
 #include "State/GSAbout.h"
+#include "State/GSUpgrade.h"
 
 GameStateBase* GameStateBase::createState(StateTypes state) {
 	GameStateBase* gameState = nullptr;
@@ -22,6 +23,7 @@ GameStateBase* GameStateBase::createState(StateTypes state) {
 		gameState = new GSPlay();
 		break;
 	case UPGRADE:
+		gameState = new GSUpgrade();
 		break;
 	case END:
 		break;

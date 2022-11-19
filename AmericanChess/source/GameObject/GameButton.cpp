@@ -30,6 +30,7 @@ void GameButton::update(float deltaTime) {
         }
     } else {
         this->setTexture(DATA->getTexture("gui/" + m_btnName + "_idle"));
+        m_isHandling = false;
     }
 }
 

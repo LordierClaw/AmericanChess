@@ -24,7 +24,7 @@ void WinTurn::init() {
 void WinTurn::update(float deltaTime) {
 	if (ChessBoard->getChessList().size() == 1) {
 		std::cout << "End of Win Turn" << '\n';
-		ChessBoard->setLevel(GameRule->getCurrentLevel() + 1);
+		GSM->changeState(UPGRADE);
 		return;
 	}
 	for (auto piece : ChessBoard->getChessList()) {

@@ -144,6 +144,12 @@
     <ClCompile Include="source\GameObject\ChessObject\CashCounter.cpp">
       <Filter>Source Files\GameObject\ChessObject\UIComponent</Filter>
     </ClCompile>
+    <ClCompile Include="source\GameStateManager\State\GSUpgrade.cpp">
+      <Filter>Source Files\GameStateManager\State</Filter>
+    </ClCompile>
+    <ClCompile Include="source\GameObject\ShopButton.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\GameManager\Singleton.h">
@@ -244,6 +250,12 @@
     </ClInclude>
     <ClInclude Include="source\GameObject\ChessObject\CashCounter.h">
       <Filter>Source Files\GameObject\ChessObject\UIComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameStateManager\State\GSUpgrade.h">
+      <Filter>Source Files\GameStateManager\State</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameObject\ShopButton.h">
+      <Filter>Source Files\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

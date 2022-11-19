@@ -15,8 +15,8 @@ public:
 	void init();
 	void update(float deltaTime);
 	void render();
+
 private:
-	//sf::Sprite m_background;
 	sf::Sprite* m_background;
 	int m_alphaColor;
 	GameButton* m_btnBack;
