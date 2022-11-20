@@ -3,6 +3,7 @@
 ShopButton::ShopButton() {
     m_isHandling = false;
     m_payable = false;
+    m_isHover = false;
     m_price = 0;
     m_currentTime = 0;
 }
@@ -12,7 +13,7 @@ ShopButton::~ShopButton() {
 
 void ShopButton::init(std::string name) {
     m_name = name;
-    m_selected.setSize(sf::Vector2f(503.f, 47.f));
+    m_selected.setSize(sf::Vector2f(540.f, 47.f));
     m_selected.setFillColor(sf::Color::White);
 
     m_lblTitle.setFont(*DATA->getFont("Silver"));

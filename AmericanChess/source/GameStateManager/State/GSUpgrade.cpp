@@ -40,25 +40,33 @@ void GSUpgrade::init() {
 	m_shopBoard.setOrigin(sf::Vector2f(842.f / 2, 0.f));
 	m_shopBoard.setPosition(sf::Vector2f(SCREEN_WITDH/2, 185.f));
 	//
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 5; i++) {
 		ShopButton* shopbtn = new ShopButton();
 		m_shopBtnList.push_back(shopbtn);
 	}
 
-	m_shopBtnList[0]->init("RANGE", 500);
+	m_shopBtnList[0]->init("RANGE", 700);
 	m_shopBtnList[0]->setValue([]() {return GameRule->getShotgunRange(); });
 	m_shopBtnList[0]->setOnClick([]() {GameRule->setShotgunRange(GameRule->getShotgunRange() + 50); });
 
-	m_shopBtnList[1]->init("DAMAGE", 800);
+	m_shopBtnList[1]->init("DAMAGE", 1200);
 	m_shopBtnList[1]->setValue([]() {return GameRule->getShotgunDMG(); });
 	m_shopBtnList[1]->setOnClick([]() {GameRule->setShotgunDMG(GameRule->getShotgunDMG() + 1); });
 
-	m_shopBtnList[2]->init("PELLETS", 1200);
+	m_shopBtnList[2]->init("PELLETS", 1800);
 	m_shopBtnList[2]->setValue([]() {return GameRule->getShotgunSpray(); });
 	m_shopBtnList[2]->setOnClick([]() {GameRule->setShotgunSpray(GameRule->getShotgunSpray() + 1); });
+
+	m_shopBtnList[3]->init("MAX AMMO", 2000);
+	m_shopBtnList[3]->setValue([]() {return GameRule->getShotgunMaxAmmo(); });
+	m_shopBtnList[3]->setOnClick([]() {GameRule->setShotgunMaxAmmo(GameRule->getShotgunMaxAmmo() + 1); });
+
+	m_shopBtnList[4]->init("MAX CAPACITY", 1500);
+	m_shopBtnList[4]->setValue([]() {return GameRule->getShotgunMaxCapacity(); });
+	m_shopBtnList[4]->setOnClick([]() {GameRule->setShotgunMaxCapacity(GameRule->getShotgunMaxCapacity() + 1); });
 	
-	for (int i = 0; i < 3; i++) {
-		m_shopBtnList[i]->setPosition(sf::Vector2f(512.f, 234.f + 47.f * i));
+	for (int i = 0; i < 5; i++) {
+		m_shopBtnList[i]->setPosition(sf::Vector2f(482.f, 221.f + 47.f * i));
 	}
 	
 	CCounter->init();

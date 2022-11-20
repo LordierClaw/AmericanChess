@@ -23,3 +23,4 @@
 #define HURT_OFFSET 10.f
 #define HURT_DURATION 0.15f
 #define KILL_DURATION 1.f
+#define FINAL_LEVEL 5

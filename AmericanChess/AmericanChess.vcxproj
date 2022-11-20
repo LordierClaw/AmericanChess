@@ -153,6 +153,7 @@
     <ClCompile Include="source\GameStateManager\GameStateBase.cpp" />
     <ClCompile Include="source\GameStateManager\GameStateMachine.cpp" />
     <ClCompile Include="source\GameStateManager\State\GSAbout.cpp" />
+    <ClCompile Include="source\GameStateManager\State\GSEnd.cpp" />
     <ClCompile Include="source\GameStateManager\State\GSIntro.cpp" />
     <ClCompile Include="source\GameStateManager\State\GSMenu.cpp" />
     <ClCompile Include="source\GameStateManager\State\GSPlay.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="source\GameStateManager\GameStateBase.h" />
     <ClInclude Include="source\GameStateManager\GameStateMachine.h" />
     <ClInclude Include="source\GameStateManager\State\GSAbout.h" />
+    <ClInclude Include="source\GameStateManager\State\GSEnd.h" />
     <ClInclude Include="source\GameStateManager\State\GSIntro.h" />
     <ClInclude Include="source\GameStateManager\State\GSMenu.h" />
     <ClInclude Include="source\GameStateManager\State\GSPlay.h" />

@@ -64,44 +64,87 @@ void GameRuleManager::levelInit(int n) {
 }
 
 void GameRuleManager::level1() {
+	reset();
+	Player* m_player = new Player();
+	m_player->init({ 3, 7 });
+	m_ChessList.push_back(m_player);
+
+	ChessPiece* m_king = new ChessPiece("W_King");
+	m_king->init({ 3, 0 });
+	m_ChessList.push_back(m_king);
+
+	for (int i = 2; i <= 5; i++) {
+		ChessPiece* m_pawn = new ChessPiece("W_Pawn");
+		m_pawn->init({ i, 1 });
+		m_ChessList.push_back(m_pawn);
+	}
+
+	ChessPiece* m_knight = new ChessPiece("W_Knight");
+	m_knight->init({ 4, 0 });
+	m_ChessList.push_back(m_knight);
+}
+
+void GameRuleManager::level2() {
 	Player* m_player = new Player();
 	m_player->init({ 4, 7 });
 	m_ChessList.push_back(m_player);
 
 	ChessPiece* m_king = new ChessPiece("W_King");
-	m_king->init({ 3, 0 }, 8, 4, 4);
+	m_king->init({ 3, 0 });
 	m_ChessList.push_back(m_king);
 
-	ChessPiece* m_pawn = new ChessPiece("W_Pawn");
-	m_pawn->init({ 2, 1 }, 3, 5, 5);
-	m_ChessList.push_back(m_pawn);
-
-	m_pawn = new ChessPiece("W_Pawn");
-	m_pawn->init({ 3, 1 }, 3, 3, 5);
-	m_ChessList.push_back(m_pawn);
-
-	m_pawn = new ChessPiece("W_Pawn");
-	m_pawn->init({ 4, 1 }, 3, 4, 5);
-	m_ChessList.push_back(m_pawn);
-
-	m_pawn = new ChessPiece("W_Pawn");
-	m_pawn->init({ 5, 1 }, 3, 4, 5);
-	m_ChessList.push_back(m_pawn);
+	for (int i = 2; i <= 5; i++) {
+		ChessPiece* m_pawn = new ChessPiece("W_Pawn");
+		m_pawn->init({ i, 1 });
+		m_ChessList.push_back(m_pawn);
+	}
 
 	ChessPiece* m_bishop = new ChessPiece("W_Bishop");
-	m_bishop->init({ 2, 0 }, 4, 3, 3);
+	m_bishop->init({ 2, 0 });
 	m_ChessList.push_back(m_bishop);
 
 	ChessPiece* m_rook = new ChessPiece("W_Rook");
-	m_rook->init({ 4, 0 }, 5, 4, 4);
+	m_rook->init({ 4, 0 });
 	m_ChessList.push_back(m_rook);
 
 	ChessPiece* m_knight = new ChessPiece("W_Knight");
-	m_knight->init({ 5, 0 }, 3, 1, 2);
+	m_knight->init({ 5, 0 });
 	m_ChessList.push_back(m_knight);
 }
 
-void GameRuleManager::level2() {
+void GameRuleManager::level3() {
+	Player* m_player = new Player();
+	m_player->init({ 3, 7 });
+	m_ChessList.push_back(m_player);
+
+	ChessPiece* m_king = new ChessPiece("W_King");
+	m_king->init({ 3, 0 });
+	m_ChessList.push_back(m_king);
+
+	for (int i = 1; i <= 6; i++) {
+		ChessPiece* m_pawn = new ChessPiece("W_Pawn");
+		m_pawn->init({ i, 1 });
+		m_ChessList.push_back(m_pawn);
+	}
+
+	for (int i = 0; i <= 7; i += 7) {
+		ChessPiece* m_rook = new ChessPiece("W_Rook");
+		m_rook->init({ i, 0 });
+		m_ChessList.push_back(m_rook);
+	}
+
+	for (int i = 2; i <= 5; i += 3) {
+		ChessPiece* m_bishop = new ChessPiece("W_Bishop");
+		m_bishop->init({ i, 0 });
+		m_ChessList.push_back(m_bishop);
+	}
+
+	ChessPiece* m_knight = new ChessPiece("W_Knight");
+	m_knight->init({ 4, 0 });
+	m_ChessList.push_back(m_knight);
+}
+
+void GameRuleManager::level4() {
 	Player* m_player = new Player();
 	m_player->init({ 3, 7 });
 	m_ChessList.push_back(m_player);
@@ -134,20 +177,49 @@ void GameRuleManager::level2() {
 		m_ChessList.push_back(m_bishop);
 	}
 
-	for (int i = 2; i <= 4; i+=2) {
+	for (int i = 2; i <= 4; i += 2) {
 		ChessPiece* m_rook = new ChessPiece("W_Rook");
 		m_rook->init({ i, 0 });
 		m_ChessList.push_back(m_rook);
 	}
 }
 
-void GameRuleManager::level3() {
-}
-
-void GameRuleManager::level4() {
-}
-
 void GameRuleManager::level5() {
+	Player* m_player = new Player();
+	m_player->init({ 3, 7 });
+	m_ChessList.push_back(m_player);
+
+	ChessPiece* m_king = new ChessPiece("W_King");
+	m_king->init({ 3, 0 });
+	m_ChessList.push_back(m_king);
+
+	ChessPiece* m_queen = new ChessPiece("W_Queen");
+	m_queen->init({ 4, 0 });
+	m_ChessList.push_back(m_queen);
+
+	for (int i = 0; i <= 7; i++) {
+		ChessPiece* m_pawn = new ChessPiece("W_Pawn");
+		m_pawn->init({ i, 1 });
+		m_ChessList.push_back(m_pawn);
+	}
+
+	for (int i = 0; i <= 7; i += 7) {
+		ChessPiece* m_rook = new ChessPiece("W_Rook");
+		m_rook->init({ i, 0 });
+		m_ChessList.push_back(m_rook);
+	}
+
+	for (int i = 1; i <= 6; i += 5) {
+		ChessPiece* m_knight = new ChessPiece("W_Knight");
+		m_knight->init({ i, 0 });
+		m_ChessList.push_back(m_knight);
+	}
+
+	for (int i = 2; i <= 5; i += 3) {
+		ChessPiece* m_bishop = new ChessPiece("W_Bishop");
+		m_bishop->init({ i, 0 });
+		m_ChessList.push_back(m_bishop);
+	}
 }
 
 int GameRuleManager::getShotgunDMG() {

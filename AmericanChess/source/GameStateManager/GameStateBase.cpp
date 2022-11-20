@@ -4,6 +4,7 @@
 #include "State/GSPlay.h"
 #include "State/GSAbout.h"
 #include "State/GSUpgrade.h"
+#include "State/GSEnd.h"
 
 GameStateBase* GameStateBase::createState(StateTypes state) {
 	GameStateBase* gameState = nullptr;
@@ -26,6 +27,7 @@ GameStateBase* GameStateBase::createState(StateTypes state) {
 		gameState = new GSUpgrade();
 		break;
 	case END:
+		gameState = new GSEnd();
 		break;
 	default:
 		break;
