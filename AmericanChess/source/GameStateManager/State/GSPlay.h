@@ -17,7 +17,6 @@ public:
 	void update(float deltaTime);
 	void render();
 private:
-	std::list<GameButton*> m_btnList;
 	SoundButton m_soundBtn;
 
 	float m_currentTime;

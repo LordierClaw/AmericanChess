@@ -13,7 +13,7 @@ void SoundButton::init() {
 	DATA->addTexture("gui/btnSound_disable");
 	this->setTexture(DATA->getTexture("gui/btnSound_enable"));
 	this->setSize(sf::Vector2f(15.f*3, 13.f*3));
-	this->setPosition(sf::Vector2f(5.f, 5.f));
+	this->setPosition(sf::Vector2f(10.f, 10.f));
 	m_isHandling = false;
 	m_currentTime = 0;
 

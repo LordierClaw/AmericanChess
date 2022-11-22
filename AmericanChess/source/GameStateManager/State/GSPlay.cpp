@@ -7,10 +7,6 @@ GSPlay::GSPlay() {
 }
 
 GSPlay::~GSPlay() {
-	for (auto& btn : m_btnList) {
-		if (btn != nullptr) delete btn;
-	}
-	m_btnList.clear();
 }
 
 void GSPlay::exit() {
@@ -28,14 +24,6 @@ void GSPlay::init() {
 	for (auto sound : m_soundList) {
 		if (DATA->hasSound(sound) == false) DATA->addSound(sound);
 	}
-
-	GameButton* btn;
-	btn = new GameButton("btnMenu", sf::Vector2f(30.f, 18.f));
-	btn->setScale(sf::Vector2f(4.f, 4.f));
-	btn->setPosition(sf::Vector2f(640.f, 40.f));
-	btn->init();
-	btn->setOnClick([]() {WConnect->getWindow()->close(); });
-	m_btnList.push_back(btn);
 
 	m_soundBtn.init();
 
@@ -71,21 +59,14 @@ void GSPlay::update(float deltaTime) {
 		}
 	}
 	// normal update
-	for (auto &btn : m_btnList) {
-		btn->update(deltaTime);
-	}
 	m_soundBtn.update(deltaTime);
 	ChessBoard->update(deltaTime);
 }
 
 void GSPlay::render() {
 	WConnect->getWindow()->draw(m_background);
-	for (auto &btn : m_btnList) {
-		btn->render();
-	}
 	m_soundBtn.render();
 	ChessBoard->render();
-
 	//transition
 	if (isPerformTransition) WConnect->getWindow()->draw(*m_overlayScreen);
 }

@@ -170,6 +170,13 @@ void Shotgun::handleShoot(sf::Vector2f mousePostion, float deltaTime) {
 		float x = GameMath::getHarmonicMotion(SHOOTING_OFFSET, SHOOTING_DURATION, m_currentTime);
 		this->setOrigin(sf::Vector2f(8.f - x, 8.f));
 		for (auto bullet : m_bullets) bullet->update(deltaTime);
+		//buzzing screen
+		sf::Vector2f point = sf::Vector2f(SCREEN_WITDH / 2, SCREEN_HEIGHT / 2);
+		float offset = GameMath::getHarmonicMotion(2*SHOOTING_OFFSET/5, SHOOTING_DURATION/2, m_currentTime);
+		point.x += offset * cos(GameMath::degreeToRad(this->getRotation()));
+		point.y += offset * sin(GameMath::degreeToRad(this->getRotation()));
+		sf::View m_view(point, sf::Vector2f(SCREEN_WITDH, SCREEN_HEIGHT));
+		WConnect->getWindow()->setView(m_view);
 	} else {
 		this->setOrigin(sf::Vector2f(8.f, 8.f));
 		m_currentTime = 0;
@@ -177,6 +184,7 @@ void Shotgun::handleShoot(sf::Vector2f mousePostion, float deltaTime) {
 		m_isShootable = false;
 		m_isFinishShoot = true;
 		m_player->endTurn();
+		WConnect->getWindow()->setView(WConnect->getWindow()->getDefaultView());
 	}
 }
 
