@@ -7,6 +7,10 @@ GSPlay::GSPlay() {
 }
 
 GSPlay::~GSPlay() {
+	for (auto& btn : m_btnList) {
+		if (btn != nullptr) delete btn;
+	}
+	m_btnList.clear();
 }
 
 void GSPlay::exit() {
@@ -19,6 +23,12 @@ void GSPlay::resume() {
 }
 
 void GSPlay::init() {
+	//preload sound
+	std::vector<std::string> m_soundList = { "drop1", "drop2", "drop3", "shoot", "cash"};
+	for (auto sound : m_soundList) {
+		if (DATA->hasSound(sound) == false) DATA->addSound(sound);
+	}
+
 	GameButton* btn;
 	btn = new GameButton("btnMenu", sf::Vector2f(30.f, 18.f));
 	btn->setScale(sf::Vector2f(4.f, 4.f));
@@ -26,6 +36,8 @@ void GSPlay::init() {
 	btn->init();
 	btn->setOnClick([]() {WConnect->getWindow()->close(); });
 	m_btnList.push_back(btn);
+
+	m_soundBtn.init();
 
 	if (Board::HasInstance() == false) ChessBoard->init();
 	ChessBoard->setLevel(1);
@@ -62,6 +74,7 @@ void GSPlay::update(float deltaTime) {
 	for (auto &btn : m_btnList) {
 		btn->update(deltaTime);
 	}
+	m_soundBtn.update(deltaTime);
 	ChessBoard->update(deltaTime);
 }
 
@@ -70,6 +83,7 @@ void GSPlay::render() {
 	for (auto &btn : m_btnList) {
 		btn->render();
 	}
+	m_soundBtn.render();
 	ChessBoard->render();
 
 	//transition

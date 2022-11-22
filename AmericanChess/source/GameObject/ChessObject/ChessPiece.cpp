@@ -178,6 +178,7 @@ void ChessPiece::handleShowUp(float deltaTime) {
         this->setPosition(pos);
     } else {
         this->setCurrentPosition(m_currentPos);
+        DATA->playSound("drop1");
     }
 
     if (m_currentTime < SHOW_UP_DURATION/2) {
@@ -207,7 +208,12 @@ void ChessPiece::handleMove(float deltaTime) {
     } else {
         this->setCurrentPosition(m_destPos);
         this->changeState(STATE::IDLE);
-        if (m_type != PIECETYPE::PLAYER) this->countTurnLeft();
+        if (m_type != PIECETYPE::PLAYER) {
+            this->countTurnLeft();
+            DATA->playSound("drop2");
+        } else {
+            DATA->playSound("drop3");
+        }
         this->endTurn();
     }
 }

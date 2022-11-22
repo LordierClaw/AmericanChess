@@ -4,6 +4,8 @@ ResourceManager::ResourceManager() {
 	m_Path = "../Data/";
 	m_TexturePath = m_Path + "Texture/";
 	m_FontPath = m_Path + "Font/";
+	m_SoundPath = m_Path + "Sound/";
+	m_isSoundEnable = true;
 }
 
 ResourceManager::~ResourceManager() {
@@ -67,6 +69,52 @@ sf::Font* ResourceManager::getFont(std::string name) {
 
 bool ResourceManager::hasFont(std::string name) {
 	return m_MapFont.count(name);
+}
+
+void ResourceManager::addSound(std::string name) {
+	sf::Sound* sound = new sf::Sound;
+	sf::SoundBuffer* buffer = new sf::SoundBuffer;
+	buffer->loadFromFile(m_SoundPath + name + ".wav");
+	sound->setBuffer(*buffer);
+	if (m_MapSound.count(name)) return;
+	m_MapSound.insert({ name, sound });
+}
+
+void ResourceManager::removeSound(std::string name) {
+	auto it = m_MapSound.find(name);
+	if (it == m_MapSound.end()) return;
+	if (it->second == nullptr) return;
+	else delete it->second;
+	m_MapSound.erase(it);
+}
+
+sf::Sound* ResourceManager::getSound(std::string name) {
+	auto it = m_MapSound.find(name);
+	if (it == m_MapSound.end()) {
+		addSound(name);
+		return getSound(name);
+	}
+	return it->second;
+}
+
+bool ResourceManager::hasSound(std::string name) {
+	return m_MapSound.count(name);
+}
+
+void ResourceManager::playSound(std::string name) {
+	if (m_isSoundEnable) this->getSound(name)->play();
+}
+
+bool ResourceManager::isSoundEnable() {
+	return m_isSoundEnable;
+}
+
+void ResourceManager::enableSound() {
+	m_isSoundEnable = true;
+}
+
+void ResourceManager::disableSound() {
+	m_isSoundEnable = false;
 }
 
 void ResourceManager::setCursor(std::string name) {

@@ -150,6 +150,7 @@
     <ClCompile Include="source\GameObject\GameButton.cpp" />
     <ClCompile Include="source\GameObject\GameRuleManager.cpp" />
     <ClCompile Include="source\GameObject\ShopButton.cpp" />
+    <ClCompile Include="source\GameObject\SoundButton.cpp" />
     <ClCompile Include="source\GameStateManager\GameStateBase.cpp" />
     <ClCompile Include="source\GameStateManager\GameStateMachine.cpp" />
     <ClCompile Include="source\GameStateManager\State\GSAbout.cpp" />
@@ -188,6 +189,7 @@
     <ClInclude Include="source\GameObject\GameButton.h" />
     <ClInclude Include="source\GameObject\GameRuleManager.h" />
     <ClInclude Include="source\GameObject\ShopButton.h" />
+    <ClInclude Include="source\GameObject\SoundButton.h" />
     <ClInclude Include="source\GameStateManager\GameStateBase.h" />
     <ClInclude Include="source\GameStateManager\GameStateMachine.h" />
     <ClInclude Include="source\GameStateManager\State\GSAbout.h" />

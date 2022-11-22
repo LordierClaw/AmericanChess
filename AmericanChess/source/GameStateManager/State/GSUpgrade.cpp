@@ -4,6 +4,12 @@ GSUpgrade::GSUpgrade() {
 }
 
 GSUpgrade::~GSUpgrade() {
+	for (auto& btn : m_shopBtnList) {
+		if (btn != nullptr) delete btn;
+	}
+	m_shopBtnList.clear();
+	if (m_background != nullptr) delete m_background;
+	if (m_btnContinue != nullptr) delete m_btnContinue;
 }
 
 void GSUpgrade::exit() {

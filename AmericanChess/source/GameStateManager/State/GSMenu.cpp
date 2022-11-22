@@ -57,6 +57,9 @@ void GSMenu::init() {
 	exitBtn->setPosition(sf::Vector2f(640.f, 580.f));
 	exitBtn->setOnClick([]() {WConnect->getWindow()->close(); });
 	m_btnList.push_back(exitBtn);
+	
+	//sound button
+	m_soundBtn.init();
 }
 
 void GSMenu::update(float deltaTime) {
@@ -78,6 +81,7 @@ void GSMenu::update(float deltaTime) {
 	for (auto& btn : m_btnList) {
 		btn->update(deltaTime);
 	}
+	m_soundBtn.update(deltaTime);
 	m_player->update(deltaTime);
 }
 
@@ -90,6 +94,7 @@ void GSMenu::render() {
 	for (auto& btn : m_btnList) {
 		btn->render();
 	}
+	m_soundBtn.render();
 	//transition
 	if (isPerformTransition) WConnect->getWindow()->draw(*m_blackScreen);
 }

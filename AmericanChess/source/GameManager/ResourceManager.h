@@ -4,6 +4,7 @@
 #include <map>
 #include <string>
 #include "SFML/Graphics.hpp"
+#include "SFML/Audio.hpp"
 
 #define DATA ResourceManager::GetInstance()
 
@@ -22,16 +23,30 @@ public:
 	sf::Font* getFont(std::string name);
 	bool hasFont(std::string name);
 
+	void addSound(std::string name);
+	void removeSound(std::string name);
+	sf::Sound* getSound(std::string name);
+	bool hasSound(std::string name);
+	void playSound(std::string name);
+	
+	bool isSoundEnable();
+	void enableSound();
+	void disableSound();
+
 	void setCursor(std::string name);
 	sf::Image* getCursor();
 private:
+	bool m_isSoundEnable;
+
 	sf::Image* m_customCursor;
 
 	std::map<std::string, sf::Texture*> m_MapTexture;
 	std::map<std::string, sf::Font*> m_MapFont;
+	std::map<std::string, sf::Sound*> m_MapSound;
 
 	std::string m_Path;
 	std::string m_TexturePath;
 	std::string m_FontPath;
+	std::string m_SoundPath;
 };
 

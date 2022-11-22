@@ -58,6 +58,7 @@ void ShopButton::update(float deltaTime) {
             m_isHandling = true;
             if (m_payable) {
                 CCounter->addAmount(-m_price);
+                DATA->playSound("cash");
                 m_btnClickFunc();
             }
         }

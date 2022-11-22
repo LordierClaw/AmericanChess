@@ -101,6 +101,8 @@ void Shotgun::shoot() {
 	m_currentAmmo--;
 	m_isFinishShoot = false;
 	m_isShooting = true;
+
+	DATA->playSound("shoot");
 }
 
 void Shotgun::setShootable(bool value) {

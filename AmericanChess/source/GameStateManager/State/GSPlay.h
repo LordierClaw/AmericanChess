@@ -2,6 +2,7 @@
 #include "../GameStateBase.h"
 #include "../../GameObject/GameButton.h"
 #include "../../GameObject/ChessObject/Board.h"
+#include "../../GameObject/SoundButton.h"
 
 class GSPlay : public GameStateBase {
 public:
@@ -17,6 +18,7 @@ public:
 	void render();
 private:
 	std::list<GameButton*> m_btnList;
+	SoundButton m_soundBtn;
 
 	float m_currentTime;
 	sf::Sprite m_background;

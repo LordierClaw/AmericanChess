@@ -4,6 +4,8 @@ GSAbout::GSAbout() {
 }
 
 GSAbout::~GSAbout() {
+	if (m_btnBack != nullptr) delete m_btnBack;
+	if (m_background != nullptr) delete m_background;
 }
 
 void GSAbout::exit() {
