@@ -1,41 +1,105 @@
 #include "GameRuleManager.h"
 
 GameRuleManager::GameRuleManager() {
-	reset();
+	setMode(EASY);
 }
 
 GameRuleManager::~GameRuleManager() {
 }
 
-void GameRuleManager::reset() {
+void GameRuleManager::setMode(GAMEMODE mode) {
 	m_currentLevel = 0;
-	//PLAYER GUN
-	m_shotgunDamage = 4;
-	m_shotgunRange = 350;
-	m_shotgunSpray = 7;
-	m_shotgunMaxAmmo = 2;
-	m_shotgunMaxCapacity = 8;
-	//CHESS PRICE
-	m_priceList[PIECETYPE::KING] = 1000;
-	m_priceList[PIECETYPE::QUEEN] = 800;
-	m_priceList[PIECETYPE::BISHOP] = 400;
-	m_priceList[PIECETYPE::KNIGHT] = 400;
-	m_priceList[PIECETYPE::ROOK] = 500;
-	m_priceList[PIECETYPE::PAWN] = 300;
-	//CHESS HEALTH
-	m_healthList[PIECETYPE::KING] = 8;
-	m_healthList[PIECETYPE::QUEEN] = 6;
-	m_healthList[PIECETYPE::BISHOP] = 4;
-	m_healthList[PIECETYPE::KNIGHT] = 3;
-	m_healthList[PIECETYPE::ROOK] = 5;
-	m_healthList[PIECETYPE::PAWN] = 3;
-	//CHESS QUEUE SIZE
-	m_queueSizeList[PIECETYPE::KING] = 4;
-	m_queueSizeList[PIECETYPE::QUEEN] = 3;
-	m_queueSizeList[PIECETYPE::BISHOP] = 3;
-	m_queueSizeList[PIECETYPE::KNIGHT] = 2;
-	m_queueSizeList[PIECETYPE::ROOK] = 4;
-	m_queueSizeList[PIECETYPE::PAWN] = 5;
+	switch (mode) {
+	case EASY:
+		//PLAYER GUN
+		m_shotgunDamage = 5;
+		m_shotgunRange = 350;
+		m_shotgunSpray = 7;
+		m_shotgunMaxAmmo = 2;
+		m_shotgunMaxCapacity = 8;
+		//CHESS PRICE
+		m_priceList[PIECETYPE::KING] = 800;
+		m_priceList[PIECETYPE::QUEEN] = 600;
+		m_priceList[PIECETYPE::BISHOP] = 350;
+		m_priceList[PIECETYPE::KNIGHT] = 350;
+		m_priceList[PIECETYPE::ROOK] = 400;
+		m_priceList[PIECETYPE::PAWN] = 250;
+		//CHESS HEALTH
+		m_healthList[PIECETYPE::KING] = 8;
+		m_healthList[PIECETYPE::QUEEN] = 6;
+		m_healthList[PIECETYPE::BISHOP] = 4;
+		m_healthList[PIECETYPE::KNIGHT] = 3;
+		m_healthList[PIECETYPE::ROOK] = 5;
+		m_healthList[PIECETYPE::PAWN] = 3;
+		//CHESS QUEUE SIZE
+		m_queueSizeList[PIECETYPE::KING] = 4;
+		m_queueSizeList[PIECETYPE::QUEEN] = 3;
+		m_queueSizeList[PIECETYPE::BISHOP] = 3;
+		m_queueSizeList[PIECETYPE::KNIGHT] = 2;
+		m_queueSizeList[PIECETYPE::ROOK] = 4;
+		m_queueSizeList[PIECETYPE::PAWN] = 5;
+		break;
+	case NORMAL:
+		//PLAYER GUN
+		m_shotgunDamage = 4;
+		m_shotgunRange = 300;
+		m_shotgunSpray = 6;
+		m_shotgunMaxAmmo = 2;
+		m_shotgunMaxCapacity = 6;
+		//CHESS PRICE
+		m_priceList[PIECETYPE::KING] = 1000;
+		m_priceList[PIECETYPE::QUEEN] = 800;
+		m_priceList[PIECETYPE::BISHOP] = 400;
+		m_priceList[PIECETYPE::KNIGHT] = 400;
+		m_priceList[PIECETYPE::ROOK] = 500;
+		m_priceList[PIECETYPE::PAWN] = 300;
+		//CHESS HEALTH
+		m_healthList[PIECETYPE::KING] = 8;
+		m_healthList[PIECETYPE::QUEEN] = 6;
+		m_healthList[PIECETYPE::BISHOP] = 4;
+		m_healthList[PIECETYPE::KNIGHT] = 3;
+		m_healthList[PIECETYPE::ROOK] = 5;
+		m_healthList[PIECETYPE::PAWN] = 3;
+		//CHESS QUEUE SIZE
+		m_queueSizeList[PIECETYPE::KING] = 4;
+		m_queueSizeList[PIECETYPE::QUEEN] = 3;
+		m_queueSizeList[PIECETYPE::BISHOP] = 3;
+		m_queueSizeList[PIECETYPE::KNIGHT] = 2;
+		m_queueSizeList[PIECETYPE::ROOK] = 4;
+		m_queueSizeList[PIECETYPE::PAWN] = 5;
+		break;
+	case HARD:
+		//PLAYER GUN
+		m_shotgunDamage = 3;
+		m_shotgunRange = 250;
+		m_shotgunSpray = 6;
+		m_shotgunMaxAmmo = 1;
+		m_shotgunMaxCapacity = 5;
+		//CHESS PRICE
+		m_priceList[PIECETYPE::KING] = 1000;
+		m_priceList[PIECETYPE::QUEEN] = 800;
+		m_priceList[PIECETYPE::BISHOP] = 400;
+		m_priceList[PIECETYPE::KNIGHT] = 400;
+		m_priceList[PIECETYPE::ROOK] = 500;
+		m_priceList[PIECETYPE::PAWN] = 300;
+		//CHESS HEALTH
+		m_healthList[PIECETYPE::KING] = 9;
+		m_healthList[PIECETYPE::QUEEN] = 7;
+		m_healthList[PIECETYPE::BISHOP] = 5;
+		m_healthList[PIECETYPE::KNIGHT] = 4;
+		m_healthList[PIECETYPE::ROOK] = 6;
+		m_healthList[PIECETYPE::PAWN] = 4;
+		//CHESS QUEUE SIZE
+		m_queueSizeList[PIECETYPE::KING] = 4;
+		m_queueSizeList[PIECETYPE::QUEEN] = 3;
+		m_queueSizeList[PIECETYPE::BISHOP] = 3;
+		m_queueSizeList[PIECETYPE::KNIGHT] = 2;
+		m_queueSizeList[PIECETYPE::ROOK] = 4;
+		m_queueSizeList[PIECETYPE::PAWN] = 5;
+		break;
+	default:
+		break;
+	}
 }
 
 void GameRuleManager::levelInit(int n) {
@@ -64,13 +128,13 @@ void GameRuleManager::levelInit(int n) {
 }
 
 void GameRuleManager::level1() {
-	reset();
 	Player* m_player = new Player();
 	m_player->init({ 3, 7 });
 	m_ChessList.push_back(m_player);
 
 	ChessPiece* m_king = new ChessPiece("W_King");
 	m_king->init({ 3, 0 });
+	m_king->setHealth(m_healthList[PIECETYPE::QUEEN]);
 	m_ChessList.push_back(m_king);
 
 	for (int i = 2; i <= 5; i++) {

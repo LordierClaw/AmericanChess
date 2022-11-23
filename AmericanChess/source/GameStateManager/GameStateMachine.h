@@ -12,6 +12,7 @@ enum StateTypes {
 	MENU,
 	ABOUT,
 	PLAY,
+	MODESELECT,
 	UPGRADE,
 	END
 };

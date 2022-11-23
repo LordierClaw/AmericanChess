@@ -1,8 +1,9 @@
 #include "GameStateBase.h"
 #include "State/GSIntro.h"
 #include "State/GSMenu.h"
-#include "State/GSPlay.h"
 #include "State/GSAbout.h"
+#include "State/GSPlay.h"
+#include "State/GSModeSelect.h"
 #include "State/GSUpgrade.h"
 #include "State/GSEnd.h"
 
@@ -22,6 +23,9 @@ GameStateBase* GameStateBase::createState(StateTypes state) {
 		break;
 	case PLAY:
 		gameState = new GSPlay();
+		break;
+	case MODESELECT:
+		gameState = new GSModeSelect();
 		break;
 	case UPGRADE:
 		gameState = new GSUpgrade();

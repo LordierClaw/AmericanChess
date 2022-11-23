@@ -1,21 +1,21 @@
-#include "GSMenu.h"
+#include "GSModeSelect.h"
 
-GSMenu::GSMenu() {
+GSModeSelect::GSModeSelect() {
 }
 
-GSMenu::~GSMenu() {
+GSModeSelect::~GSModeSelect() {
 }
 
-void GSMenu::exit() {
+void GSModeSelect::exit() {
 }
 
-void GSMenu::pause() {
+void GSModeSelect::pause() {
 }
 
-void GSMenu::resume() {
+void GSModeSelect::resume() {
 }
 
-void GSMenu::init() {
+void GSModeSelect::init() {
 	//transition
 	m_blackScreen = new sf::RectangleShape(sf::Vector2f(SCREEN_WITDH, SCREEN_HEIGHT));
 	m_blackScreen->setFillColor(sf::Color::Black);
@@ -25,7 +25,7 @@ void GSMenu::init() {
 	m_background.setTexture(*DATA->getTexture("bg"));
 	//logo
 	m_logo.setTexture(*DATA->getTexture("logo"));
-	m_logo.setOrigin(sf::Vector2f(282.f/2, 144.f/2));
+	m_logo.setOrigin(sf::Vector2f(282.f / 2, 144.f / 2));
 	m_logo.setPosition(sf::Vector2f(SCREEN_WITDH / 2, SCREEN_HEIGHT / 2));
 	//player
 	m_player = new Player();
@@ -37,36 +37,46 @@ void GSMenu::init() {
 	playerColor.a = 255;
 	m_player->setColor(playerColor);
 
-	//play button
-	GameButton* playBtn = new GameButton("btnPlay", sf::Vector2f(61.f, 36.f));
-	playBtn->init();
-	playBtn->setPosition(sf::Vector2f(640.f, 500.f));
-	playBtn->setOnClick([]() {GSM->changeState(MODESELECT); });
-	m_btnList.push_back(playBtn);
+	//easy button
+	GameButton* easyBtn = new GameButton("btnEasy", sf::Vector2f(65.f, 36.f));
+	easyBtn->init();
+	easyBtn->setPosition(sf::Vector2f(640.f, 500.f));
+	easyBtn->setOnClick([]() {
+		GameRule->setMode(EASY);
+		GSM->changeState(PLAY);
+	});
+	m_btnList.push_back(easyBtn);
 
-	//about button
-	GameButton* aboutBtn = new GameButton("btnAbout", sf::Vector2f(79.f, 36.f));
-	aboutBtn->init();
-	aboutBtn->setPosition(sf::Vector2f(640.f, 540.f));
-	aboutBtn->setOnClick([]() {GSM->changeState(ABOUT); });
-	m_btnList.push_back(aboutBtn);
+	//normal button
+	GameButton* normalBtn = new GameButton("btnNormal", sf::Vector2f(89.f, 32.f));
+	normalBtn->init();
+	normalBtn->setPosition(sf::Vector2f(640.f, 540.f));
+	normalBtn->setOnClick([]() {
+		GameRule->setMode(NORMAL);
+		GSM->changeState(PLAY);
+	});
+	m_btnList.push_back(normalBtn);
 
-	//exit button
-	GameButton* exitBtn = new GameButton("btnExit", sf::Vector2f(61.f, 32.f));
-	exitBtn->init();
-	exitBtn->setPosition(sf::Vector2f(640.f, 580.f));
-	exitBtn->setOnClick([]() {WConnect->getWindow()->close(); });
-	m_btnList.push_back(exitBtn);
-	
+	//hard button
+	GameButton* hardBtn = new GameButton("btnHard", sf::Vector2f(65.f, 32.f));
+	hardBtn->init();
+	hardBtn->setPosition(sf::Vector2f(640.f, 580.f));
+	hardBtn->setOnClick([]() {
+		GameRule->setMode(HARD);
+		GSM->changeState(PLAY);
+	});
+	m_btnList.push_back(hardBtn);
+
 	//sound button
 	m_soundBtn.init();
 }
 
-void GSMenu::update(float deltaTime) {
+void GSModeSelect::update(float deltaTime) {
 	//transition
+	m_player->update(deltaTime);
 	if (isPerformTransition == true) {
 		m_currentTime += deltaTime;
-		if (m_currentTime < TRANSITION_DURATION*2) {
+		if (m_currentTime < TRANSITION_DURATION * 2) {
 			sf::Color color = sf::Color::Black;
 			color.a = (int)(255 * (1 - (m_currentTime / (TRANSITION_DURATION * 2))));
 			m_blackScreen->setFillColor(color);
@@ -76,16 +86,16 @@ void GSMenu::update(float deltaTime) {
 			m_currentTime = 0;
 			delete m_blackScreen;
 		}
+		return;
 	}
 	//menu update
 	for (auto& btn : m_btnList) {
 		btn->update(deltaTime);
 	}
 	m_soundBtn.update(deltaTime);
-	m_player->update(deltaTime);
 }
 
-void GSMenu::render() {
+void GSModeSelect::render() {
 	//logo
 	WConnect->getWindow()->draw(m_background);
 	WConnect->getWindow()->draw(m_logo);

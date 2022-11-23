@@ -157,6 +157,7 @@
     <ClCompile Include="source\GameStateManager\State\GSEnd.cpp" />
     <ClCompile Include="source\GameStateManager\State\GSIntro.cpp" />
     <ClCompile Include="source\GameStateManager\State\GSMenu.cpp" />
+    <ClCompile Include="source\GameStateManager\State\GSModeSelect.cpp" />
     <ClCompile Include="source\GameStateManager\State\GSPlay.cpp" />
     <ClCompile Include="source\GameStateManager\State\GSUpgrade.cpp" />
     <ClCompile Include="source\GameTurnManager\GameTurnBase.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="source\GameStateManager\State\GSEnd.h" />
     <ClInclude Include="source\GameStateManager\State\GSIntro.h" />
     <ClInclude Include="source\GameStateManager\State\GSMenu.h" />
+    <ClInclude Include="source\GameStateManager\State\GSModeSelect.h" />
     <ClInclude Include="source\GameStateManager\State\GSPlay.h" />
     <ClInclude Include="source\GameStateManager\State\GSUpgrade.h" />
     <ClInclude Include="source\GameTurnManager\GameTurnBase.h" />

@@ -21,8 +21,9 @@ void GSEnd::init() {
 	m_btnBack = new GameButton("btnBackToMenu", sf::Vector2f(262.f, 64.f));
 	m_btnBack->setPosition(sf::Vector2f(SCREEN_WITDH / 2, SCREEN_HEIGHT / 2 + 250.f));
 	m_btnBack->setOnClick([]() {
-		GSM->popState();
-		GSM->popState();
+		GSM->popState(); //this
+		GSM->popState(); //gsplay
+		GSM->popState(); //gsmodeselect
 	});
 	m_btnBack->init();
 }

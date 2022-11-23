@@ -22,7 +22,7 @@ void LoseTurn::init() {
 
 	m_btnBack = new GameButton("btnBackToMenu", sf::Vector2f(262.f, 64.f));
 	m_btnBack->setPosition(sf::Vector2f(SCREEN_WITDH / 2, SCREEN_HEIGHT / 2 + 75.f));
-	m_btnBack->setOnClick([]() {GSM->popState(); });
+	m_btnBack->setOnClick([]() {GSM->popState(); GSM->popState(); });
 	m_btnBack->init();
 
 	m_background = new sf::RectangleShape(sf::Vector2f(SCREEN_WITDH, SCREEN_HEIGHT));

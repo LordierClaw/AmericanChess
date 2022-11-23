@@ -156,6 +156,9 @@
     <ClCompile Include="source\GameObject\SoundButton.cpp">
       <Filter>Source Files\GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="source\GameStateManager\State\GSModeSelect.cpp">
+      <Filter>Source Files\GameStateManager\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\GameManager\Singleton.h">
@@ -268,6 +271,9 @@
     </ClInclude>
     <ClInclude Include="source\GameObject\SoundButton.h">
       <Filter>Source Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="source\GameStateManager\State\GSModeSelect.h">
+      <Filter>Source Files\GameStateManager\State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
