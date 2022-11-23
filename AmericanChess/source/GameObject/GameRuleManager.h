@@ -69,6 +69,6 @@ public:
 	std::vector<ChessPiece*>& getChessList(int level);
 private:
 	int m_currentLevel;
-	// level n must be between 1-10
+	// level n must be between 1-5
 	std::vector<ChessPiece*> m_ChessList;
 };

@@ -63,6 +63,7 @@ void LoseTurn::handleKillEvent(float deltaTime) {
 	if (ChessBoard->getPlayer()->getState() == STATE::DEAD && ChessBoard->getPlayer()->isEndTurn()) {
 		isPerforming = false;
 		ChessBoard->disableBoard();
+		DATA->playSound("smb_gameover");
 	}
 }
 

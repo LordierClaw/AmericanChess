@@ -26,6 +26,7 @@ void GSEnd::init() {
 		GSM->popState(); //gsmodeselect
 	});
 	m_btnBack->init();
+	DATA->playSound("smb_stage_clear");
 }
 
 void GSEnd::update(float deltaTime) {

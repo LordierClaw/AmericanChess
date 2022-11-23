@@ -20,7 +20,9 @@ void GSPlay::resume() {
 
 void GSPlay::init() {
 	m_soundBtn.init();
-
+	m_homeBtn = GameButton("btnHome", sf::Vector2f(16.f * 3, 16.f * 3));
+	m_homeBtn.setPosition(sf::Vector2f(SCREEN_WITDH - m_homeBtn.getSize().x/2 - 10.f, m_homeBtn.getSize().y/2 + 5.f));
+	m_homeBtn.setOnClick([]() {GSM->popState(); GSM->popState(); });
 	if (Board::HasInstance() == false) ChessBoard->init();
 	ChessBoard->setLevel(1);
 
@@ -54,12 +56,14 @@ void GSPlay::update(float deltaTime) {
 	}
 	// normal update
 	m_soundBtn.update(deltaTime);
+	m_homeBtn.update(deltaTime);
 	ChessBoard->update(deltaTime);
 }
 
 void GSPlay::render() {
 	WConnect->getWindow()->draw(m_background);
 	m_soundBtn.render();
+	m_homeBtn.render();
 	ChessBoard->render();
 	//transition
 	if (isPerformTransition) WConnect->getWindow()->draw(*m_overlayScreen);

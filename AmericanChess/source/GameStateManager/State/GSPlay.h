@@ -18,6 +18,7 @@ public:
 	void render();
 private:
 	SoundButton m_soundBtn;
+	GameButton m_homeBtn;
 
 	float m_currentTime;
 	sf::Sprite m_background;

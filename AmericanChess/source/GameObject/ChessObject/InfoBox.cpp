@@ -1,7 +1,6 @@
 #include "InfoBox.h"
 
 InfoBox::InfoBox() {
-	DATA->addFont("Silver");
 }
 
 InfoBox::~InfoBox() {

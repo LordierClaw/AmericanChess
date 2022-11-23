@@ -133,7 +133,15 @@ void ResourceManager::preload() {
 	//FONT
 	this->addFont("Silver");
 	//SOUND
-	std::vector<std::string> m_soundList = { "drop1", "drop2", "drop3", "shoot", "cash" };
+	std::vector<std::string> m_soundList = {
+		"cash",
+		"drop1",
+		"drop2",
+		"drop3",
+		"shoot",
+		"smb_gameover",
+		"smb_stage_clear",
+	};
 	for (auto sound : m_soundList) {
 		this->addSound(sound);
 	}
@@ -181,6 +189,8 @@ void ResourceManager::preload() {
 		"gui/btnExit_idle",
 		"gui/btnHard_handle",
 		"gui/btnHard_idle",
+		"gui/btnHome_handle",
+		"gui/btnHome_idle",
 		"gui/btnMenu_handle",
 		"gui/btnMenu_idle",
 		"gui/btnNormal_handle",
@@ -189,7 +199,7 @@ void ResourceManager::preload() {
 		"gui/btnPlay_idle",
 		"gui/btnSound_disable",
 		"gui/btnSound_enable",
-		"gui/shopBoard"
+		"gui/shopBoard",
 	};
 	for (auto texture : m_textureList) {
 		if (this->hasTexture(texture) == false) this->addTexture(texture);
