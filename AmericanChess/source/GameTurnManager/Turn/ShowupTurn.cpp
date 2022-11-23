@@ -8,7 +8,6 @@ ShowupTurn::~ShowupTurn() {
 }
 
 void ShowupTurn::init() {
-	std::cout << "Start of Showing up Turn\n";
 	ChessBoard->getPlayer()->getGun()->setShootable(false);
 	for (auto piece : ChessBoard->getChessList()) {
 		piece->performTurn();
@@ -22,7 +21,6 @@ void ShowupTurn::update(float deltaTime) {
 		this->handlePlayerShowUp(deltaTime);
 		if (ChessBoard->getPlayer()->isEndTurn()) this->handleBotShowUp(deltaTime);
 	} else {
-		std::cout << "End of Showing up Turn\n";
 		ChessBoard->enableBoard();
 		GTM->changeTurn(PLAYER_TURN);
 	}

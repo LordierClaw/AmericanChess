@@ -24,7 +24,6 @@ void GameTurnMachine::changeTurn(TURN turn) {
 void GameTurnMachine::performTurnChange() {
 	m_TurnCount++;
 	if (m_NextTurn != nullptr) {
-		std::cout << "Turn: " << m_TurnCount << "\n";
 		GameTurnBase* oldTurn = m_CurrentTurn;
 		m_CurrentTurn = m_NextTurn;
 		m_CurrentTurn->init();

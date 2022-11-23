@@ -9,7 +9,6 @@ PlayerTurn::~PlayerTurn() {
 }
 
 void PlayerTurn::init() {
-    std::cout << "Start of Player Turn" << '\n';
     for (auto piece : ChessBoard->getChessList()) {
         piece->endTurn();
     }
@@ -54,7 +53,6 @@ void PlayerTurn::update(float deltaTime) {
                 }
             }
 
-            std::cout << "End of Player Turn" << '\n';
             if (isBotTurn) GTM->changeTurn(TURN::BOT_TURN);
             else GTM->changeTurn(TURN::PLAYER_TURN);
         } else {
@@ -233,8 +231,6 @@ void PlayerTurn::handleBulletHitbox() {
                         ChessBoard->getSoulCard()->setPiece(piece->getType());
                     }
                 } else {
-                    std::cout << "Piece located at " << piece->getCurrentPosition().x << " - " << piece->getCurrentPosition().y;
-                    std::cout << " is shot. Health: " << piece->getHealth() << "  Damage: " << bullet->getDamage() << '\n';
                     piece->takeDamage(bullet->getDamage());
                     piece->changeState(STATE::HURT);
                 }
@@ -252,7 +248,6 @@ bool PlayerTurn::handleKillPiece() {
         if (ChessBoard->getChessList()[i]->getState() == STATE::DEAD) {
             CCounter->addAmount(GameRule->getPriceChess(ChessBoard->getChessList()[i]->getType()));
             if (ChessBoard->getChessList()[i]->getType() == PIECETYPE::KING) {
-                std::cout << "WHITE KING IS DEAD!\n";
                 isWKingDead = true;
             }
             delete ChessBoard->getChessList()[i];
@@ -261,7 +256,6 @@ bool PlayerTurn::handleKillPiece() {
             deadCount++;
         }
     }
-    if (deadCount != 0) std::cout << "Dead Pieces: " << deadCount << '\n';
     return isWKingDead;
 }
 

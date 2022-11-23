@@ -8,7 +8,6 @@ BotTurn::~BotTurn() {
 }
 
 void BotTurn::init() {
-    std::cout << "Start of Bot Turn" << '\n';
     for (auto piece : ChessBoard->getChessList()) {
         piece->endTurn();
     }
@@ -25,7 +24,6 @@ void BotTurn::update(float deltaTime) {
         handleBotEvent();
     } else {
         if (this->isEndBotTurn()) {
-            std::cout << "End of Bot Turn" << '\n';
             GTM->changeTurn(TURN::PLAYER_TURN);
         }
     }
@@ -56,13 +54,10 @@ void BotTurn::handleBotEvent() {
             if (piece->getTurnLeft() == 0) {
                 ChessPosition pos = piece->getCurrentPosition();
                 //gen move
-                std::cout << "A piece want to move from " << pos.x << "-" << pos.y << " to ";
                 pos = MoveGen->getNextMove(piece);
                 if (pos == piece->getCurrentPosition()) continue;
-                std::cout << pos.x << "-" << pos.y << '\n';
                 //if piece kill player
                 if (pos == m_PlayerPosition) {
-                    std::cout << "Black King is going to DIE\n";
                     m_isPlayerKillable = true;
                 }
                 //promote

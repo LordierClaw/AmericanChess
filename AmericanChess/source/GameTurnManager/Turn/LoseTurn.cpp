@@ -7,7 +7,6 @@ LoseTurn::~LoseTurn() {
 }
 
 void LoseTurn::init() {
-	std::cout << "Start of Lose Turn" << "\n";
 	ChessPosition playerPos = ChessBoard->getPlayer()->getCurrentPosition();
 	for (auto piece : ChessBoard->getChessList()) {
 		if (piece->getType() != PIECETYPE::PLAYER) {

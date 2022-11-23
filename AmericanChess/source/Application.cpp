@@ -13,6 +13,7 @@ void Application::init() {
 	m_window = new sf::RenderWindow(sf::VideoMode(SCREEN_WITDH, SCREEN_HEIGHT), GAME_TITLE, sf::Style::Close);
 	m_window->setFramerateLimit(FRAMERATE_LIMIT);
 	m_window->setVerticalSyncEnabled(VERTICAL_SYNC);
+	m_window->setIcon(128, 128, DATA->getTexture("icon")->copyToImage().getPixelsPtr());
 	//custom cursor
 	DATA->setCursor("cursor/target");
 	sf::Cursor* gameCursor = new sf::Cursor();
