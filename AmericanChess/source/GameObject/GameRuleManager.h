@@ -16,7 +16,6 @@ class GameRuleManager : public Singleton<GameRuleManager> {
 public:
 	GameRuleManager();
 	~GameRuleManager();
-	void reset();
 	void setMode(GAMEMODE mode);
 private:
 	void levelInit(int n);

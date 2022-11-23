@@ -19,12 +19,6 @@ void GSPlay::resume() {
 }
 
 void GSPlay::init() {
-	//preload sound
-	std::vector<std::string> m_soundList = { "drop1", "drop2", "drop3", "shoot", "cash"};
-	for (auto sound : m_soundList) {
-		if (DATA->hasSound(sound) == false) DATA->addSound(sound);
-	}
-
 	m_soundBtn.init();
 
 	if (Board::HasInstance() == false) ChessBoard->init();

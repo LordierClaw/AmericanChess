@@ -29,6 +29,7 @@ void GSIntro::update(float deltaTime) {
 	if (m_currentTime <= 1.f) {
 		opacity = std::min(255, (int)round(255*m_currentTime));
 	} else if (m_currentTime <= 2.f) {
+		DATA->preload();
 		opacity = 255;
 	} else if (m_currentTime <= 3.f) {
 		opacity = std::max(0, (int)round(255*(3.f-m_currentTime)));

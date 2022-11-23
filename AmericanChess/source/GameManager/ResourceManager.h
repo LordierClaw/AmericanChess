@@ -35,7 +35,11 @@ public:
 
 	void setCursor(std::string name);
 	sf::Image* getCursor();
+
+	void preload();
 private:
+	bool m_isPreloaded;
+
 	bool m_isSoundEnable;
 
 	sf::Image* m_customCursor;

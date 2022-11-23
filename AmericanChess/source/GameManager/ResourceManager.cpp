@@ -6,6 +6,7 @@ ResourceManager::ResourceManager() {
 	m_FontPath = m_Path + "Font/";
 	m_SoundPath = m_Path + "Sound/";
 	m_isSoundEnable = true;
+	m_isPreloaded = false;
 }
 
 ResourceManager::~ResourceManager() {
@@ -125,4 +126,75 @@ void ResourceManager::setCursor(std::string name) {
 
 sf::Image* ResourceManager::getCursor() {
 	return m_customCursor;
+}
+
+void ResourceManager::preload() {
+	if (m_isPreloaded) return;
+	//FONT
+	this->addFont("Silver");
+	//SOUND
+	std::vector<std::string> m_soundList = { "drop1", "drop2", "drop3", "shoot", "cash" };
+	for (auto sound : m_soundList) {
+		this->addSound(sound);
+	}
+	//TEXTURE
+	std::vector<std::string> m_textureList = {
+		"bg-about",
+		"bg-dead",
+		"bg-end",
+		"bg",
+		"bg2",
+		"intro",
+		"logo",
+		"chess/Board",
+		"chess/CashCounter",
+		"chess/MoveBox",
+		"chess/card/B_Cardbox",
+		"chess/card/W_Cardbox",
+		"chess/gun/Bullet-empty",
+		"chess/gun/Bullet-filled",
+		"chess/gun/Shotgun",
+		"chess/piece/B_Bishop",
+		"chess/piece/B_King",
+		"chess/piece/B_Knight",
+		"chess/piece/B_Pawn",
+		"chess/piece/B_Queen",
+		"chess/piece/B_Rook",
+		"chess/piece/W_Bishop",
+		"chess/piece/W_King",
+		"chess/piece/W_Knight",
+		"chess/piece/W_Pawn",
+		"chess/piece/W_Queen",
+		"chess/piece/W_Rook",
+		"cursor/point",
+		"cursor/shoot",
+		"cursor/target",
+		"gui/btnAbout_handle",
+		"gui/btnAbout_idle",
+		"gui/btnBackToMenu_handle",
+		"gui/btnBackToMenu_idle",
+		"gui/btnContinue_handle",
+		"gui/btnContinue_idle",
+		"gui/btnEasy_handle",
+		"gui/btnEasy_idle",
+		"gui/btnExit_handle",
+		"gui/btnExit_idle",
+		"gui/btnHard_handle",
+		"gui/btnHard_idle",
+		"gui/btnMenu_handle",
+		"gui/btnMenu_idle",
+		"gui/btnNormal_handle",
+		"gui/btnNormal_idle",
+		"gui/btnPlay_handle",
+		"gui/btnPlay_idle",
+		"gui/btnSound_disable",
+		"gui/btnSound_enable",
+		"gui/shopBoard"
+	};
+	for (auto texture : m_textureList) {
+		if (this->hasTexture(texture) == false) this->addTexture(texture);
+	}
+
+	//PRELOADED
+	m_isPreloaded = true;
 }
