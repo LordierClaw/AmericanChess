@@ -22,6 +22,7 @@ public:
 private:
 	sf::Sprite m_piece;
 	PIECETYPE m_type;
+	sf::Text m_title;
 
 	bool m_hasSoul;
 };

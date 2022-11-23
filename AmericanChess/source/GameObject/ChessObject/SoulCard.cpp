@@ -16,6 +16,12 @@ void SoulCard::init() {
 	m_piece.setOrigin(sf::Vector2f(16.f / 2, 23.f / 2));
 	m_piece.setPosition(sf::Vector2f(this->getPosition().x, this->getPosition().y - 10.f));
 	m_type = NOTHING;
+
+	m_title.setString("SOUL");
+	m_title.setFont(*DATA->getFont("Silver"));
+	m_title.setCharacterSize(40);
+	m_title.setStyle(sf::Text::Bold);
+	m_title.setPosition(sf::Vector2f(980.f, 265.f));
 }
 
 void SoulCard::update(float deltaTime) {
@@ -23,6 +29,7 @@ void SoulCard::update(float deltaTime) {
 
 void SoulCard::render() {
 	WConnect->getWindow()->draw(*this);
+	WConnect->getWindow()->draw(m_title);
 	if (hasSoul()) WConnect->getWindow()->draw(m_piece);
 }
 

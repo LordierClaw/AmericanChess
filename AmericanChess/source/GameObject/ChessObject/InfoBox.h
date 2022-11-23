@@ -16,6 +16,8 @@ private:
 	sf::Text m_heathLbl;
 	sf::Text m_turnLbl;
 
+	std::vector<sf::Text> m_gunInfoList;
+
 	bool m_isDisplay;
 
 	void display(ChessPiece* piece);
