@@ -1,7 +1,5 @@
 #include "Shotgun.h"
 #include "../GameRuleManager.h"
-#include <cstdlib>
-#include <ctime>
 
 Shotgun::Shotgun() {
 	m_isShooting = false;
@@ -82,14 +80,12 @@ void Shotgun::render() {
 }
 
 void Shotgun::shoot() {
-	srand(time(0));
 	sf::Vector2f pos = this->getPosition();
-
 	for (int i = 0; i < GameRule->getShotgunSpray(); i++) {
 		Bullet* bullet = new Bullet();
 		float angle = this->getRotation();
 		int range = SHOOTING_RANGE_ANGLE*7/9;
-		angle = (angle + rand() % range) - range / 2;
+		angle = angle + GameMath::getRandom(-range / 2, range / 2);
 		angle = GameMath::degreeToRad(angle);
 		pos.x += 8.f * cos(angle);
 		pos.y += 8.f * sin(angle);

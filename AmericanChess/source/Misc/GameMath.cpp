@@ -35,3 +35,10 @@ float GameMath::radToDegree(float angle) {
 float GameMath::degreeToRad(float angle) {
     return angle * PI / 180;
 }
+
+int GameMath::getRandom(int start, int end) {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dist(start, end);
+    return dist(gen);
+}

@@ -1,5 +1,6 @@
 #pragma once
 #include <cmath>
+#include <random>
 #include "SFML/Graphics.hpp"
 
 #define PI 3.141592f
@@ -15,4 +16,7 @@ public:
 	static float radToDegree(float angle);
 	//convert degree to radian
 	static float degreeToRad(float angle);
+
+	//get Random number
+	static int getRandom(int start, int end);
 };
