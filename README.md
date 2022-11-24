@@ -4,7 +4,3 @@
 This game is created by **LordierClaw** for **Game CPP Competition - ProPTIT 2022**.
 
 The original game is ***Shotgun King***, created by *PUNKCAKE Delicieux*.
-
-# Progress
-
-This game is still **incomplete**, be patient!
