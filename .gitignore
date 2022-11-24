@@ -33,3 +33,15 @@
 /Design
 /.vs
 **/x64/Debug
+
+# Build results
+[Bb]in/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Oo]bj/
